@@ -15,10 +15,10 @@
 }
 
 .nav-item-principal{
-  @apply text-black text-sm  font-certia;
+  @apply md:text-black text-sm  font-certia;
 }
 .nav-item{
-  @apply xl:text-white text-sm font-certia text-black hover:text-black hover:bg-white rounded-none p-2;
+  @apply xl:text-white text-sm font-certia md:text-black text-white md:hover:text-black md:hover:bg-white rounded-none p-2;
 }
 
 .submenuitem{
@@ -35,8 +35,16 @@
     height: 0;
     border-left: 10px solid transparent;
     border-right: 10px solid transparent;
-    border-top: 10px solid #fff; /* Cambia el color según el color de fondo de tu menú */
+    border-top: 10px solid #fff; 
     clip-path: polygon(50% 100%, 0 0, 100% 0);
+}
+
+@media screen and (max-width: 768px) {
+  .submenuitem::after {
+    border-top: 10px solid #000; 
+    left: 10%;
+  }
+
 }
 
 
