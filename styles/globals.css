@@ -14,3 +14,40 @@
   pointer-events: none;
 }
 
+.nav-item-principal{
+  @apply text-black text-sm  font-certia;
+}
+.nav-item{
+  @apply xl:text-white text-sm font-certia text-black hover:text-black hover:bg-white rounded-none p-2;
+}
+
+.submenuitem{
+  @apply p-4 !important;
+}
+
+.submenuitem::after {
+  content: '';
+    position: absolute;
+    left: 20%;
+    top: 0%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 0;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-top: 10px solid #fff; /* Cambia el color según el color de fondo de tu menú */
+    clip-path: polygon(50% 100%, 0 0, 100% 0);
+}
+
+
+.nav-item.active {
+  color: #7DA0BB;
+}
+
+.navbar{
+  @apply flex justify-between items-center;
+}
+
+.navbar summary:active, .navbar summary:focus{
+  @apply outline-none bg-transparent !important;
+}

@@ -1,4 +1,5 @@
 import "@/styles/globals.css"
+import "@/public/assets/fonts/fonts.css"
 
 
 export const metadata = {

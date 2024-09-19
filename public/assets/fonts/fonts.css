@@ -1,0 +1,75 @@
+@font-face {
+    font-family: 'Bodoni 72';
+    src: url('Bodoni\ 72.ttc') format('truetype-collection');
+}
+
+@font-face {
+    font-family: 'Certia';
+    src: url('Certia-Black.otf') format('opentype');
+    font-weight: 900; /* Black */
+}
+
+@font-face {
+    font-family: 'Certia';
+    src: url('Certia-ExtraBold.otf') format('opentype');
+    font-weight: 800; /* ExtraBold */
+}
+
+@font-face {
+    font-family: 'Certia';
+    src: url('Certia-Italic.otf') format('opentype');
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Certia';
+    src: url('Certia-Medium.otf') format('opentype');
+    font-weight: 500; /* Medium */
+}
+
+@font-face {
+    font-family: 'Certia';
+    src: url('Certia-MediumItalic.otf') format('opentype');
+    font-weight: 500; /* Medium */
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Certia';
+    src: url('Certia-SemiBold.otf') format('opentype');
+    font-weight: 600; /* SemiBold */
+}
+
+@font-face {
+    font-family: 'Certia';
+    src: url('Certia-SemiBoldItalic.otf') format('opentype');
+    font-weight: 600; /* SemiBold */
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Certia';
+    src: url('Certia-Thin.otf') format('opentype');
+    font-weight: 200; /* Thin */
+}
+
+@font-face {
+    font-family: 'Font Awesome 6 Brands';
+    src: url('Font\ Awesome\ 6\ Brands-Regular-400.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Font Awesome 6 Free';
+    src: url('Font\ Awesome\ 6\ Free-Solid-900.otf') format('opentype');
+    font-weight: bold;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Tox Typewriter';
+    src: url('ToxTypewriter.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
