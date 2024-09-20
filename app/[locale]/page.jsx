@@ -5,6 +5,7 @@ import NavBar from '@/components/NavBar/NavBar';
 import Group from '@/components/Group/Group';
 import Banner from '@/components/Banner/Banner';
 import Media from '@/components/Media/Media';
+import Footer from '@/components/Footer/Footer';
 
 const namespaces = ['home', 'navBar']
 
@@ -51,6 +52,7 @@ export default async function Home({ params: { locale } }) {
         <div className='flex justify-center items-center md:w-[20%] flex-col'>
         </div>
       </div>
+      <Footer />
     </main>
     </TranslationsProvider>
 

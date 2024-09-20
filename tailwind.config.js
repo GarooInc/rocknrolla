@@ -34,6 +34,7 @@ module.exports = {
         'tox': ['"Tox Typewriter"'],
       },
       colors: {
+        'dark-gray': '#1a1a1a',
       },
     },
   },
