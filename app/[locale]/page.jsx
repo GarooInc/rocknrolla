@@ -6,6 +6,7 @@ import Group from '@/components/Group/Group';
 import Banner from '@/components/Banner/Banner';
 import Media from '@/components/Media/Media';
 import Footer from '@/components/Footer/Footer';
+import Highlights from '@/components/Highlights/Highlights';
 
 const namespaces = ['home', 'navBar']
 
@@ -23,7 +24,7 @@ export default async function Home({ params: { locale } }) {
     <TranslationsProvider locale={locale} namespaces={namespaces} resources={resources}>
     <main className='min-h-screen bg-white'>
       <NavBar />
-      <div className='flex md:flex-row flex-col w-full justify-center items-center'>
+      <div className='flex md:flex-row flex-col w-full justify-center items-stretch gap-10'>
         <div className='w-full flex flex-col gap-10'>
           <div className='flex md:flex-row flex-col-reverse justify-between items-stretch w-full gap-10'>
             <div className='flex md:flex-col md:w-[20%] shadow-md md:flex-nowrap flex-wrap'>
@@ -49,8 +50,7 @@ export default async function Home({ params: { locale } }) {
             </div>
           </div>
         </div>
-        <div className='flex justify-center items-center md:w-[20%] flex-col'>
-        </div>
+        <Highlights />
       </div>
       <Footer />
     </main>

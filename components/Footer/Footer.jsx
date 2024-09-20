@@ -25,7 +25,7 @@ const Footer = () => {
     ]
 
   return (
-    <footer className="bg-black text-white mt-10">
+    <footer className="bg-black text-white mt-10 font-certia">
       <div className="md:w-full">
         {/* Desktop layout */}
         <div className="hidden lg:flex justify-between w-full">
