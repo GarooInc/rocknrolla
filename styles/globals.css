@@ -59,3 +59,9 @@
 .navbar summary:active, .navbar summary:focus{
   @apply outline-none bg-transparent !important;
 }
+
+/*home*/
+
+.home_title{
+  @apply text-4xl font-bold font-bodoni w-1/2 text-center tracking-wider leading-normal;
+}

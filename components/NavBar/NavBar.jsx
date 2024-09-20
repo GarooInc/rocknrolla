@@ -74,14 +74,17 @@ const NavBar = () => {
             </div>
             <div className="flex xl:hidden justify-between w-full">
                 <div className="flex justify-between px-4 w-full">
-                    <Image src="/assets/images/logo.png" alt="Prodisa" className='cursor-pointer' width={100} height={100} onClick={() => router.push('/')} />
-                    <button onClick={toggleMenu}>
+                    <button onClick={toggleMenu} className='w-10'>
                         <AiOutlineMenu size={30} className='text-black' />
                     </button>
+                    <Image src="/assets/images/logo.png" alt="Prodisa" className='cursor-pointer w-36' width={100} height={100} onClick={() => router.push('/')} />
+                    <div className="flex xl:hidden w-20 justify-end">
+                        <LanguageSwitcher />
+                    </div>
                 </div>
                 {
                     showMenu && (
-                        <ul className="menu menu-vertical bg-black text-blue-prod absolute top-0 right-0 z-10 h-screen w-80 p-6">
+                        <ul className="menu menu-vertical bg-black text-blue-prod absolute top-0 left-0 z-10 h-screen w-80 p-6">
                             <button onClick={toggleMenu} className='w-full justify-end flex'>
                                 <MdClose size={30} className='text-white' />
                             </button>
