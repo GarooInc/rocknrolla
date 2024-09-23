@@ -84,7 +84,7 @@ const NavBar = () => {
                 </div>
                 {
                     showMenu && (
-                        <ul className="menu menu-vertical bg-black text-blue-prod absolute top-0 left-0 z-10 h-screen w-80 p-6">
+                        <ul className="menu menu-vertical bg-black text-blue-prod absolute top-0 left-0 z-20 h-screen w-80 p-6">
                             <button onClick={toggleMenu} className='w-full justify-end flex'>
                                 <MdClose size={30} className='text-white' />
                             </button>
