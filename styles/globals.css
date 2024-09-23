@@ -74,3 +74,21 @@
 .line-buttoncontainer{
   @apply flex items-center justify-center gap-4;
 }
+
+/* title text */
+.titletext_title{
+  @apply md:text-3xl text-xl font-bold font-garamond md:w-1/2 text-center tracking-wider leading-normal;
+}
+
+.text_title{
+  @apply text-center font-garamond italic md:text-lg text-sm;
+}
+
+.separator{
+  @apply bg-black w-[20px] h-[2px] my-4;
+}
+
+/* Custom card */
+.titletext_card{
+  @apply md:text-3xl text-xl font-bold font-garamond text-center tracking-wider leading-normal;
+}

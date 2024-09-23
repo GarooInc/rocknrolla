@@ -21,7 +21,7 @@ const NavBar = () => {
             { name: t('navBar:nav1_s2') , link: '/somos' },
             { name: t('navBar:nav1_s3') , link: '/somos' },
         ]},
-        { name: t('navBar:nav2') , link: '/cultura', submenu: [
+        { name: t('navBar:nav2') , link: '/culture', submenu: [
             { name: t('navBar:nav2_s1') , link: '/vision' },
             { name: t('navBar:nav2_s2') , link: '/culture' },
             { name: t('navBar:nav2_s3') , link: '/innegotiable' },
