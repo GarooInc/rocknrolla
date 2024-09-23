@@ -9,7 +9,7 @@ const Media = () => {
     ];
 
   return (
-    <div className='relative w-full h-full bg-black p-10'>
+    <div className='relative w-full h-full bg-black p-10 transition-transform duration-500 ease-in-out transform hover:scale-105 cursor-pointer hover:z-10'>
         <div className='hidden md:grid grid-cols-2 grid-rows-2 gap-4 w-full h-full'>
             {media.map((item, index) => (
                 <a href={item.link} key={index} target='_blank' rel='noreferrer' className='flex justify-center items-center'>
