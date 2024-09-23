@@ -32,6 +32,7 @@ module.exports = {
         'fa-brands': ['"Font Awesome 6 Brands"'],
         'fa-free': ['"Font Awesome 6 Free"'],
         'tox': ['"Tox Typewriter"'],
+        'garamond': ['"Garamond"'],
       },
       colors: {
         'dark-gray': '#1a1a1a',

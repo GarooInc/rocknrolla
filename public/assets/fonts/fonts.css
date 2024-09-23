@@ -73,3 +73,68 @@
     font-weight: normal;
     font-style: normal;
 }
+
+@font-face {
+    font-family: 'Garamond';
+    src: url('GaramondPremrPro-Bd.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Garamond';
+    src: url('GaramondPremrPro-BdCapt.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Garamond';
+    src: url('GaramondPremrPro-BdIt.ttf') format('truetype');
+    font-weight: bold;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Garamond';
+    src: url('GaramondPremrPro-It.ttf') format('truetype');
+    font-weight: normal;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Garamond';
+    src: url('GaramondPremrPro-Med.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Garamond';
+    src: url('GaramondPremrPro-MedIt.ttf') format('truetype');
+    font-weight: normal;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Garamond';
+    src: url('GaramondPremrPro-MedItCapt.ttf') format('truetype');
+    font-weight: normal;
+    font-style: italic;
+
+}
+
+@font-face {
+    font-family: 'Garamond';
+    src: url('GaramondPremrPro-SmbdItCapt.ttf') format('truetype');
+    font-weight: 600; /* SemiBold */
+    font-style: italic;
+}
+
+
+@font-face {
+    font-family: 'Garamond';
+    src: url('GaramondPremrPro.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}

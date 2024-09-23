@@ -25,7 +25,7 @@ const Footer = () => {
     ]
 
   return (
-    <footer className="bg-black text-white mt-10 font-certia">
+    <footer className="bg-black text-white md:mt-10 font-certia">
       <div className="md:w-full">
         {/* Desktop layout */}
         <div className="hidden lg:flex justify-between w-full">
@@ -40,7 +40,7 @@ const Footer = () => {
                         <ul className="space-y-4">
                         {item.submenu ? (
                             item.submenu.map((subitem, subindex) => (
-                            <li key={subindex}>{subitem.name}</li>
+                            <li className='font-certia font-light' key={subindex}>{subitem.name}</li>
                             ))
                         ) : (
                             <li></li>
@@ -82,7 +82,7 @@ const Footer = () => {
                         <ul className="space-y-1 text-start text-sm">
                         {item.submenu ? (
                             item.submenu.map((subitem, subindex) => (
-                            <li key={subindex}>{subitem.name}</li>
+                            <li className='font-certia font-light' key={subindex}>{subitem.name}</li>
                             ))
                         ) : (
                             <li></li>

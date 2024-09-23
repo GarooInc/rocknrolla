@@ -4,7 +4,7 @@ import { FaPlus } from "react-icons/fa"
 
 const Banner = ({title,button,secondary}) => {
   return (
-    <div className={`px-10 py-20 flex flex-col justify-center items-center gap-4 shadow-xl relative ${secondary ? 'bg-white' : 'bg-black'}`}>
+    <div className={`px-10 py-20 flex flex-col justify-center items-center gap-4 shadow-xl relative ${secondary ? 'bg-white' : 'bg-black'} transition-transform duration-500 ease-in-out transform hover:scale-105 cursor-pointer hover:z-10`}>
         <h2 className={`home_title uppercase ${secondary ? 'text-black' : 'text-white'}`}>{title}</h2>
         {
             secondary ? <LineButton text={button} secondary /> : <LineButton text={button} />

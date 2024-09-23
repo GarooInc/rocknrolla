@@ -63,5 +63,14 @@
 /*home*/
 
 .home_title{
-  @apply text-4xl font-bold font-bodoni md:w-1/2 text-center tracking-wider leading-normal;
+  @apply md:text-4xl text-2xl font-bold font-garamond md:w-1/2 text-center tracking-wider leading-normal;
+}
+
+/* line button */
+.line-buttontext{
+  @apply md:text-lg text-sm font-certia;
+}
+
+.line-buttoncontainer{
+  @apply flex items-center justify-center gap-4;
 }

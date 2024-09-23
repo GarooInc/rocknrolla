@@ -24,9 +24,9 @@ export default async function Home({ params: { locale } }) {
     <TranslationsProvider locale={locale} namespaces={namespaces} resources={resources}>
     <main className='min-h-screen bg-white'>
       <NavBar />
-      <div className='flex md:flex-row flex-col w-full justify-center items-stretch gap-10'>
-        <div className='w-full flex flex-col gap-10'>
-          <div className='flex md:flex-row flex-col-reverse justify-between items-stretch w-full gap-10'>
+      <div className='flex md:flex-row flex-col w-full justify-center items-stretch md:gap-10'>
+        <div className='w-full flex flex-col md:gap-10'>
+          <div className='flex md:flex-row flex-col-reverse justify-between items-stretch w-full md:gap-10'>
             <div className='flex md:flex-col md:w-[20%] shadow-md md:flex-nowrap flex-wrap'>
               {
                 groups.map((group, index) => (
@@ -35,13 +35,13 @@ export default async function Home({ params: { locale } }) {
               }
             </div>
               <div className='flex flex-col md:w-[80%] gap-10'>
-                <img src='/assets/images/home/principal.png' alt='Highlight' className='w-full h-[600px] object-cover' />
+                <img src='/assets/images/home/principalgif.gif' alt='Highlight' className='w-full h-[600px] object-cover' />
                 <Banner title={t('home:work')} button={t('home:culture')} secondary />
               </div>
           </div>
           <Banner title={t('home:last_work')} button={t('home:view')} />
           <Banner secondary title={t('home:innovation')} button={t('home:find')} />
-          <div className='flex md:flex-row flex-col justify-between items-stretch w-full gap-10'>
+          <div className='md:flex md:flex-row flex-col justify-between items-stretch w-full gap-10 hidden'>
             <div className='md:w-1/2'>
               <Media />
             </div>
@@ -51,6 +51,14 @@ export default async function Home({ params: { locale } }) {
           </div>
         </div>
         <Highlights />
+        <div className='md:hidden flex flex-col justify-between items-stretch w-full'>
+            <div className='md:w-1/2'>
+              <Media />
+            </div>
+            <div className='md:w-1/2'>
+              <Banner title={t('home:alleys')} button={t('home:view')} secondary />
+            </div>
+          </div>
       </div>
       <Footer />
     </main>
