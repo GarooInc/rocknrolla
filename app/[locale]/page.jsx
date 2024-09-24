@@ -27,15 +27,15 @@ export default async function Home({ params: { locale } }) {
       <div className='flex md:flex-row flex-col w-full justify-center items-stretch md:gap-10'>
         <div className='w-full flex flex-col md:gap-10'>
           <div className='flex md:flex-row flex-col-reverse justify-between items-stretch w-full md:gap-10'>
-            <div className='flex md:flex-col md:w-[20%] shadow-md md:flex-nowrap flex-wrap'>
+            <div className='flex md:flex-col md:basis-[20%] shadow-md md:flex-nowrap flex-wrap'>
               {
                 groups.map((group, index) => (
                   <Group cover={group.cover} logo={group.logo} key={index} secondary={group.secondary} />
                 ))
               }
             </div>
-              <div className='flex flex-col md:w-[80%] md:gap-10'>
-                <img src='/assets/images/home/principalgif.gif' alt='Highlight' className='w-full md:h-[600px] h-[350px] object-cover' />
+              <div className='flex flex-col md:basis-[80%] md:gap-10'>
+                <img src='/assets/images/home/principalgif.gif' alt='Highlight' className='w-full md:h-[600px] sm:h-[400px] h-[350px] object-cover' />
                 <Banner title={t('home:work')} button={t('home:culture')} secondary />
               </div>
           </div>
@@ -51,6 +51,7 @@ export default async function Home({ params: { locale } }) {
           </div>
         </div>
         <Highlights />
+        {/* Mobile */}
         <div className='md:hidden flex flex-col justify-between items-stretch w-full'>
             <div className='md:w-1/2'>
               <Media />

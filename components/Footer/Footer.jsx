@@ -30,7 +30,7 @@ const Footer = () => {
         {/* Desktop layout */}
         <div className="hidden lg:flex justify-between w-full">
             <div className="flex flex-col w-1/3 p-8">
-                <img src='/assets/images/footer/logo.png' alt="Logo" className='w-28' />
+                <img src='/assets/images/footer/logo.png' alt="Logo" className='w-20' />
             </div>
             <div className='flex flex-col w-full bg-dark-gray '>
                 <div className="flex justify-between w-full p-10">

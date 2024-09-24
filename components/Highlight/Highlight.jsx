@@ -20,7 +20,7 @@ const Highlight = ({ img, title }) => {
         <span className='text-white text-xs font-certia italic tracking-widest'>
           FUTURE &gt;
         </span>
-        <span className='text-white text-sm md:text-base font-bold font-certia md:tracking-wide uppercase'>
+        <span className='text-white text-sm xl:text-base font-bold font-certia md:tracking-wide uppercase'>
           {formattedTitle}
         </span>
       </div>

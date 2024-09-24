@@ -11,7 +11,7 @@ const Banner = ({ title, button, secondary, double, image }) => {
   ));
 
   return (
-    <div className={`banner_container relative animation ${secondary ? 'bg-white' : 'bg-black'} ${double ? 'md:px-10 md:py-40 px-4 py-20' : 'md:px-10 md:py-20 px-8 pt-12 pb-8'}`}>
+    <div className={`banner_container relative animation ${secondary ? 'bg-white' : 'bg-black'} ${double ? 'md:px-10 md:py-40 px-4 py-20' : 'md:px-10 md:py-20 px-8 pt-20 pb-12'}`}>
       <h2 className={`home_title relative uppercase ${secondary ? 'text-black' : 'text-white'}`}>
         {formattedTitle}
         {

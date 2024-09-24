@@ -29,7 +29,7 @@ const Highlights = () => {
 
 
   return (
-    <div className='flex md:flex-col md:w-[20%] shadow-md md:flex-nowrap flex-wrap'>
+    <div className='flex md:flex-col md:basis-[25%] shadow-md md:flex-nowrap flex-wrap'>
         {
             highlights && highlights.map((highlight, index) => (
                 <Highlight key={index} img={`https://dev.rocknrolla23.com/api/files/${highlight.collectionId}/${highlight.id}/${highlight.square_img}?token=`} title={highlight[`title_${currentLocale}`]} />
