@@ -54,19 +54,19 @@ const NavBar = () => {
                                     </summary>
                                     <ul className="submenuitem shadow menu rounded-none bg-black text-white hover:bg-none hover:text-white">
                                         {item.submenu.map((subitem, subindex) => (
-                                            <React.Fragment key={subindex}>
-                                                <li key={subindex} className='nav-item'>
-                                                    <a href={subitem.link}>{subitem.name}</a>
+                                            <div key={`divider-${subindex}`} className='flex flex-col'>
+                                                <li key={subindex} className='nav-item my-2'>
+                                                    <a className='hover:bg-transparent' href={subitem.link}>{subitem.name}</a>
                                                 </li>
                                                 {subindex < item.submenu.length - 1 && <div key={`divider-${subindex}`} className='border-b border-white'></div>}
-                                            </React.Fragment>
+                                            </div>
                                         ))}
                                     </ul>
                                 </details>
                             </li>
                         ) : (
-                            <li key={index} className={`nav-item-principal ${pathname === item.link ? 'active' : ''}`}>
-                                <a href={item.link}>{item.name}</a>
+                            <li key={index} className={`nav-item-principal`}>
+                                <a className='nav-item-principal' href={item.link}>{item.name}</a>
                             </li>
                         )
                     ))}
