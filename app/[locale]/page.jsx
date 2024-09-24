@@ -40,7 +40,7 @@ export default async function Home({ params: { locale } }) {
               </div>
           </div>
           <Banner title={t('home:last_work')} button={t('home:view')} />
-          <Banner secondary title={t('home:innovation')} button={t('home:find')} />
+          <Banner double secondary title={t('home:innovation')} button={t('home:find')} />
           <div className='md:flex md:flex-row flex-col justify-between items-stretch w-full gap-10 hidden'>
             <div className='md:w-1/2'>
               <Media />

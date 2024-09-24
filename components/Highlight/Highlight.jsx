@@ -5,7 +5,7 @@ const Highlight = ({ img, title }) => {
   return (
     <div
       style={{ backgroundImage: `url(${img})` }}
-      className='highlight bg-cover bg-center bg-no-repeat md:flex-grow md:h-full h-60 flex items-end justify-end relative md:w-full w-1/2 md:transition-transform md:duration-500 md:ease-in-out md:transform md:hover:scale-105 cursor-pointer md:hover:z-10'
+      className='highlight_container'
     >
       <div className='flex flex-col items-start justify-end p-4 gap-2'>
         <span className='text-white text-xs font-certia italic tracking-widest'>

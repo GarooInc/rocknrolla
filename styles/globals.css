@@ -95,5 +95,15 @@
 
 /* Banner */
 .banner_container{
-  @apply md:px-10 md:py-20 px-8 py-16 flex flex-col justify-center items-center gap-4 shadow-xl relative  transition-transform duration-500 ease-in-out transform hover:scale-105 cursor-pointer hover:z-10;
+  @apply flex flex-col justify-center items-center gap-4 shadow-xl relative  transition-transform duration-500 ease-in-out transform hover:scale-105 cursor-pointer hover:z-10;
+}
+
+/* group */
+.group_container{
+  @apply  bg-cover bg-center bg-no-repeat md:h-1/4 h-52 flex items-center justify-center relative md:w-full w-1/2 md:transition-transform md:duration-500 md:ease-in-out md:transform hover:scale-105 cursor-pointer hover:z-10;
+}
+
+/* highlight */
+.highlight_container{
+  @apply bg-cover bg-center bg-no-repeat md:flex-grow md:h-full h-52 flex items-end justify-end relative md:w-full w-1/2 md:transition-transform md:duration-500 md:ease-in-out md:transform md:hover:scale-105 cursor-pointer md:hover:z-10;
 }
