@@ -1,7 +1,7 @@
 "use client"
 import React,{useState} from 'react'
 import Image from 'next/image'
-import { AiOutlineMenu } from "react-icons/ai"
+import { IoMenu } from "react-icons/io5";
 import { MdClose } from "react-icons/md"
 import { useRouter } from 'next/navigation'
 import { usePathname } from 'next/navigation'
@@ -75,9 +75,9 @@ const NavBar = () => {
             <div className="flex xl:hidden justify-between w-full">
                 <div className="flex justify-between px-4 w-full">
                     <button onClick={toggleMenu} className='w-10'>
-                        <AiOutlineMenu size={30} className='text-black' />
+                        <IoMenu className='text-black w-8 h-8' />
                     </button>
-                    <Image src="/assets/images/logo.png" alt="Prodisa" className='cursor-pointer w-36' width={100} height={100} onClick={() => router.push('/')} />
+                    <Image src="/assets/images/logo.png" alt="Prodisa" className='cursor-pointer w-30 py-2' width={100} height={100} onClick={() => router.push('/')} />
                     <div className="flex xl:hidden w-20 justify-end">
                         <LanguageSwitcher />
                     </div>

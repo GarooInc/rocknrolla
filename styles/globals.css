@@ -63,12 +63,12 @@
 /*home*/
 
 .home_title{
-  @apply md:text-4xl text-2xl font-bold font-garamond md:w-1/2 text-center tracking-wider leading-normal;
+  @apply md:text-4xl text-xl font-bold font-garamond text-center md:tracking-wider leading-normal;
 }
 
 /* line button */
 .line-buttontext{
-  @apply md:text-lg text-sm font-certia;
+  @apply md:text-lg text-xs font-certia;
 }
 
 .line-buttoncontainer{
@@ -91,4 +91,9 @@
 /* Custom card */
 .titletext_card{
   @apply md:text-3xl text-xl font-bold font-garamond text-center tracking-wider leading-normal;
+}
+
+/* Banner */
+.banner_container{
+  @apply md:px-10 md:py-20 px-8 py-16 flex flex-col justify-center items-center gap-4 shadow-xl relative  transition-transform duration-500 ease-in-out transform hover:scale-105 cursor-pointer hover:z-10;
 }

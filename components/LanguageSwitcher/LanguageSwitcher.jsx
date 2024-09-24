@@ -38,11 +38,11 @@ const LanguageSwitcher = () => {
 
 
     return (
-        <div className='p-4'>
+        <div className='md:p-4 p-2 flex justify-center items-center'>
           <div className='flex justify-end'>
-            <button onClick={handleChange} value='es' className={`mx-2 text-black ${currentLocale === 'es' ? 'font-bold' : ''}`}>es</button>
-            <div className='mx-2 text-black'>|</div>
-            <button onClick={handleChange} value='en' className={`mx-2 text-black ${currentLocale === 'en' ? 'font-bold' : ''}`}>en</button>
+            <button onClick={handleChange} value='es' className={`md:mx-2 text-black font-certia ${currentLocale === 'es' ? 'font-bold' : 'font-light'}`}>es</button>
+            <div className='md:mx-2 mx-[4px] text-black font-certia font-light'>|</div>
+            <button onClick={handleChange} value='en' className={`md:mx-2 text-black font-certia ${currentLocale === 'en' ? 'font-bold' : 'font-light'}`}>en</button>
           </div>
         </div>
     )
