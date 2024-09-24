@@ -72,39 +72,41 @@ const Footer = () => {
         {/* Mobile layout */}
         <div className="lg:hidden flex items-start">
             <div className="text-center text-2xl p-4 w-1/3">
-                <img src='/assets/images/footer/logo.png' alt="Logo" className='w-24' />
+                <img src='/assets/images/footer/logo.png' alt="Logo" className='w-20' />
             </div>
             <div className='flex flex-col gap-4 w-2/3 bg-dark-gray p-8'>
-                <div className="grid grid-cols-2 gap-10 text-center">
-                    {menu.map((item, index) => (
-                    <div key={index}>
-                        <h4 className="font-bold mb-2 text-start text-lg">{item.name}</h4>
-                        <ul className="space-y-1 text-start text-sm">
-                        {item.submenu ? (
-                            item.submenu.map((subitem, subindex) => (
-                            <li className='font-certia font-light' key={subindex}>{subitem.name}</li>
-                            ))
-                        ) : (
-                            <li></li>
-                        )}
-                        </ul>
+                    <div className='flex relative'>
+                        <div className="grid grid-cols-2 gap-10 text-center">
+                            {menu.map((item, index) => (
+                            <div key={index}>
+                                <h4 className="font-bold mb-2 text-start text-sm">{item.name}</h4>
+                                <ul className="space-y-1 text-start text-sm">
+                                {item.submenu ? (
+                                    item.submenu.map((subitem, subindex) => (
+                                    <li className='font-certia font-light' key={subindex}>{subitem.name}</li>
+                                    ))
+                                ) : (
+                                    <li></li>
+                                )}
+                                </ul>
+                            </div>
+                            ))}
+                        </div>
+                        {/* Social media icons */}
+                        <div className="flex space-x-4 justify-end items-end absolute bottom-2 right-0">
+                            <a href="#" className="hover:opacity-75">
+                            <img src="/assets/images/media/1.png" alt="Instagram" className='w-6' />
+                            </a>
+                            <a href="#" className="hover:opacity-75">
+                            <img src="/assets/images/media/3.png" alt="LinkedIn" className='w-6' />
+                            </a>
+                            <a href="#" className="hover:opacity-75">
+                            <img src="/assets/images/media/2.png" alt="Vimeo" className='w-6' />
+                            </a>
+                        </div>
                     </div>
-                    ))}
-                </div>
-                {/* Social media icons */}
-                <div className="flex space-x-4">
-                    <a href="#" className="hover:opacity-75">
-                    <img src="/assets/images/media/1.png" alt="Instagram" className='w-8' />
-                    </a>
-                    <a href="#" className="hover:opacity-75">
-                    <img src="/assets/images/media/3.png" alt="LinkedIn" className='w-8' />
-                    </a>
-                    <a href="#" className="hover:opacity-75">
-                    <img src="/assets/images/media/2.png" alt="Vimeo" className='w-8' />
-                    </a>
-                </div>
                 {/* Copyright text */}
-                <div className="text-start text-xs">
+                <div className="text-start text-[8px]">
                     <div className="border-t border-white my-4"></div>
                     © 2024 ROCKNROLLA, RR GROUP. TRADEMARKS AND BRANDS ARE THE PROPERTY OF THEIR RESPECTIVE OWNERS.
                 </div>
