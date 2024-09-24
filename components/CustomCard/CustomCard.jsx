@@ -6,7 +6,7 @@ const CustomCard = ({title, text}) => {
         <div className="absolute inset-1 border-[1px] border-white rounded-xl pointer-events-none"></div>
 
       <div className="relative z-10 text-center">
-        <h2 className="titletext_card text-white">
+        <h2 className="titletext_card text-white uppercase">
             {title}
         </h2>
         <p className="text_title text-white">

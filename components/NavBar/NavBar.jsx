@@ -39,7 +39,7 @@ const NavBar = () => {
     }
 
     return (
-        <div className="navbar bg-white  md:px-10 p-4">
+        <div className="navbar bg-white  md:px-10 p-4 border-b border-black">
             <div className=" md:flex hidden">
                 <Image src="/assets/images/logo.png" alt="logo" className='cursor-pointer xl:flex hidden' width={100} height={100} onClick={() => router.push('/')} />
             </div>
