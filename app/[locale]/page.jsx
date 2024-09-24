@@ -35,7 +35,7 @@ export default async function Home({ params: { locale } }) {
               }
             </div>
               <div className='flex flex-col md:w-[80%] md:gap-10'>
-                <img src='/assets/images/home/principalgif.gif' alt='Highlight' className='w-full md:h-[600px] h-[400px] object-cover' />
+                <img src='/assets/images/home/principalgif.gif' alt='Highlight' className='w-full md:h-[600px] h-[350px] object-cover' />
                 <Banner title={t('home:work')} button={t('home:culture')} secondary />
               </div>
           </div>
