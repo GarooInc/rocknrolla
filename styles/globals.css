@@ -63,7 +63,7 @@
 /*home*/
 
 .home_title{
-  @apply md:text-4xl text-xl font-bold font-garamond text-center md:tracking-wider leading-normal;
+  @apply md:text-4xl text-xl font-bold font-garamond text-center tracking-wider leading-normal;
 }
 
 /* line button */
