@@ -70,17 +70,21 @@ const Footer = () => {
         </div>
 
         {/* Mobile layout */}
-        <div className="lg:hidden flex items-start">
-            <div className="text-center text-2xl p-4 w-1/3">
+        <div className="lg:hidden flex items-start justify-stretch h-96">
+            <div className="text-start p-4 w-1/3 flex flex-col justify-between h-full">
                 <img src='/assets/images/footer/logo.png' alt="Logo" className='w-20' />
+                {/* Copyright text */}
+                <span className="text-start text-[8px] leading-normal">
+                    © 2024 ROCKNROLLA, RR GROUP. TRADEMARKS AND BRANDS ARE THE PROPERTY OF THEIR RESPECTIVE OWNERS.
+                </span>
             </div>
-            <div className='flex flex-col gap-4 w-2/3 bg-dark-gray p-8'>
-                    <div className='flex relative'>
+            <div className='flex flex-col w-2/3 bg-dark-gray p-6 h-full'>
+                    <div className='flex flex-col gap-4'>
                         <div className="grid grid-cols-2 gap-10 text-center">
                             {menu.map((item, index) => (
                             <div key={index}>
                                 <h4 className="font-bold mb-2 text-start text-sm">{item.name}</h4>
-                                <ul className="space-y-1 text-start text-sm">
+                                <ul className="space-y-1 text-start text-xs">
                                 {item.submenu ? (
                                     item.submenu.map((subitem, subindex) => (
                                     <li className='font-certia font-light' key={subindex}>{subitem.name}</li>
@@ -93,7 +97,8 @@ const Footer = () => {
                             ))}
                         </div>
                         {/* Social media icons */}
-                        <div className="flex space-x-4 justify-end items-end absolute bottom-2 right-0">
+                        <div className="border-t border-white"></div>
+                        <div className="flex space-x-4 justify-between items-center">
                             <a href="#" className="hover:opacity-75">
                             <img src="/assets/images/media/1.png" alt="Instagram" className='w-6' />
                             </a>
@@ -105,11 +110,6 @@ const Footer = () => {
                             </a>
                         </div>
                     </div>
-                {/* Copyright text */}
-                <div className="text-start text-[8px]">
-                    <div className="border-t border-white my-4"></div>
-                    © 2024 ROCKNROLLA, RR GROUP. TRADEMARKS AND BRANDS ARE THE PROPERTY OF THEIR RESPECTIVE OWNERS.
-                </div>
             </div>
         </div>
       </div>

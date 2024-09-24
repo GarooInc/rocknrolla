@@ -100,12 +100,12 @@
 
 /* group */
 .group_container{
-  @apply  bg-cover bg-center bg-no-repeat md:h-1/4 h-52 flex items-center justify-center relative md:w-full w-1/2 cursor-pointer;
+  @apply  bg-cover bg-center bg-no-repeat md:flex-grow h-52 flex items-start justify-center relative md:w-full w-1/2 cursor-pointer;
 }
 
 /* highlight */
 .highlight_container{
-  @apply bg-cover bg-center bg-no-repeat md:flex-grow md:h-full h-52 flex items-end justify-end relative md:w-full w-1/2 cursor-pointer;
+  @apply bg-cover bg-center bg-no-repeat md:flex-grow h-52 flex items-end justify-end relative md:w-full w-1/2 cursor-pointer;
 }
 
 /* animation */

@@ -2,11 +2,14 @@
 import React, { useState, useEffect } from 'react';
 import PocketBase from 'pocketbase';
 import Highlight from '../Highlight/Highlight';
+import { useTranslation } from 'react-i18next';
 
 const Highlights = () => {
     const [highlights, setHighlights] = useState(null);
     const pb = new PocketBase('https://dev.rocknrolla23.com')
     pb.autoCancellation(false);
+    const { i18n } = useTranslation();
+    const currentLocale = i18n.language;
 
     useEffect(() => {
         const fetchData = async () => {
@@ -29,7 +32,7 @@ const Highlights = () => {
     <div className='flex md:flex-col md:w-[20%] shadow-md md:flex-nowrap flex-wrap'>
         {
             highlights && highlights.map((highlight, index) => (
-                <Highlight key={index} img={`https://dev.rocknrolla23.com/api/files/${highlight.collectionId}/${highlight.id}/${highlight.square_img}?token=`} title={highlight.title} />
+                <Highlight key={index} img={`https://dev.rocknrolla23.com/api/files/${highlight.collectionId}/${highlight.id}/${highlight.square_img}?token=`} title={highlight[`title_${currentLocale}`]} />
             ))
         }
     </div>
