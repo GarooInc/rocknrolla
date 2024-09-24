@@ -5,7 +5,7 @@ const Group = ({ cover, logo, secondary }) => {
   return (
     <div
       style={{ backgroundImage: `url(${cover})` }}
-      className='group_container'
+      className='group_container animation'
     >
       <div className='flex flex-col items-center justify-end h-full py-8'>
         <img src={logo} alt="Logo" className='h-24' />
