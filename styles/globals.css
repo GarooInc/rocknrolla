@@ -68,7 +68,7 @@
 
 /* line button */
 .line-buttontext{
-  @apply md:text-lg text-xs font-certia;
+  @apply md:text-sm text-xs font-certia tracking-wide;
 }
 
 .line-buttoncontainer{
@@ -77,7 +77,7 @@
 
 /* title text */
 .titletext_title{
-  @apply md:text-3xl text-xl font-bold font-garamond md:w-1/2 text-center tracking-wider leading-normal;
+  @apply md:text-2xl text-lg font-bold font-garamond w-full text-center tracking-wide leading-6;
 }
 
 .text_title{
@@ -90,7 +90,7 @@
 
 /* Custom card */
 .titletext_card{
-  @apply md:text-3xl text-xl font-bold font-garamond text-center tracking-wider leading-normal;
+  @apply md:text-2xl text-lg font-bold font-garamond text-center tracking-wider leading-6;
 }
 
 /* Banner */

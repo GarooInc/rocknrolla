@@ -51,13 +51,13 @@ const Footer = () => {
                     <div className="flex items-start gap-4 px-4">
                         {/* Social media icons */}
                         <a href="#" className="hover:opacity-75">
-                            <img src="/assets/images/media/1.png" alt="Instagram" className='w-8' />
+                            <img src="/assets/images/media/1.png" alt="Instagram" className='w-6' />
                         </a>
                         <a href="#" className="hover:opacity-75">
-                            <img src="/assets/images/media/3.png" alt="LinkedIn" className='w-8' />
+                            <img src="/assets/images/media/3.png" alt="LinkedIn" className='w-6' />
                         </a>
                         <a href="#" className="hover:opacity-75">
-                            <img src="/assets/images/media/2.png" alt="Vimeo" className='w-8' />
+                            <img src="/assets/images/media/2.png" alt="Vimeo" className='w-6' />
                         </a>
                     </div>
                 </div>
