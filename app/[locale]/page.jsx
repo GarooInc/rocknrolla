@@ -39,7 +39,7 @@ export default async function Home({ params: { locale } }) {
                 <Banner title={t('home:work')} button={t('home:culture')} secondary />
               </div>
           </div>
-          <Banner title={t('home:last_work')} button={t('home:view')} />
+          <Banner title={t('home:last_work')} button={t('home:view')} image={'/assets/images/home/fresh.webp'} />
           <Banner double secondary title={t('home:innovation')} button={t('home:find')} />
           <div className='md:flex md:flex-row flex-col justify-between items-stretch w-full gap-10 hidden'>
             <div className='md:w-1/2'>
