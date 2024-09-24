@@ -36,8 +36,8 @@ const Footer = () => {
                 <div className="flex justify-between w-full p-10">
                     {menu.map((item, index) => (
                     <div key={index}>
-                        <h4 className="font-bold mb-4">{item.name}</h4>
-                        <ul className="space-y-4">
+                        <h4 className="font-bold mb-6">{item.name}</h4>
+                        <ul className="space-y-6">
                         {item.submenu ? (
                             item.submenu.map((subitem, subindex) => (
                             <li className='font-certia font-light' key={subindex}>{subitem.name}</li>
