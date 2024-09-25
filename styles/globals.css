@@ -137,7 +137,7 @@
 /* top texts */
 
 .top_text{
-  @apply pl-2 font-certia text-sm text-black md:absolute top-3 left-0 border-b-[1px] border-black w-3/4 tracking-wide italic md:block hidden;
+  @apply pl-2 font-certia xl:text-sm md:text-xs text-black md:absolute top-3 left-0 border-b-[1px] border-black xl:w-3/4 md:w-full tracking-wide italic md:block hidden;
 }
 
 /* animation */
