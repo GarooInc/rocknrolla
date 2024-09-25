@@ -3,7 +3,6 @@ import React, { useState, useEffect } from 'react';
 import PocketBase from 'pocketbase';
 import CustomCard from '../CustomCard/CustomCard';
 import { useTranslation } from 'react-i18next';
-import LineButton from '@/components/LineButton/LineButton'
 
 
 const NonNegotiables = () => {
@@ -12,7 +11,6 @@ const NonNegotiables = () => {
     const pb = new PocketBase('https://dev.rocknrolla23.com')
     pb.autoCancellation(false);
     const { i18n } = useTranslation();
-    const { t } = useTranslation();
     const currentLocale = i18n.language;
 
     useEffect(() => {

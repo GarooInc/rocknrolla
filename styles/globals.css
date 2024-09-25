@@ -76,7 +76,7 @@
 
 /* line button */
 .line-buttontext{
-  @apply md:text-sm text-xs font-certia tracking-wide;
+  @apply md:text-sm text-xs font-certia tracking-wide lowercase;
 }
 
 .line-buttoncontainer{
@@ -147,4 +147,13 @@
 
 .non_negotiable_main{
   @apply flex flex-col gap-10;
+}
+
+/* custom card */
+.custom_card_container{
+  @apply relative bg-black text-white p-10 rounded-xl drop-shadow-2xl shadow-xl w-full max-w-md md:max-w-xl mx-auto;
+}
+
+.custom_card_line{
+  @apply absolute inset-1 border-[1px] border-white rounded-xl pointer-events-none;
 }
