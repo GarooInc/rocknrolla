@@ -8,7 +8,7 @@ const Group = ({ cover, logo, secondary }) => {
       className='group_container animation shadow-2xl'
     >
       <div className='flex flex-col items-center justify-end h-full py-8'>
-        <img src={logo} alt="Logo" className='h-24' />
+        <img src={logo} alt="Logo" className='h-20' />
       </div>
       <FaPlus className={`absolute top-2 right-2 cursor-pointer text-lg ${secondary ? 'text-black' : ' text-white'}`} />
     </div>
