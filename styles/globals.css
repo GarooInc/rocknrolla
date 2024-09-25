@@ -81,7 +81,7 @@
 }
 
 .text_title{
-  @apply text-center font-garamond italic md:text-lg text-sm;
+  @apply text-center font-garamond italic md:text-2xl text-lg lowercase;
 }
 
 .separator{
