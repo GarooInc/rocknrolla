@@ -7,7 +7,7 @@ const CustomCard = ({title, text}) => {
   text = useFormattedTitle(text);
   
   return (
-    <div className="relative bg-black text-white p-10 rounded-xl shadow-lg w-full max-w-md md:max-w-xl mx-auto gap-2">
+    <div className="relative bg-black text-white p-10 rounded-xl drop-shadow-2xl shadow-xl w-full max-w-md md:max-w-xl mx-auto">
         <div className="absolute inset-1 border-[1px] border-white rounded-xl pointer-events-none"></div>
 
       <div className="relative z-10 text-center">

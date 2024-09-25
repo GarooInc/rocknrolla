@@ -2,6 +2,7 @@ import React from 'react'
 import initTranslations from '@/app/i18n'
 import TranslationsProvider from '@/components/TranslationsProvider'
 import NavBar from '@/components/NavBar/NavBar'
+import VideoCover from '@/components/VideoCover/VideoCover'
 
 const namespaces = ['vision', 'navBar']
 
