@@ -76,7 +76,7 @@ const Footer = () => {
             </div>
             <div className='flex flex-col gap-4 w-2/3 bg-dark-gray p-8'>
                     <div className='flex relative'>
-                        <div className="grid grid-cols-2 gap-10 text-center">
+                        <div className="grid grid-cols-2 gap-4 text-center">
                             {menu.map((item, index) => (
                             <div key={index}>
                                 <h4 className="font-bold mb-2 text-start text-xs">{item.name}</h4>
@@ -93,7 +93,7 @@ const Footer = () => {
                             ))}
                         </div>
                         {/* Social media icons */}
-                        <div className="flex space-x-4 justify-end items-end absolute bottom-2 right-0">
+                        <div className="flex space-x-4 justify-end items-end absolute bottom-2 right-8">
                             <a href="#" className="hover:opacity-75">
                             <img src="/assets/images/media/1.png" alt="Instagram" className='w-4' />
                             </a>

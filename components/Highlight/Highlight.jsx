@@ -14,7 +14,7 @@ const Highlight = ({ img, title }) => {
   return (
     <div
       style={{ backgroundImage: `url(${img})` }}
-      className='highlight_container animation'
+      className='highlight_container animation shadow-2xl'
     >
       <div className='flex flex-col items-start justify-end p-4 gap-2 w-full'>
         <span className='text-white text-xs font-certia italic tracking-widest'>

@@ -9,6 +9,7 @@ const Highlights = () => {
     const pb = new PocketBase('https://dev.rocknrolla23.com')
     pb.autoCancellation(false);
     const { i18n } = useTranslation();
+    const { t } = useTranslation();
     const currentLocale = i18n.language;
 
     useEffect(() => {
@@ -29,12 +30,13 @@ const Highlights = () => {
 
 
   return (
-    <div className='flex md:flex-col md:basis-[20%] shadow-md md:flex-nowrap flex-wrap'>
+    <div className='highlight_main'>
         {
             highlights && highlights.map((highlight, index) => (
                 <Highlight key={index} img={`https://dev.rocknrolla23.com/api/files/${highlight.collectionId}/${highlight.id}/${highlight.square_img}?token=`} title={highlight[`title_${currentLocale}`]} />
             ))
         }
+        <span className='top_text'>{t('home:highlights')}</span>
     </div>
   )
 }

@@ -27,13 +27,14 @@ export default async function Home({ params: { locale } }) {
       <div className='flex md:flex-row flex-col w-full justify-center items-stretch md:gap-10'>
         <div className='w-full flex flex-col md:gap-10'>
           <div className='flex md:flex-row flex-col-reverse justify-between items-stretch w-full md:gap-10'>
-            <div className='flex md:flex-col md:basis-[20%] shadow-md md:flex-nowrap flex-wrap'>
-              {
-                groups.map((group, index) => (
-                  <Group cover={group.cover} logo={group.logo} key={index} secondary={group.secondary} />
-                ))
-              }
-            </div>
+              <div className='group_main'>
+                {
+                  groups.map((group, index) => (
+                    <Group cover={group.cover} logo={group.logo} key={index} secondary={group.secondary} />
+                  ))
+                }
+                <span className='top_text'>{t('home:groups')}</span>
+              </div>
               <div className='flex flex-col md:basis-[80%] md:gap-10'>
                 <img src='/assets/images/home/principalgif.gif' alt='Highlight' className='w-full md:h-[600px] sm:h-[400px] h-[350px] object-cover' />
                 <Banner title={t('home:work')} button={t('home:culture')} secondary />
