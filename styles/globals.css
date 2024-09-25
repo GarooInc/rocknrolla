@@ -148,3 +148,10 @@
 .animation{
   @apply md:transition-transform md:duration-500 md:ease-in-out md:transform md:hover:scale-105 md:hover:z-10;
 }
+
+
+/*non negotiables*/
+
+.non_negotiable_main{
+  @apply flex flex-col gap-10;
+}
