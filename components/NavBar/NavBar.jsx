@@ -27,7 +27,7 @@ const NavBar = ({secondary}) => {
             name: t('navBar:nav2'), link: '/culture', submenu: [
                 { name: t('navBar:nav2_s1'), link: '/vision' },
                 { name: t('navBar:nav2_s2'), link: '/culture' },
-                { name: t('navBar:nav2_s3'), link: '/innegotiable' },
+                { name: t('navBar:nav2_s3'), link: '/non-negotiable' },
             ]
         },
         {

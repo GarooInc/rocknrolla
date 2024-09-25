@@ -3,7 +3,7 @@ import "@/public/assets/fonts/fonts.css"
 
 
 export const metadata = {
-    title: 'Rock and Rolla',
+    title: 'rocknrolla.23',
     description: '',
     url: 'https://rocknrolla23.com/',
     image: '/assets/images/logo.png',
