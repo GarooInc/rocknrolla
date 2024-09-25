@@ -16,7 +16,7 @@ export default async function Culture({ params: { locale } }) {
     return (
         <TranslationsProvider locale={locale} namespaces={namespaces} resources={resources}>
         <main className='min-h-screen bg-white'>
-            <NavBar />
+            <NavBar secondary/>
             <div className='flex flex-col items-center md:gap-10 gap-8 md:pt-32 pt-10 pb-40 md:px-0 px-8 relative'>
                 <div className='md:hidden w-full'>
                     <CustomCard title={t('culture:culture_cardTitle')} text={t('culture:culture_cardText')} />

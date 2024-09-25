@@ -1,59 +1,88 @@
 "use client"
-import React,{useState} from 'react'
-import Image from 'next/image'
+import React, { useState, useRef, useEffect } from 'react';
+import Image from 'next/image';
 import { IoMenu } from "react-icons/io5";
-import { MdClose } from "react-icons/md"
-import { useRouter } from 'next/navigation'
-import { usePathname } from 'next/navigation'
-import { useTranslation } from 'react-i18next'
-import LanguageSwitcher from '../LanguageSwitcher/LanguageSwitcher'
+import { MdClose } from "react-icons/md";
+import { useRouter } from 'next/navigation';
+import { useTranslation } from 'react-i18next';
+import LanguageSwitcher from '../LanguageSwitcher/LanguageSwitcher';
 
-const NavBar = () => {
-    const { t } = useTranslation()
-    const  [showMenu, setShowMenu] = useState(false)
+const NavBar = ({secondary}) => {
+    const { t } = useTranslation();
+    const [activeSubmenu, setActiveSubmenu] = useState(null); // Controlar el submenú activo
+    const [showMobileMenu, setShowMobileMenu] = useState(false); // Controlar el menú móvil
+    const menuRef = useRef(null);
 
-    const router = useRouter()
-    const pathname = usePathname()
+    const router = useRouter();
 
     const menu = [
-        { name: t('navBar:nav1') , link: '/somos', submenu: [
-            { name: t('navBar:nav1_s1') , link: '/somos' },
-            { name: t('navBar:nav1_s2') , link: '/somos' },
-            { name: t('navBar:nav1_s3') , link: '/somos' },
-        ]},
-        { name: t('navBar:nav2') , link: '/culture', submenu: [
-            { name: t('navBar:nav2_s1') , link: '/vision' },
-            { name: t('navBar:nav2_s2') , link: '/culture' },
-            { name: t('navBar:nav2_s3') , link: '/innegotiable' },
-        ]},
-        { name: t('navBar:nav3') , link: '/work', submenu: [
-            { name: t('navBar:nav3_s1') , link: '/work' },
-            { name: t('navBar:nav3_s2') , link: '/work' },
-        ]},
-        { name: t('navBar:nav4') , link: '/partners' },
-        { name: t('navBar:nav5') , link: '/contact' },
-    ]
+        {
+            name: t('navBar:nav1'), link: '/somos', submenu: [
+                { name: t('navBar:nav1_s1'), link: '/somos' },
+                { name: t('navBar:nav1_s2'), link: '/somos' },
+                { name: t('navBar:nav1_s3'), link: '/somos' },
+            ]
+        },
+        {
+            name: t('navBar:nav2'), link: '/culture', submenu: [
+                { name: t('navBar:nav2_s1'), link: '/vision' },
+                { name: t('navBar:nav2_s2'), link: '/culture' },
+                { name: t('navBar:nav2_s3'), link: '/innegotiable' },
+            ]
+        },
+        {
+            name: t('navBar:nav3'), link: '/work', submenu: [
+                { name: t('navBar:nav3_s1'), link: '/work' },
+                { name: t('navBar:nav3_s2'), link: '/work' },
+            ]
+        },
+        { name: t('navBar:nav4'), link: '/partners' },
+        { name: t('navBar:nav5'), link: '/contact' },
+    ];
 
-    const toggleMenu = () => {
-        setShowMenu(!showMenu)
-    }
+    const toggleMobileMenu = () => {
+        setShowMobileMenu(!showMobileMenu);
+    };
+
+    const toggleSubmenu = (index) => {
+        setActiveSubmenu(activeSubmenu === index ? null : index); // Cierra el submenu si es el mismo, lo abre si es otro
+    };
+
+    const handleClickOutside = (event) => {
+        if (menuRef.current && !menuRef.current.contains(event.target)) {
+            setShowMobileMenu(false);
+            setActiveSubmenu(null);
+        }
+    };
+
+    useEffect(() => {
+        document.addEventListener('mousedown', handleClickOutside);
+        return () => {
+            document.removeEventListener('mousedown', handleClickOutside);
+        };
+    }, []);
 
     return (
-        <div className="navbar bg-white  md:px-10 p-4 border-b border-black">
-            <div className=" md:flex hidden">
+        <div className={`navbar bg-white md:px-10 p-4  ${secondary ? 'border-b border-black' : 'shadow-md'}`} ref={menuRef}>
+            {/* Logo Desktop */}
+            <div className="md:flex hidden">
                 <Image src="/assets/images/logo.png" alt="logo" className='cursor-pointer xl:flex hidden' width={100} height={100} onClick={() => router.push('/')} />
             </div>
+
+            {/* Menú Desktop */}
             <div className="flex-none xl:flex hidden">
                 <ul className="menu menu-horizontal px-4 xl:gap-20">
                     {menu.map((item, index) => (
-                        item.submenu ? (
-                            <li key={index}>
-                                <details>
-                                    <summary className='nav-item-principal'>
-                                        {item.name}
-                                    </summary>
-                                    <ul className="submenuitem shadow menu rounded-none bg-black text-white hover:bg-none hover:text-white">
-                                        {item.submenu.map((subitem, subindex) => (
+                        <li key={index} className="relative">
+                            <a
+                                className="nav-item-principal cursor-pointer"
+                                onClick={() => toggleSubmenu(index)}
+                            >
+                                {item.name}
+                            </a>
+                            {item.submenu && activeSubmenu === index && (
+                                <ul className="absolute submenuitem shadow menu rounded-none bg-black text-white hover:bg-none hover:text-white top-10 left-0 z-20">
+                                    {item.submenu.map((subitem, subindex) => (
                                             <div key={`divider-${subindex}`} className='flex flex-col'>
                                                 <li key={subindex} className='nav-item my-2'>
                                                     <a className='hover:bg-transparent' href={subitem.link}>{subitem.name}</a>
@@ -61,20 +90,17 @@ const NavBar = () => {
                                                 {subindex < item.submenu.length - 1 && <div key={`divider-${subindex}`} className='border-b border-white'></div>}
                                             </div>
                                         ))}
-                                    </ul>
-                                </details>
-                            </li>
-                        ) : (
-                            <li key={index} className={`nav-item-principal`}>
-                                <a className='nav-item-principal' href={item.link}>{item.name}</a>
-                            </li>
-                        )
+                                </ul>
+                            )}
+                        </li>
                     ))}
                 </ul>
             </div>
+
+            {/* Menú Mobile */}
             <div className="flex xl:hidden justify-between w-full">
                 <div className="flex justify-between px-4 w-full">
-                    <button onClick={toggleMenu} className='w-10'>
+                    <button onClick={toggleMobileMenu} className='w-10'>
                         <IoMenu className='text-black w-8 h-8' />
                     </button>
                     <Image src="/assets/images/logo.png" alt="Prodisa" className='cursor-pointer w-30 py-2' width={100} height={100} onClick={() => router.push('/')} />
@@ -82,45 +108,41 @@ const NavBar = () => {
                         <LanguageSwitcher />
                     </div>
                 </div>
-                {
-                    showMenu && (
-                        <ul className="menu menu-vertical bg-black text-blue-prod absolute top-0 left-0 z-20 h-screen w-80 p-6">
-                            <button onClick={toggleMenu} className='w-full justify-end flex'>
-                                <MdClose size={30} className='text-white' />
-                            </button>
-                            <div className="flex flex-col gap-2 pt-4">
-                                {menu.map((item, index) => (
-                                    item.submenu ? (
-                                        <li key={index}>
-                                            <details>
-                                                <summary className='nav-item p-0 m-0'>
-                                                    {item.name}
-                                                </summary>
-                                                <ul className="submenuitem shadow menu bg-white text-blue-prod">
-                                                    {item.submenu.map((subitem, subindex) => (
-                                                        <li key={subindex} className='nav-item'>
-                                                            <a className='p-0 m-0 text-black' href={subitem.link}>{subitem.name}</a>
-                                                        </li>
-                                                    ))}
-                                                </ul>
-                                            </details>
-                                        </li>
-                                    ) : (
-                                        <li key={index} className='nav-item'>
-                                            <a className='p-0 m-0' href={item.link}>{item.name}</a>
-                                        </li>
-                                    )
-                                ))}
-                            </div>
-                        </ul>
-                    )
-                }
+
+                {showMobileMenu && (
+                    <ul className="menu menu-vertical bg-black text-white absolute top-0 left-0 z-20 h-screen w-80 p-6">
+                        <button onClick={toggleMobileMenu} className='w-full justify-end flex'>
+                            <MdClose size={30} className='text-white' />
+                        </button>
+                        <div className="flex flex-col gap-2 pt-4">
+                            {menu.map((item, index) => (
+                                <li key={index}>
+                                    <a
+                                        className="nav-item cursor-pointer"
+                                        onClick={() => toggleSubmenu(index)}
+                                    >
+                                        {item.name}
+                                    </a>
+                                    {item.submenu && activeSubmenu === index && (
+                                        <ul className="submenuitem bg-white text-black mt-2 shadow-lg p-4">
+                                            {item.submenu.map((subitem, subindex) => (
+                                                <li key={subindex} className="my-2 hover:bg-gray-200 p-2">
+                                                    <a href={subitem.link} className="menu_item_mobile">{subitem.name}</a>
+                                                </li>
+                                            ))}
+                                        </ul>
+                                    )}
+                                </li>
+                            ))}
+                        </div>
+                    </ul>
+                )}
             </div>
-            <div className='xl:flex hidden'>
+            <div className="xl:flex hidden justify-end">
                 <LanguageSwitcher />
             </div>
         </div>
-    )
-}
+    );
+};
 
-export default NavBar
+export default NavBar;
