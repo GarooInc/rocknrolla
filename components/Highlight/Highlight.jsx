@@ -1,7 +1,7 @@
 import React from 'react';
 import { FaPlus } from "react-icons/fa";
 
-const Highlight = ({ img, title }) => {
+const Highlight = ({ img, title, tag }) => {
   const formattedTitle = title.includes('\\n')
     ? title.split('\\n').map((line, index) => (
         <span key={index}>
@@ -18,7 +18,7 @@ const Highlight = ({ img, title }) => {
     >
       <div className='flex flex-col items-start justify-end p-4 gap-2 w-full'>
         <span className='text-white text-xs font-certia italic tracking-widest'>
-          FUTURE &gt;
+          {tag} &gt;
         </span>
         <span className='text-white text-sm xl:text-base font-bold font-certia md:tracking-wide uppercase'>
           {formattedTitle}
