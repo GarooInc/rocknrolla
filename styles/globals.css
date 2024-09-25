@@ -18,7 +18,7 @@
   @apply md:text-black text-sm  font-certia hover:bg-transparent !important;
 }
 .nav-item{
-  @apply md:text-white text-sm font-certia sm:text-black text-white xl:hover:text-black xl:hover:bg-white rounded-none p-2;
+  @apply md:text-white text-sm font-certia sm:text-black text-white xl:hover:text-black xl:hover:bg-white rounded-none;
 }
 
 .submenuitem{
@@ -62,6 +62,10 @@
 
 .menu_item_mobile{
   @apply block active:bg-transparent text-black !important;
+}
+
+.menu_item_desktop{
+  @apply block active:text-black border-none active:bg-white rounded-none !important;
 }
 
 /*home*/

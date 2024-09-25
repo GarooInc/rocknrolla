@@ -85,7 +85,7 @@ const NavBar = ({secondary}) => {
                                     {item.submenu.map((subitem, subindex) => (
                                             <div key={`divider-${subindex}`} className='flex flex-col'>
                                                 <li key={subindex} className='nav-item my-2'>
-                                                    <a className='hover:bg-transparent' href={subitem.link}>{subitem.name}</a>
+                                                    <a className='menu_item_desktop' href={subitem.link}>{subitem.name}</a>
                                                 </li>
                                                 {subindex < item.submenu.length - 1 && <div key={`divider-${subindex}`} className='border-b border-white'></div>}
                                             </div>
