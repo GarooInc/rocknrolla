@@ -10,26 +10,29 @@ const VideoCover = ({ coverImage, videoUrl }) => {
     setIsPlaying(true);
   };
 
+  const handleEnded = () => {
+    setIsPlaying(false);
+  };
+
   return (
-    <div className="relative w-full h-auto max-w-full">
+    <div className="relative w-full md:h-[600px] max-w-full">
       {isPlaying ? (
         <video
-          className="w-full h-auto"
+          className="w-full md:h-[600px]"
           controls
           autoPlay
           src={videoUrl}
           type="video/mp4"
+          onEnded={handleEnded}
         />
       ) : (
         <div className="relative cursor-pointer" onClick={handlePlay}>
           {/* Cover image */}
-          <Image
+          <img
             src={coverImage}
             alt="Video cover"
             layout="responsive"
-            width={1920}
-            height={1080}
-            className="object-cover"
+            className="object-cover md:h-[600px] w-full"
           />
 
           {/* Play icon */}
