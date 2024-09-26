@@ -18,9 +18,10 @@ const NavBar = ({secondary}) => {
     const menu = [
         {
             name: t('navBar:nav1'), link: '/somos', submenu: [
-                { name: t('navBar:nav1_s1'), link: '/somos' },
-                { name: t('navBar:nav1_s2'), link: '/somos' },
-                { name: t('navBar:nav1_s3'), link: '/somos' },
+                { name: t('navBar:nav1_s1'), link: '/brands' },
+                { name: t('navBar:nav1_s2'), link: '/buzz' },
+                { name: t('navBar:nav1_s3'), link: '/future' },
+                { name: t('navBar:nav1_s4'), link: '/flash'}
             ]
         },
         {
