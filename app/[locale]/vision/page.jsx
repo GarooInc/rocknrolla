@@ -41,7 +41,7 @@ export default async function Vision({ params: { locale } }) {
                             <p className='text-sm text-black font-certia'>{t('vision:vision_worktype')}</p>
                         </div>
                     </div>
-                    <div className='flex flex-col gap-4 w-full'>
+                    <div className='flex flex-col gap-4 md:gap-8 w-full'>
                         {paragraphs.map((paragraph, index) => (
                             <p key={index} className='text-lg text-center font-medium text-black font-certia'>{paragraph}</p>
                         ))}
