@@ -35,8 +35,8 @@ export default async function Vision({ params: { locale } }) {
                 />
                 <div className='md:px-20 px-10 pt-20 pb-40 flex flex-col gap-10 relative justify-center items-center'>
                     <div className='flex gap-4 w-full justify-start'>
-                        <img src='/assets/images/vision/fede.webp' alt='Vision 1' className='md:w-40 w-32'/>
-                        <div className='flex flex-col justify-end gap-2 p-2'>
+                        <img src='/assets/images/vision/fede.webp' alt='Vision 1' className='md:w-36 w-32'/>
+                        <div className='flex flex-col justify-end p-2'>
                             <h2 className='text-xl font-garamond text-black font-bold'>{t('vision:vision_name')}</h2>
                             <p className='text-sm text-black font-certia'>{t('vision:vision_worktype')}</p>
                         </div>
