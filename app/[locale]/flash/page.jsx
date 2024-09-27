@@ -24,8 +24,10 @@ export default async function Flash({ params: { locale } }) {
                 logo='/assets/images/flash/logo.webp'
             />
             <div className='container_page  relative justify-center items-center'>
-                    <LineTitle text={t('general:sucess_cases')} secondary />
-                    <SuccessSquares tag={"FLASH"}/>
+                    <div className='flex flex-col gap-10 md:gap-12'>
+                        <LineTitle text={t('general:sucess_cases')} secondary />
+                        <SuccessSquares tag={"FLASH"}/>
+                    </div>
                     <div className='flex flex-col w-full gap-10'>
                         <LineTitle text={t('general:leadership')} secondary />
                         <div className='flex justify-center items-center'>

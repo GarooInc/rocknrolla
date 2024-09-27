@@ -26,8 +26,10 @@ export default async function Future({ params: { locale } }) {
                 logo='/assets/images/future/logo.webp'
             />
             <div className='container_page relative justify-center items-center'>
-                    <LineTitle text={t('general:sucess_cases')} secondary />
-                    <SuccessSquares tag={"FUTURE"}/>
+                    <div className='flex flex-col gap-10 md:gap-12'>
+                        <LineTitle text={t('general:sucess_cases')} secondary />
+                        <SuccessSquares tag={"FUTURE"}/>
+                    </div>
                     <div className='flex flex-col items-center justify-center w-full gap-10'>
                         <LineTitle text={t('general:leadership')} secondary />
                         <CardFace face={"/assets/images/future/face.webp"} card={`/assets/images/future/card_${currentLocale}.png`} />

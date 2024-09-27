@@ -25,9 +25,11 @@ export default async function Brands({ params: { locale } }) {
                 text={t('brands:brands_text')}
                 logo='/assets/images/brands/logo.webp'
             />
-            <div className='container_page  relative justify-center items-center'>
-                    <LineTitle text={t('general:sucess_cases')} secondary />
-                    <SuccessSquares tag={"BRANDS"}/>
+            <div className='container_page relative justify-center items-center'>
+                    <div className='flex flex-col gap-10 md:gap-12'>
+                        <LineTitle text={t('general:sucess_cases')} secondary />
+                        <SuccessSquares tag={"BRANDS"}/>
+                    </div>
                     <div className='flex flex-col items-center justify-center w-full gap-10'>
                         <LineTitle text={t('general:leadership')} secondary />
                         <CardFace face={"/assets/images/brands/face2.webp"} card={`/assets/images/brands/card1_${currentLocale}.png`} />
