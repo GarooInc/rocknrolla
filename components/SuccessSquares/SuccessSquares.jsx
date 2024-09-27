@@ -30,7 +30,7 @@ const SuccessSquares = ({ tag }) => {
     }, [tag]);
 
     return (
-        <div className='flex md:flex-wrap md:flex-row flex-col md:px-32 py-10 gap-0'>
+        <div className='flex md:flex-wrap md:flex-row flex-col md:px-32 gap-0'>
             {successSquares && successSquares.map((successSquare, index) => (
                 <div key={index} className='md:w-1/2 w-full relative'>
                     <img

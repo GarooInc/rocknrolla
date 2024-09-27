@@ -26,12 +26,14 @@ export default async function Future({ params: { locale } }) {
             <div className='container_page relative justify-center items-center'>
                     <LineTitle text={t('general:sucess_cases')} secondary />
                     <SuccessSquares tag={"FUTURE"}/>
-                    <LineTitle text={t('general:leadership')} secondary />
+                    <div className='flex flex-col w-full gap-10'>
+                        <LineTitle text={t('general:leadership')} secondary />
+                        <div className='flex justify-center items-center'>
+                            <img src='/assets/images/future/card.png' alt='Line' className='md:w-1/2'/>
+                        </div>
+                    </div>
                     <div className='absolute md:bottom-0 z-10 bottom-10'>
                         <LineButton text={t('general:back')} secondary />
-                    </div>
-                    <div className='flex justify-center items-center'>
-                        <img src='/assets/images/future/card.png' alt='Line' className='md:w-1/2'/>
                     </div>
             </div>
             <Footer />
