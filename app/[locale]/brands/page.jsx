@@ -4,6 +4,9 @@ import TranslationsProvider from '@/components/TranslationsProvider'
 import NavBar from '@/components/NavBar/NavBar'
 import ImgBanner from '@/components/ImgBanner/ImgBanner'
 import LineTitle from '@/components/LineTitle/LineTitle'
+import SuccessSquares from '@/components/SuccessSquares/SuccessSquares'
+import LineButton from '@/components/LineButton/LineButton'
+import Footer from '@/components/Footer/Footer'
 
 const namespaces = ['brands', 'navBar','general']
 
@@ -20,9 +23,19 @@ export default async function Brands({ params: { locale } }) {
                 text={t('brands:brands_text')}
                 logo='/assets/images/brands/logo.webp'
             />
-            <div className='container_page'>
+            <div className='container_page  relative justify-center items-center'>
                     <LineTitle text={t('general:sucess_cases')} secondary />
+                    <SuccessSquares tag={"BRANDS"}/>
+                    <LineTitle text={t('general:leadership')} secondary />
+                    <div className='absolute md:bottom-0 z-10 bottom-10'>
+                        <LineButton text={t('general:back')} secondary />
+                    </div>
+                    <div className='flex justify-center items-center'>
+                        <img src='/assets/images/brands/card.png' alt='Line' className='md:w-1/2'/>
+                    </div>
+
             </div>
+            <Footer />
         </div>
         </TranslationsProvider>
     )
