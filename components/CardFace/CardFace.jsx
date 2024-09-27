@@ -14,9 +14,9 @@ const CardFace = ({ face, card }) => {
             <img src={isFlipped ? card : face} alt='Line' className="object-cover w-full h-full"/>
             <div className='absolute top-4 right-4'>
                 {isFlipped ? (
-                    <FaMinus onClick={handleFlip} className='text-white cursor-pointer text-xl hover:text-white' />
+                    <FaMinus onClick={handleFlip} className='text-white cursor-pointer text-xl' />
                 ) : (
-                    <FaPlus onClick={handleFlip} className='text-white cursor-pointer text-xl hover:text-black' />
+                    <FaPlus onClick={handleFlip} className='text-white cursor-pointer text-xl' />
                 )}
             </div>
         </div>
