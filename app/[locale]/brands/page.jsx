@@ -30,8 +30,8 @@ export default async function Brands({ params: { locale } }) {
                     <SuccessSquares tag={"BRANDS"}/>
                     <div className='flex flex-col items-center justify-center w-full gap-10'>
                         <LineTitle text={t('general:leadership')} secondary />
-                        <CardFace face={"/assets/images/brands/face1.webp"} card={`/assets/images/brands/card1_${currentLocale}.png`} />
                         <CardFace face={"/assets/images/brands/face2.webp"} card={`/assets/images/brands/card1_${currentLocale}.png`} />
+                        <CardFace face={"/assets/images/brands/face1.webp"} card={`/assets/images/brands/card1_${currentLocale}.png`} />
                     </div>
                     <div className='absolute md:bottom-0 z-10 bottom-10'>
                         <LineButton text={t('general:back')} secondary />
