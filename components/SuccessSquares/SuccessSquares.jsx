@@ -16,7 +16,7 @@ const SuccessSquares = ({ tag }) => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const records = await pb.collection('Highlights').getFullList({
+                const records = await pb.collection('Proyects').getFullList({
                     sort: 'created',
                     filter: `tag = "${tag}"`,
                 });

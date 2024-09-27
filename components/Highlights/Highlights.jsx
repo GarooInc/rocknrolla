@@ -6,8 +6,7 @@ import { useTranslation } from 'react-i18next';
 
 const Highlights = () => {
     const [highlights, setHighlights] = useState(null);
-    const [isMobile, setIsMobile] = useState(false);
-    const pb = new PocketBase('https://dev.rocknrolla23.com')
+    const pb = new PocketBase('https://dev.rocknrolla23.com');
     pb.autoCancellation(false);
     const { i18n } = useTranslation();
     const { t } = useTranslation();
@@ -16,8 +15,9 @@ const Highlights = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const records = await pb.collection('Highlights').getFullList({
+                const records = await pb.collection('Proyects').getFullList({
                     sort: 'created',
+                    filter: `show_highlight = true`,
                 });
                 setHighlights(records);
             } catch (error) {
@@ -25,34 +25,20 @@ const Highlights = () => {
             }
         };
 
-        fetchData()
+        fetchData();
     }, []);
 
-    useEffect(() => {
-        const handleResize = () => {
-            setIsMobile(window.innerWidth <= 768);
-        };
-
-        window.addEventListener('resize', handleResize);
-        handleResize(); // Check initial screen size
-
-        return () => {
-            window.removeEventListener('resize', handleResize);
-        };
-    }, []);
-
-    const filteredHighlights = highlights ? highlights.filter(highlight => isMobile || highlight.show_desktop) : [];
 
     return (
         <div className='highlight_main'>
             {
-                filteredHighlights.map((highlight, index) => (
+                highlights && highlights.map((highlight, index) => (
                     <Highlight key={index} img={`https://dev.rocknrolla23.com/api/files/${highlight.collectionId}/${highlight.id}/${highlight.square_img}?token=`} title={highlight[`title_${currentLocale}`]} tag={highlight.tag}/>
                 ))
             }
             <span className='top_text'>{t('home:highlights')}</span>
         </div>
-    )
+    );
 }
 
 export default Highlights;
