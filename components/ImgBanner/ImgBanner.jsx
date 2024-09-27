@@ -6,7 +6,7 @@ const ImgBanner = ({ backgroundImageMobile, backgroundImageDesktop, text, logo }
     text = useFormattedTitle(text); // Formatear el texto
 
     return (
-        <div className="relative w-full md:h-[600px] h-[350px] bg-cover bg-center flex items-center justify-center">
+        <div className="relative w-full md:h-[600px] h-[400px] bg-cover bg-center flex items-center justify-center">
             {/* Fondo para dispositivos móviles */}
             <div
                 className="absolute inset-0 bg-cover bg-center md:hidden"
@@ -24,8 +24,8 @@ const ImgBanner = ({ backgroundImageMobile, backgroundImageDesktop, text, logo }
             ></div>
 
             {/* Texto */}
-            <div className=" mb-6 md:mb-10 text-start absolute md:top-24 top-16">
-                <span className='font-garamond text-white font-bold text-lg md:text-2xl xl:text-4xl leading-6 tracking-wide'>{text}</span>
+            <div className=" mb-6 md:mb-10 text-start absolute md:top-24 top-18 px-4 md:px-0">
+                <span className='font-garamond text-white font-bold text-lg md:text-3xl xl:text-4xl leading-6 tracking-wide'>{text}</span>
             </div>
 
             {/* Logo */}
