@@ -7,12 +7,14 @@ import LineTitle from '@/components/LineTitle/LineTitle'
 import SuccessSquares from '@/components/SuccessSquares/SuccessSquares'
 import LineButton from '@/components/LineButton/LineButton'
 import Footer from '@/components/Footer/Footer'
+import CardFace from '@/components/CardFace/CardFace'
+
 
 const namespaces = ['future', 'navBar', 'general']
 
 export default async function Future({ params: { locale } }) {
     const { t, resources } = await initTranslations(locale, namespaces)
-    
+    const currentLocale = locale === 'en' ? 'en' : 'es'    
     return (
         <TranslationsProvider locale={locale} namespaces={namespaces} resources={resources}>
         <div className='min-h-screen bg-white'>
@@ -26,11 +28,9 @@ export default async function Future({ params: { locale } }) {
             <div className='container_page relative justify-center items-center'>
                     <LineTitle text={t('general:sucess_cases')} secondary />
                     <SuccessSquares tag={"FUTURE"}/>
-                    <div className='flex flex-col w-full gap-10'>
+                    <div className='flex flex-col items-center justify-center w-full gap-10'>
                         <LineTitle text={t('general:leadership')} secondary />
-                        <div className='flex justify-center items-center'>
-                            <img src='/assets/images/future/card.png' alt='Line' className='md:w-1/2'/>
-                        </div>
+                        <CardFace face={"/assets/images/future/face.webp"} card={`/assets/images/future/card_${currentLocale}.png`} />
                     </div>
                     <div className='absolute md:bottom-0 z-10 bottom-10'>
                         <LineButton text={t('general:back')} secondary />
