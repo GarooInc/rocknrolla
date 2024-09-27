@@ -24,7 +24,7 @@ const ImgBanner = ({ backgroundImageMobile, backgroundImageDesktop, text, logo }
             ></div>
 
             {/* Texto */}
-            <div className=" mb-6 md:mb-10 text-start absolute md:top-24 top-24">
+            <div className=" mb-6 md:mb-10 text-start absolute md:top-24 top-18">
                 <span className='font-garamond text-white font-bold text-lg md:text-2xl xl:text-4xl leading-6 tracking-wide'>{text}</span>
             </div>
 
