@@ -151,7 +151,7 @@
 
 /* custom card */
 .custom_card_container{
-  @apply relative bg-black text-white p-10 rounded-xl drop-shadow-2xl shadow-xl w-full max-w-md md:max-w-xl mx-auto;
+  @apply relative bg-black text-white p-10 rounded-xl drop-shadow-2xl shadow-xl w-full max-w-md md:max-w-xl;
 }
 
 .custom_card_line{

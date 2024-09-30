@@ -28,7 +28,7 @@ const PartnersItem = () => {
     }, [])
 
   return (
-    <div className='flex md:flex-wrap justify-center items-center gap-10 md:px-40 md:flex-row flex-col'>
+    <div className='flex md:flex-wrap xl:justify-start justify-center items-center gap-10 md:px-40 md:flex-row flex-col'>
         {
             partner && partner.map((partner, index) => (
                 <div className="custom_card_container xl:w-1/2" key={index}>
