@@ -34,7 +34,7 @@ const NavBar = ({secondary}) => {
         {
             name: t('navBar:nav3'), link: '/work', submenu: [
                 { name: t('navBar:nav3_s1'), link: '/work' },
-                { name: t('navBar:nav3_s2'), link: '/work' },
+                { name: t('navBar:nav3_s2'), link: '/highlights' },
             ]
         },
         { name: t('navBar:nav4'), link: '/partners' },
