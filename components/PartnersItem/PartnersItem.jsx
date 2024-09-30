@@ -10,7 +10,7 @@ const PartnersItem = () => {
     const pb = new PocketBase('https://dev.rocknrolla23.com')
     pb.autoCancellation(false);
     const { i18n } = useTranslation();
-    const currentLocale = i18n.language;
+    const { t } = useTranslation();
 
     useEffect(() => {
         const fetchData = async () => {
@@ -41,8 +41,8 @@ const PartnersItem = () => {
                     </div>
                     <button className='absolute bottom-4 right-4 cursor-pointer'>
                         <div className='flex justify-center items-center gap-4'>
-                            <span className="text_title text-white">
-                                Go to website
+                            <span className="text-white font-garamond italic md:text-xl text-lg">
+                                {t('partners:go_to_website')}
                             </span>
                             <FaArrowRight className="text-white" />
                         </div>
