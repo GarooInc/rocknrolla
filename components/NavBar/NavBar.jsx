@@ -17,7 +17,7 @@ const NavBar = ({secondary}) => {
 
     const menu = [
         {
-            name: t('navBar:nav1'), link: '/somos', submenu: [
+            name: t('navBar:nav1'), submenu: [
                 { name: t('navBar:nav1_s1'), link: '/brands' },
                 { name: t('navBar:nav1_s2'), link: '/buzz' },
                 { name: t('navBar:nav1_s3'), link: '/future' },
@@ -25,14 +25,14 @@ const NavBar = ({secondary}) => {
             ]
         },
         {
-            name: t('navBar:nav2'), link: '/culture', submenu: [
+            name: t('navBar:nav2'), submenu: [
                 { name: t('navBar:nav2_s1'), link: '/vision' },
                 { name: t('navBar:nav2_s2'), link: '/culture' },
                 { name: t('navBar:nav2_s3'), link: '/non-negotiable' },
             ]
         },
         {
-            name: t('navBar:nav3'), link: '/work', submenu: [
+            name: t('navBar:nav3'), submenu: [
                 { name: t('navBar:nav3_s1'), link: '/work' },
                 { name: t('navBar:nav3_s2'), link: '/highlights' },
             ]
@@ -77,7 +77,16 @@ const NavBar = ({secondary}) => {
                         <li key={index} className="relative">
                             <a
                                 className="nav-item-principal cursor-pointer"
-                                onClick={() => toggleSubmenu(index)}
+                                {
+                                    ...item.submenu && {
+                                        onClick: () => toggleSubmenu(index)
+                                    }
+                                }
+                                {
+                                    ...!item.submenu && {
+                                        href: item.link
+                                    }
+                                }
                             >
                                 {item.name}
                             </a>
