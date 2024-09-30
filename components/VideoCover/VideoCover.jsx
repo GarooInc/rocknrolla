@@ -1,9 +1,8 @@
 "use client"
 import React, { useState } from "react";
-import Image from "next/image";
 import { MdOutlinePlayCircle } from "react-icons/md";
 
-const VideoCover = ({ coverImage, videoUrl }) => {
+const VideoCover = ({ coverImage, videoUrl, isCover }) => {
   const [isPlaying, setIsPlaying] = useState(false);
 
   const handlePlay = () => {
@@ -15,10 +14,10 @@ const VideoCover = ({ coverImage, videoUrl }) => {
   };
 
   return (
-    <div className="relative w-full md:h-[600px] max-w-full">
+    <div className={`relative w-full ${isCover ? "md:h-[600px]" : "md:h-[500px] md:w-[800px]"}`}>
       {isPlaying ? (
         <video
-          className="w-full md:h-[600px]"
+          className={`object-cover w-full ${isCover ? "md:h-[600px]" : "md:h-[500px] md:w-[800px]"}`}
           controls
           autoPlay
           src={videoUrl}
@@ -32,7 +31,7 @@ const VideoCover = ({ coverImage, videoUrl }) => {
             src={coverImage}
             alt="Video cover"
             layout="responsive"
-            className="object-cover md:h-[600px] w-full"
+            className={`object-cover ${isCover ? "md:h-[600px] w-full" : "md:h-[500px] md:w-[800px]"}`}
           />
 
           {/* Play icon */}

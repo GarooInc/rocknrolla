@@ -6,10 +6,10 @@ const ImgBanner = ({ backgroundImageMobile, backgroundImageDesktop, text, logo }
     text = useFormattedTitle(text); // Formatear el texto
 
     return (
-        <div className="relative w-full md:h-[600px] h-[400px] bg-cover bg-center flex items-center justify-center">
+        <div className="img_banner_container">
             {/* Fondo para dispositivos móviles */}
             <div
-                className="absolute inset-0 bg-cover bg-center md:hidden"
+                className="img_banner_mobile"
                 style={{
                     backgroundImage: `url(${backgroundImageMobile})`,
                 }}
@@ -17,19 +17,19 @@ const ImgBanner = ({ backgroundImageMobile, backgroundImageDesktop, text, logo }
 
             {/* Fondo para dispositivos de escritorio */}
             <div
-                className="absolute inset-0 bg-cover bg-center hidden md:block"
+                className="img_banner_desktop"
                 style={{
                     backgroundImage: `url(${backgroundImageDesktop})`,
                 }}
             ></div>
 
             {/* Texto */}
-            <div className=" mb-6 md:mb-10 text-start absolute md:top-24 top-18 px-4 md:px-0">
+            <div className="img_banner_text_container">
                 <span className='font-garamond text-white font-bold text-lg md:text-3xl xl:text-4xl leading-6 tracking-wide'>{text}</span>
             </div>
 
             {/* Logo */}
-            <div className="absolute bottom-10 right-10 flex justify-center">
+            <div className="img_banner_logo">
                 <Image
                     src={logo}
                     alt="Logo"

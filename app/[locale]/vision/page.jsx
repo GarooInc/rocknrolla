@@ -32,6 +32,7 @@ export default async function Vision({ params: { locale } }) {
                 <VideoCover
                     coverImage={"/assets/images/vision/cover.webp"}
                     videoUrl='/assets/images/home/demo.mp4'
+                    isCover
                 />
                 <div className='md:px-20 px-10 pt-20 pb-40 flex flex-col gap-10 relative justify-center items-center'>
                     <div className='flex gap-8 w-full justify-start'>

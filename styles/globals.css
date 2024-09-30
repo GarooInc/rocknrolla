@@ -163,3 +163,51 @@
 .container_page{
   @apply flex flex-col items-center md:gap-20 gap-14 md:pt-20 pt-20 pb-40 md:px-0 relative;
 }
+
+/* img banner */
+
+.img_banner_container{
+  @apply relative w-full md:h-[600px] h-[400px] bg-cover bg-center flex items-center justify-center;
+}
+
+.img_banner_mobile{
+  @apply absolute inset-0 bg-cover bg-center md:hidden;
+}
+
+.img_banner_desktop{
+  @apply absolute inset-0 bg-cover bg-center hidden md:block;
+}
+
+.img_banner_logo{
+  @apply absolute bottom-10 right-10 flex justify-center;
+}
+
+.img_banner_text_container{
+  @apply mb-6 md:mb-10 text-start absolute md:top-24 top-24 px-4 md:px-0;
+}
+
+.img_banner_text{
+  @apply font-garamond text-white font-bold text-lg md:text-3xl xl:text-4xl leading-6 tracking-wide;
+}
+
+/*Card logos*/
+.card_logos_main{
+  @apply flex flex-wrap gap-10 w-full justify-center md:px-40 px-10;
+}
+
+.card_logos_logo{
+  @apply w-1/4 justify-center items-center flex;
+}
+
+.card_logos_logo img{
+  width: 200px;
+  height: 200px;
+}
+
+@media screen and (max-width: 768px) {
+  .card_logos_logo img{
+    width: 100%;
+    height: 100%;
+  }
+  
+}
