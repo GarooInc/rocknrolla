@@ -34,7 +34,7 @@ const PartnersItem = () => {
                 <div className="custom_card_container xl:w-1/2" key={index}>
                     <div className="custom_card_line"></div>
                     <div className='flex justify-start items-center gap-10'>
-                        <img src={`https://dev.rocknrolla23.com/api/files/${partner.collectionId}/${partner.id}/${partner.logo}?token=`} alt="logo" className='md:w-40 md:h-40 w-28 h-28' />
+                        <img src={`https://dev.rocknrolla23.com/api/files/${partner.collectionId}/${partner.id}/${partner.logo}?token=`} alt="logo" className='md:w-40 md:h-40 w-24 h-24' />
                         <span className="md:text-xl text-lg font-bold font-garamond tracking-wider leading-6 text-white uppercase text-start">
                             {partner.name}
                         </span>
