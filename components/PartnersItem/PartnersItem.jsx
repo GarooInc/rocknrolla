@@ -28,10 +28,10 @@ const PartnersItem = () => {
     }, [])
 
   return (
-    <div className='flex md:flex-wrap xl:justify-start justify-center items-center gap-10 md:px-40 md:flex-row flex-col'>
+    <div className='grid lg:grid-cols-2 gap-10 xl:px-40 md:px-20'>
         {
             partner && partner.map((partner, index) => (
-                <div className="custom_card_container xl:w-1/2" key={index}>
+                <div className="partners_card_container" key={index}>
                     <div className="custom_card_line"></div>
                     <div className='flex justify-start items-center gap-10'>
                         <img src={`https://dev.rocknrolla23.com/api/files/${partner.collectionId}/${partner.id}/${partner.logo}?token=`} alt="logo" className='md:w-40 md:h-40 w-24 h-24' />
