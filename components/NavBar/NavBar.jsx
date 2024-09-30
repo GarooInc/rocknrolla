@@ -129,7 +129,16 @@ const NavBar = ({secondary}) => {
                                 <li key={index}>
                                     <a
                                         className="nav-item cursor-pointer"
-                                        onClick={() => toggleSubmenu(index)}
+                                        {
+                                            ...item.submenu && {
+                                                onClick: () => toggleSubmenu(index)
+                                            }
+                                        }
+                                        {
+                                            ...!item.submenu && {
+                                                href: item.link
+                                            }
+                                        }
                                     >
                                         {item.name}
                                     </a>
