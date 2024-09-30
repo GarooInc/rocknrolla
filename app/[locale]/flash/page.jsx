@@ -7,6 +7,7 @@ import LineTitle from '@/components/LineTitle/LineTitle'
 import SuccessSquares from '@/components/SuccessSquares/SuccessSquares'
 import LineButton from '@/components/LineButton/LineButton'
 import Footer from '@/components/Footer/Footer'
+import CardFace from '@/components/CardFace/CardFace'
 
 const namespaces = ['flash', 'navBar','general']
 
@@ -28,17 +29,17 @@ export default async function Flash({ params: { locale } }) {
                         <LineTitle text={t('general:sucess_cases')} secondary />
                         <SuccessSquares tag={"FLASH"}/>
                     </div>
-                    <div className='flex flex-col w-full gap-10'>
+                    <div className='flex flex-col items-center justify-center w-full gap-10'>
                         <LineTitle text={t('general:leadership')} secondary />
-                        <div className='flex justify-center items-center'>
-                            <img src='/assets/images/brands/card.png' alt='Line' className='md:w-1/2'/>
-                        </div>
+                        <CardFace face={"/assets/images/flash/face1.webp"} card={`/assets/images/flash/face1.webp`} />
+                        <CardFace face={"/assets/images/flash/face2.webp"} card={`/assets/images/flash/face2.webp`} />
                     </div>
                     <div className='absolute md:bottom-0 z-10 bottom-10'>
                         <LineButton text={t('general:back')} secondary />
                     </div>
             </div>
-            <Footer />        </div>
+            <Footer />        
+        </div>
         </TranslationsProvider>
     )
 }
