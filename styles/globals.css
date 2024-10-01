@@ -18,7 +18,7 @@
   @apply md:text-black text-sm  font-certia hover:bg-transparent !important;
 }
 .nav-item{
-  @apply md:text-white md:text-sm text-lg font-certia sm:text-black text-white xl:hover:text-black xl:hover:bg-white rounded-none;
+  @apply md:text-white text-sm font-certia sm:text-black text-white xl:hover:text-black xl:hover:bg-white rounded-none;
 }
 
 .submenuitem{
