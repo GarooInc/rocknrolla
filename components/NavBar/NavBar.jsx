@@ -128,7 +128,7 @@ const NavBar = ({secondary}) => {
 
                 <ul
                     className={`menu menu-vertical menu_items_animated ${
-                    showMobileMenu ? '-translate-y-0' : 'translate-y-full'
+                    showMobileMenu ? '-translate-x-0' : 'translate-x-full'
                     }`}
                 >
                 <button onClick={toggleMobileMenu} className="w-full justify-end flex">
