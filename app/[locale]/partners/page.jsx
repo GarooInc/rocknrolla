@@ -7,7 +7,6 @@ import Footer from '@/components/Footer/Footer'
 import LineButton from '@/components/LineButton/LineButton'
 import PartnersItem from '@/components/PartnersItem/PartnersItem'
 
-
 const namespaces = ['partners', 'general', 'navBar']
 
 export default async function Partners({ params: { locale } }) {
