@@ -28,7 +28,7 @@ const PartnersItem = () => {
     }, [])
 
   return (
-    <div className='grid lg:grid-cols-2 gap-10 xl:px-40 md:px-20'>
+    <div className='partners_main'>
         {
             partner && partner.map((partner, index) => (
                 <div className="partners_card_container" key={index}>

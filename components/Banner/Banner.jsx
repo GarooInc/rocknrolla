@@ -3,9 +3,11 @@ import React from 'react'
 import LineButton from '../LineButton/LineButton'
 import { FaPlus } from "react-icons/fa"
 import { useTranslation } from 'react-i18next';
+import { useRouter } from 'next/navigation';
 
 
-const Banner = ({ title, button, secondary, double, image }) => {
+const Banner = ({ title, button, secondary, double, image, link }) => {
+  const router = useRouter();
   const formattedTitle = title.split('\\n').map((line, index) => (
     <span key={index}>
       {line}
@@ -29,7 +31,9 @@ const Banner = ({ title, button, secondary, double, image }) => {
       {
         secondary ? <LineButton text={button} secondary /> : <LineButton text={button} />
       }
-      <FaPlus className={`absolute top-4 right-4 cursor-pointer text-2xl ${secondary ? 'text-black' : ' text-white'}`} />
+      <button onClick={() => router.push(link)} className='absolute top-4 right-4 cursor-pointer'>
+        <FaPlus className={` text-2xl ${secondary ? 'text-black' : ' text-white'}`} />
+      </button>
     </div>
   )
 }

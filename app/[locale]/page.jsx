@@ -14,10 +14,10 @@ export default async function Home({ params: { locale } }) {
   const { t, resources } = await initTranslations(locale, namespaces)
 
   const groups = [
-    { cover: '/assets/images/groups/covers/g1.png', logo: '/assets/images/groups/logos/brands.png' },
-    { cover: '/assets/images/groups/covers/g2.png', logo: '/assets/images/groups/logos/buzz.png' },
-    { cover: '/assets/images/groups/covers/g3.png', logo: '/assets/images/groups/logos/future.png' },
-    { cover: '/assets/images/groups/covers/g4.png', logo: '/assets/images/groups/logos/flash.png' , secondary: true},
+    { cover: '/assets/images/groups/covers/g1.png', logo: '/assets/images/groups/logos/brands.png' , link: '/brands'},
+    { cover: '/assets/images/groups/covers/g2.png', logo: '/assets/images/groups/logos/buzz.png' , link: '/buzz'},
+    { cover: '/assets/images/groups/covers/g3.png', logo: '/assets/images/groups/logos/future.png' , link: '/future'},
+    { cover: '/assets/images/groups/covers/g4.png', logo: '/assets/images/groups/logos/flash.png' , secondary: true, link: '/flash'},
   ]
 
   return (
@@ -30,24 +30,24 @@ export default async function Home({ params: { locale } }) {
               <div className='group_main'>
                 {
                   groups.map((group, index) => (
-                    <Group cover={group.cover} logo={group.logo} key={index} secondary={group.secondary} />
+                    <Group cover={group.cover} logo={group.logo} key={index} secondary={group.secondary} link={group.link} />
                   ))
                 }
                 <span className='top_text'>{t('home:groups')}</span>
               </div>
               <div className='flex flex-col md:basis-[80%] md:gap-10'>
                 <img src='/assets/images/home/principalgif.gif' alt='Highlight' className='w-full md:h-[600px] sm:h-[400px] h-[350px] object-cover' />
-                <Banner title={t('home:work')} button={t('home:culture')} secondary />
+                <Banner title={t('home:work')} button={t('home:culture')} secondary link={'/culture'} />
               </div>
           </div>
-          <Banner title={t('home:last_work')} button={t('home:view')} image={'/assets/images/home/fresh.webp'} />
-          <Banner double secondary title={t('home:innovation')} button={t('home:find')} />
+          <Banner title={t('home:last_work')} button={t('home:view')} image={'/assets/images/home/fresh.webp'} link={'/highlights'} />
+          <Banner double secondary title={t('home:innovation')} button={t('home:find')} link={'/vision'} />
           <div className='md:flex md:flex-row flex-col justify-between items-stretch w-full gap-10 hidden'>
             <div className='md:w-1/2'>
               <Media />
             </div>
             <div className='md:w-1/2'>
-              <Banner title={t('home:alleys')} button={t('home:view')} secondary />
+              <Banner title={t('home:alleys')} button={t('home:view')} secondary link={'/partners'} />
             </div>
           </div>
         </div>

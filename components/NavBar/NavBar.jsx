@@ -110,53 +110,74 @@ const NavBar = ({secondary}) => {
             {/* Menú Mobile */}
             <div className="flex xl:hidden justify-between w-full">
                 <div className="flex justify-between px-4 w-full">
-                    <button onClick={toggleMobileMenu} className='w-10'>
-                        <IoMenu className='text-black w-8 h-8' />
+                    <button onClick={toggleMobileMenu} className="w-10">
+                        <IoMenu className="text-black w-8 h-8" />
                     </button>
-                    <Image src="/assets/images/logo.png" alt="Prodisa" className='cursor-pointer w-30 py-2' width={100} height={100} onClick={() => router.push('/')} />
+                    <Image
+                    src="/assets/images/logo.png"
+                    alt="Prodisa"
+                    className="cursor-pointer w-30 py-2"
+                    width={100}
+                    height={100}
+                    onClick={() => router.push('/')}
+                    />
                     <div className="flex xl:hidden w-20 justify-end">
                         <LanguageSwitcher />
                     </div>
                 </div>
 
-                {showMobileMenu && (
-                    <ul className="menu menu-vertical bg-black text-white absolute top-0 left-0 z-20 h-screen w-80 p-6">
-                        <button onClick={toggleMobileMenu} className='w-full justify-end flex'>
-                            <MdClose size={30} className='text-white' />
-                        </button>
-                        <div className="flex flex-col gap-2 pt-4">
-                            {menu.map((item, index) => (
-                                <li key={index}>
-                                    <a
-                                        className="nav-item cursor-pointer"
-                                        {
-                                            ...item.submenu && {
-                                                onClick: () => toggleSubmenu(index)
-                                            }
-                                        }
-                                        {
-                                            ...!item.submenu && {
-                                                href: item.link
-                                            }
-                                        }
-                                    >
-                                        {item.name}
+                <ul
+                    className={`menu menu-vertical menu_items_animated ${
+                    showMobileMenu ? '-translate-y-0' : 'translate-y-full'
+                    }`}
+                >
+                <button onClick={toggleMobileMenu} className="w-full justify-end flex">
+                <MdClose size={30} className="text-white" />
+                </button>
+                <div className="flex flex-col gap-4 pt-4">
+                    {menu.map((item, index) => (
+                        <React.Fragment key={index}>
+                        <li>
+                            <a
+                            className="nav-item cursor-pointer"
+                            {...(item.submenu
+                                ? { onClick: () => toggleSubmenu(index) }
+                                : { href: item.link })}
+                            >
+                            {item.name}
+                            </a>
+                            {item.submenu && activeSubmenu === index && (
+                            <ul className="submenuitem bg-white text-black mt-2 shadow-lg p-4">
+                                {item.submenu.map((subitem, subindex) => (
+                                <li key={subindex} className="my-2 hover:bg-gray-200 p-2">
+                                    <a href={subitem.link} className="menu_item_mobile">
+                                    {subitem.name}
                                     </a>
-                                    {item.submenu && activeSubmenu === index && (
-                                        <ul className="submenuitem bg-white text-black mt-2 shadow-lg p-4">
-                                            {item.submenu.map((subitem, subindex) => (
-                                                <li key={subindex} className="my-2 hover:bg-gray-200 p-2">
-                                                    <a href={subitem.link} className="menu_item_mobile">{subitem.name}</a>
-                                                </li>
-                                            ))}
-                                        </ul>
-                                    )}
                                 </li>
-                            ))}
-                        </div>
-                    </ul>
-                )}
+                                ))}
+                            </ul>
+                            )}
+                        </li>
+                        {index < menu.length - 1 && (
+                            <div className="border-b border-white my-2"></div>
+                        )}
+                        </React.Fragment>
+                    ))}
+                </div>
+                <div className="flex space-x-4 justify-center items-center p-10">
+                    <a href="#" className="hover:opacity-75">
+                        <img src="/assets/images/media/1.png" alt="Instagram" className="w-10" />
+                    </a>
+                    <a href="#" className="hover:opacity-75">
+                        <img src="/assets/images/media/3.png" alt="LinkedIn" className="w-10" />
+                    </a>
+                    <a href="#" className="hover:opacity-75">
+                        <img src="/assets/images/media/2.png" alt="Vimeo" className="w-10" />
+                    </a>
+                </div>
+            </ul>
             </div>
+
             <div className="xl:flex hidden justify-end">
                 <LanguageSwitcher />
             </div>
