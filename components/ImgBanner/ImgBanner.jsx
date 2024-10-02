@@ -3,7 +3,9 @@ import Image from 'next/image';
 import useFormattedTitle from '@/hooks/useFormattedTitle';
 
 const ImgBanner = ({ backgroundImageMobile, backgroundImageDesktop, text, logo }) => {
-    text = useFormattedTitle(text); // Formatear el texto
+    const formattedText = useFormattedTitle(text);
+    const displayText = formattedText || text;
+
 
     return (
         <div className="img_banner_container">
@@ -24,20 +26,28 @@ const ImgBanner = ({ backgroundImageMobile, backgroundImageDesktop, text, logo }
             ></div>
 
             {/* Texto */}
-            <div className="img_banner_text_container">
-                <span className='font-garamond text-white font-bold text-lg md:text-3xl xl:text-4xl leading-6 tracking-wide'>{text}</span>
-            </div>
+            {
+                text && (
+                    <div className="img_banner_text_container">
+                        <span className='font-garamond text-white font-bold text-lg md:text-3xl xl:text-4xl leading-6 tracking-wide'>{displayText}</span>
+                    </div>
+                )
+            }
 
             {/* Logo */}
-            <div className="img_banner_logo">
-                <Image
-                    src={logo}
-                    alt="Logo"
-                    width={150}
-                    height={150}
-                    className="object-contain md:w-40 w-28"
-                />
-            </div>
+            {
+                logo && (
+                    <div className="img_banner_logo">
+                        <Image
+                            src={logo}
+                            alt="Logo"
+                            width={150}
+                            height={150}
+                            className="object-contain md:w-40 w-28"
+                        />
+                    </div>
+                )
+            }
         </div>
     );
 };

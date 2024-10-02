@@ -1,7 +1,8 @@
 import React from 'react';
 import { FaPlus } from "react-icons/fa";
+import { useRouter } from 'next/navigation';
 
-const Highlight = ({ img, title, tag }) => {
+const Highlight = ({ img, title, tag, id }) => {
   const formattedTitle = title.includes('\\n')
     ? title.split('\\n').map((line, index) => (
         <span key={index}>
@@ -11,10 +12,13 @@ const Highlight = ({ img, title, tag }) => {
       ))
     : title;
 
+  const router = useRouter();
+
   return (
     <div
       style={{ backgroundImage: `url(${img})` }}
       className='highlight_container animation shadow-2xl'
+      onClick={() => router.push(`/project/${id}`)}
     >
       <div className='flex flex-col items-start justify-end p-4 gap-2 w-full'>
         <span className='text-white text-xs font-certia italic tracking-widest'>
