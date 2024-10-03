@@ -39,7 +39,7 @@ const ProjectItem = ({ projectId }) => {
               backgroundImageDesktop={`https://dev.rocknrolla23.com/api/files/${project.collectionId}/${project.id}/${project.banner_img_desktop}?token=`}
             />
             <div className='flex flex-col items-center gap-8 md:py-20 pt-10 pb-20'>
-              <div className='flex flex-col items-center gap-4 md:px-40 px-10'>
+              <div className='flex flex-col items-center gap-4 xl:px-40 md:px-20 px-10'>
                 <div className='flex flex-col items-start justify-start w-full gap-2 py-4'>
                   <span className='text-black md:text-2xl text-lg font-certia font-medium italic tracking-widest'>
                     {project.tag} &gt;
@@ -58,7 +58,7 @@ const ProjectItem = ({ projectId }) => {
                         project.videos.map((video, index) => (
                           <div className='flex flex-col items-start gap-4 md:w-[600px] md:h-[400px] w-full relative mb-4' key={index}>
                             <VimeoEmbed id={video.id} />
-                            <span className='font-certia text-sm text-black absolute md:-bottom-10 -bottom-4 left-2'>{video.year} | {video.title}</span>
+                            <span className='font-certia text-sm text-black absolute md:-bottom-8 -bottom-4 left-2'>{video.year} | {video.title}</span>
                           </div>
                         ))
                       }
