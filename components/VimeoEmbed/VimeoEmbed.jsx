@@ -2,18 +2,26 @@ import React from 'react';
 import Script from 'next/script';
 
 const VimeoEmbed = ({ id }) => {
-  const url = `https://player.vimeo.com/video/${id}?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479`;
+  const url = `https://player.vimeo.com/video/${id}?badge=0&autopause=0&player_id=0&app_id=58479`;
 
   return (
-    <div className='relative w-full' style={{ minHeight: '400px', height: '100%', overflow: 'hidden' }}>
-      <iframe 
+    <div className="video-container md:pt-[56.25%] pt-80" style={{ position: 'relative', width: '100%', overflow: 'hidden' }}>
+      <iframe
         src={url}
-        frameBorder="0" 
-        allow="autoplay; fullscreen; picture-in-picture; clipboard-write" 
-        className='absolute top-0 left-0 w-full h-full'
-        style={{ minHeight: '400px' }} // Forzando la altura mínima
-        title="SATURNO máster gt">
-      </iframe>
+        frameBorder="0"
+        allow="autoplay; fullscreen; picture-in-picture; clipboard-write"
+        className="video-frame"
+        title="Vimeo Video"
+        style={{
+          position: 'absolute',
+          top: '50%',
+          left: '50%',
+          width: '100%',
+          height: '100%',
+          transform: 'translate(-50%, -50%) scale(1.2)', // Escala para simular "cover"
+          transformOrigin: 'center',
+        }}
+      />
       <Script src="https://player.vimeo.com/api/player.js" strategy="lazyOnload"></Script>
     </div>
   );

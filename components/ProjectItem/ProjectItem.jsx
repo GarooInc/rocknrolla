@@ -58,7 +58,7 @@ const ProjectItem = ({ projectId }) => {
                         project.videos.map((video, index) => (
                           <div className='flex flex-col items-start gap-4 md:w-[600px] md:h-[400px] w-full relative mb-4' key={index}>
                             <VimeoEmbed id={video.id} />
-                            <span className='font-certia text-sm text-black absolute md:-bottom-8 -bottom-4 left-2'>{video.year} | {video.title}</span>
+                            <span className='font-certia text-sm text-black absolute md:bottom-4 -bottom-4 left-2'>{video.year} | {video.title}</span>
                           </div>
                         ))
                       }
