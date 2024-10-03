@@ -31,15 +31,15 @@ const ProjectItem = ({ projectId }) => {
   const formattedTitle = useFormattedTitle(project ? project[`title_${currentLocale}`] : '');
 
   return (
-      <div className='flex flex-col relative items-center'>
+      <div className='flex flex-col relative items-center xl:px-40 md:px-20 md:bg-gray-100'>
         {project ? (
           <>
             <ImgBanner
               backgroundImageMobile={`https://dev.rocknrolla23.com/api/files/${project.collectionId}/${project.id}/${project.banner_img_mobile}?token=`}
               backgroundImageDesktop={`https://dev.rocknrolla23.com/api/files/${project.collectionId}/${project.id}/${project.banner_img_desktop}?token=`}
             />
-            <div className='flex flex-col items-center gap-8 md:py-20 pt-10 pb-20'>
-              <div className='flex flex-col items-center gap-4 xl:px-40 md:px-20 px-10'>
+            <div className='flex flex-col items-center gap-8 md:py-20 pt-10 pb-20 bg-white w-full px-10'>
+              <div className='flex flex-col items-center gap-4'>
                 <div className='flex flex-col items-start justify-start w-full gap-2 py-4'>
                   <span className='text-black md:text-2xl text-lg font-certia font-medium italic tracking-widest'>
                     {project.tag} &gt;
