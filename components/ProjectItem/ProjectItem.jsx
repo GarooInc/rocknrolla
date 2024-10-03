@@ -46,7 +46,7 @@ const ProjectItem = ({ projectId }) => {
                   </span>
                   <h1 className='text-2xl md:text-3xl xl:text-4xl leading-6 tracking-wide font-certia text-black font-bold'>{formattedTitle}</h1>
                 </div>
-                <p className='font-certia text-lg md:text-xl leading-6 tracking-wide text-center text-black font-semibold'
+                <p className='font-certia text-lg xl:text-xl leading-6 tracking-wide text-center text-black font-semibold'
                   dangerouslySetInnerHTML={{ __html: project[`description_${currentLocale}_rich`] }}
                 ></p>
               </div>
