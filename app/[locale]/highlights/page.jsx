@@ -6,10 +6,11 @@ import Footer from '@/components/Footer/Footer'
 import LineButton from '@/components/LineButton/LineButton'
 import PrincipalTitle from '@/components/PrincipalTitle/PrincipalTitle'
 import SuccessSquares from '@/components/SuccessSquares/SuccessSquares'
+import LineTitle from '@/components/LineTitle/LineTitle'
 
 const namespaces = ['home', 'general', 'navBar']
 
-export default async function NonNegotiable({ params: { locale } }) {
+export default async function Highlights({ params: { locale } }) {
     const { t, resources } = await initTranslations(locale, namespaces)
     
     return (
@@ -18,7 +19,7 @@ export default async function NonNegotiable({ params: { locale } }) {
             <NavBar/>
             <div className='md:pt-24 pt-10 pb-40 md:px-0 px-8 gap-10 flex flex-col relative items-center'>
                 <PrincipalTitle title={t('home:work')} />
-                <LineButton text={t('navBar:highlights')} secondary />
+                <LineTitle text={t('navBar:highlights')} secondary />
                 <SuccessSquares tag={"FUTURE"}/>
                 <div className='absolute md:bottom-0 z-10 bottom-10'>
                     <LineButton text={t('general:back')} secondary />

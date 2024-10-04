@@ -38,13 +38,13 @@ const ProjectItem = ({ projectId }) => {
               backgroundImageMobile={`https://dev.rocknrolla23.com/api/files/${project.collectionId}/${project.id}/${project.banner_img_mobile}?token=`}
               backgroundImageDesktop={`https://dev.rocknrolla23.com/api/files/${project.collectionId}/${project.id}/${project.banner_img_desktop}?token=`}
             />
-            <div className='flex flex-col items-center gap-8 md:py-20 pt-10 pb-20 bg-white w-full px-10'>
-              <div className='flex flex-col items-center gap-4'>
-                <div className='flex flex-col items-start justify-start w-full gap-2 py-4'>
+            <div className='flex flex-col items-center gap-8 md:pb-20 pt-10 pb-20 bg-white w-full'>
+              <div className='flex flex-col items-center gap-4 px-10 md:px-14'>
+                <div className='flex flex-col items-start justify-start w-full gap-2 py-4 '>
                   <span className='text-black md:text-2xl text-lg font-certia font-medium italic tracking-widest'>
                     {project.tag} &gt;
                   </span>
-                  <h1 className='text-2xl md:text-3xl xl:text-4xl leading-6 tracking-wide font-certia text-black font-bold'>{formattedTitle}</h1>
+                  <h1 className='text-xl md:text-3xl xl:text-4xl leading-6 tracking-wider font-certia text-black font-bold uppercase'>{formattedTitle}</h1>
                 </div>
                 <p className='font-certia text-lg xl:text-xl leading-6 tracking-wide text-center text-black font-semibold'
                   dangerouslySetInnerHTML={{ __html: project[`description_${currentLocale}_rich`] }}
@@ -53,12 +53,12 @@ const ProjectItem = ({ projectId }) => {
               {console.log(project.videos)}
               {
                 project.videos && (
-                    <div className='flex flex-col items-center gap-4 w-full'>
+                    <div className='flex flex-col items-center md:gap-4 gap-8 w-full'>
                       {
                         project.videos.map((video, index) => (
                           <div className='flex flex-col items-start gap-4 md:w-[600px] md:h-[400px] w-full relative mb-4' key={index}>
                             <VimeoEmbed id={video.id} />
-                            <span className='font-certia text-sm text-black absolute md:bottom-4 -bottom-4 left-2'>{video.year} | {video.title}</span>
+                            <span className='font-certia text-sm text-black absolute md:bottom-4 -bottom-6 left-2'>{video.year} | {video.title}</span>
                           </div>
                         ))
                       }

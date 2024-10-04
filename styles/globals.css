@@ -188,6 +188,10 @@
   @apply relative w-full md:h-[600px] h-[400px] bg-cover bg-center flex items-center justify-center;
 }
 
+.img_banner_notext{
+  @apply relative w-full md:h-[500px] h-[400px] bg-contain bg-center flex items-center justify-center;
+}
+
 .img_banner_mobile{
   @apply absolute inset-0 bg-cover bg-center md:hidden;
 }

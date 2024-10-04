@@ -8,7 +8,7 @@ const ImgBanner = ({ backgroundImageMobile, backgroundImageDesktop, text, logo }
 
 
     return (
-        <div className="img_banner_container">
+        <div className={text ? 'img_banner_container' : 'img_banner_notext'}>
             {/* Fondo para dispositivos móviles */}
             <div
                 className="img_banner_mobile"

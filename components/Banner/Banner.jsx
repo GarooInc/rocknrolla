@@ -29,7 +29,7 @@ const Banner = ({ title, button, secondary, double, image, link }) => {
       }
       </h2>
       {
-        secondary ? <LineButton text={button} secondary /> : <LineButton text={button} />
+        secondary ? <LineButton text={button} secondary nav={link} /> : <LineButton text={button} nav={link}/>
       }
       <button onClick={() => router.push(link)} className='absolute top-4 right-4 cursor-pointer'>
         <FaPlus className={` text-2xl ${secondary ? 'text-black' : ' text-white'}`} />
