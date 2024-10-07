@@ -10,7 +10,7 @@ const namespaces = ['general', 'navBar']
 
 export default async function Project({ params }) {
     const { locale, id } = params;
-    const [projectTitle, projectId] = id.split('_');
+    const projectId = id.split('id')[1]
     const { t, resources } = await initTranslations(locale, namespaces)
     return (
         <TranslationsProvider locale={locale} namespaces={namespaces} resources={resources}>
