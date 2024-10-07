@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import PocketBase from 'pocketbase';
 import { useTranslation } from 'react-i18next';
 import { FaPlus } from "react-icons/fa6";
+import { useRouter } from 'next/navigation';
 
 
 const SuccessSquares = ({ tag }) => {
@@ -11,6 +12,7 @@ const SuccessSquares = ({ tag }) => {
     pb.autoCancellation(false);
     const { i18n } = useTranslation();
     const currentLocale = i18n.language;
+    const router = useRouter();
 
 
     useEffect(() => {
@@ -29,6 +31,20 @@ const SuccessSquares = ({ tag }) => {
         fetchData();
     }, [tag]);
 
+
+    const removeAccents = (str) => {
+        return str
+          .normalize('NFD')
+          .replace(/[\u0300-\u036f]/g, '') 
+          .replace(/[^a-zA-Z0-9-_]/g, ''); 
+    }
+
+    const handleNavigate = (successSquare) => {
+        successSquare && successSquare.tag == "FUTURE" ? router.push(`/project/${removeAccents(successSquare[`title_${currentLocale}`]).replace(/\s+/g, '-').toLowerCase()}_${successSquare.id}`) : router.push("/");
+
+    }
+
+
     return (
         <div className='flex md:flex-wrap md:flex-row flex-col md:px-32 gap-0'>
             {successSquares && successSquares.map((successSquare, index) => (
@@ -38,7 +54,7 @@ const SuccessSquares = ({ tag }) => {
                         alt={successSquare[`text_minicover_${currentLocale}`]}
                         className='w-full md:h-[300px] object-cover'
                     />
-                    <FaPlus className='absolute top-4 right-4 text-white cursor-pointer text-xl' />
+                    <FaPlus className='absolute top-4 right-4 text-white cursor-pointer text-xl' onClick={() => handleNavigate(successSquare)} />
                     {
                         successSquare[`text_minicover_${currentLocale}`] &&
                         <div className='absolute bottom-4 left-4 p-2'>
