@@ -6,7 +6,7 @@ export const metadata = {
     title: 'rocknrolla.23',
     description: '',
     url: 'https://rocknrolla23.com/',
-    image: '/assets/images/logo.png',
+    image: '/assets/images/home/principal.png'
 }
 
 const RootLayout = ({children}) => {
