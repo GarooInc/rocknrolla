@@ -5,6 +5,8 @@ import useFormattedTitle from '@/hooks/useFormattedTitle';
 import { useTranslation } from 'react-i18next';
 import ImgBanner from '../ImgBanner/ImgBanner';
 import VimeoEmbed from '../VimeoEmbed/VimeoEmbed';
+import Head from 'next/head';
+
 
 const ProjectItem = ({ projectId }) => {
     const [project, setProject] = useState(null);
@@ -30,8 +32,22 @@ const ProjectItem = ({ projectId }) => {
 
   const formattedTitle = useFormattedTitle(project ? project[`title_${currentLocale}`] : '');
 
+  const banner = project ? `https://dev.rocknrolla23.com/api/files/${project.collectionId}/${project.id}/${project.banner_img_mobile}?token=` : '';
+
+
   return (
       <div className='flex flex-col relative items-center xl:px-40 md:px-20 md:bg-gray-100'>
+          <Head>
+          <title>{formattedTitle}</title>
+          <meta property="og:title" content={formattedTitle} />
+          <meta property="og:description" content={project ? project[`description_${currentLocale}_rich`] : 'Project details'} />
+          <meta property="og:image" content={banner} />
+          <meta property="og:type" content="website" />
+          <meta name="twitter:card" content="summary_large_image" />
+          <meta name="twitter:title" content={formattedTitle} />
+          <meta name="twitter:description" content={project ? project[`description_${currentLocale}_rich`] : 'Project details'} />
+          <meta name="twitter:image" content={banner} />
+        </Head>
         {project ? (
           <>
             <ImgBanner

@@ -18,7 +18,7 @@ const Highlight = ({ img, title, tag, id }) => {
     <div
       style={{ backgroundImage: `url(${img})` }}
       className='highlight_container animation shadow-2xl'
-      onClick={() => router.push(`/project/${id}`)}
+      onClick={() => router.push(`/project/${title.replace(/\s+/g, '-').toLowerCase()}_${id}`)}
     >
       <div className='flex flex-col items-start justify-end p-4 gap-2 w-full'>
         <span className='text-white text-xs font-certia italic tracking-widest'>
