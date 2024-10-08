@@ -23,6 +23,7 @@ export default async function Home({ params: { locale } }) {
   return (
     <TranslationsProvider locale={locale} namespaces={namespaces} resources={resources}>
     <main className='min-h-screen bg-white'>
+      <h1 className='hidden'>Rocknrolla 23</h1>
       <NavBar />
       <div className='flex md:flex-row flex-col w-full justify-center items-stretch md:gap-10'>
         <div className='w-full flex flex-col md:gap-10'>
