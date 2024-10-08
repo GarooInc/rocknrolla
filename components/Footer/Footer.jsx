@@ -36,7 +36,7 @@ const Footer = () => {
                 <div className="flex justify-between w-full p-10">
                     {menu.map((item, index) => (
                     <div key={index}>
-                        <h4 className="font-bold mb-4 text-sm">{item.name}</h4>
+                        <span className="font-bold mb-4 text-sm">{item.name}</span>
                         <ul className="space-y-4">
                         {item.submenu ? (
                             item.submenu.map((subitem, subindex) => (
@@ -79,7 +79,7 @@ const Footer = () => {
                         <div className="grid grid-cols-2 gap-4 text-center">
                             {menu.map((item, index) => (
                             <div key={index}>
-                                <h4 className="font-bold mb-2 text-start text-xs">{item.name}</h4>
+                                <p className="font-bold mb-2 text-start text-xs">{item.name}</p>
                                 <ul className="space-y-1 text-start text-xs">
                                 {item.submenu ? (
                                     item.submenu.map((subitem, subindex) => (

@@ -115,7 +115,7 @@ const NavBar = ({secondary}) => {
                     </button>
                     <Image
                     src="/assets/images/logo.png"
-                    alt="Prodisa"
+                    alt="Logo"
                     className="cursor-pointer w-30 py-2"
                     width={100}
                     height={100}
