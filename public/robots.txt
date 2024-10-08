@@ -1,0 +1,10 @@
+# *
+User-agent: *
+Allow: /
+Disallow: /admin
+
+# Host
+Host: https://rocknrolla23.com
+
+# Sitemaps
+Sitemap: https://rocknrolla23.com/sitemap.xml
