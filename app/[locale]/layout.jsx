@@ -21,6 +21,16 @@ const RootLayout = ({ children }) => {
         <meta property="og:image" content={metadata.image} />
         <meta property="og:url" content={metadata.url} />
         <meta name="keywords" content="rocknrolla23, rocknrolla, rock, rolla, 23, rocknrolla.23, rocknrolla23.com" />
+        {/* Google Tag (gtag.js) */}
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZBWQTVD6JJ"></script>
+        <script dangerouslySetInnerHTML={{
+          __html: `
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-ZBWQTVD6JJ');
+          `,
+        }} />
       </head>
       <body>
         <main className="app">{children}</main>
