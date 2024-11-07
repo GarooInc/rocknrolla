@@ -38,7 +38,7 @@ const NavBar = ({secondary}) => {
             ]
         },
         { name: t('navBar:nav4'), link: '/partners' },
-        { name: t('navBar:nav5'), link: '/contact' },
+        { name: t('navBar:nav5'), link: 'mailto:hola@rocknrolla23.com' },
     ];
 
     const toggleMobileMenu = () => {

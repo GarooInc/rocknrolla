@@ -185,7 +185,7 @@
 /* img banner */
 
 .img_banner_container{
-  @apply relative w-full md:h-[600px] h-[400px] bg-cover bg-center flex items-center justify-center;
+  @apply relative w-full md:h-[400px] xl:h-[500px] h-[400px] bg-cover bg-center flex items-center justify-center;
 }
 
 .img_banner_notext{

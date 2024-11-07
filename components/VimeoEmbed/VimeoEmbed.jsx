@@ -1,28 +1,94 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { FaPlay, FaTimes } from 'react-icons/fa';
 import Script from 'next/script';
 
-const VimeoEmbed = ({ id }) => {
+const VimeoEmbed = ({ id, thumbnail }) => {
+  const [isPlaying, setIsPlaying] = useState(false);
   const url = `https://player.vimeo.com/video/${id}?badge=0&autopause=0&player_id=0&app_id=58479`;
 
+  const handlePlayClick = () => {
+    setIsPlaying(true);
+  };
+
+  const handleCloseClick = () => {
+    setIsPlaying(false);
+  };
+
   return (
-    <div className="video-container md:pt-[56.25%] pt-80" style={{ position: 'relative', width: '100%', overflow: 'hidden' }}>
-      <iframe
-        src={url}
-        frameBorder="0"
-        allow="autoplay; fullscreen; picture-in-picture; clipboard-write"
-        className="video-frame"
-        title="Vimeo Video"
-        style={{
-          position: 'absolute',
-          top: '50%',
-          left: '50%',
+    <div className="video-wrapper w-full h-full">
+      {!isPlaying ? (
+        <div className="thumbnail-container" style={{ position: 'relative' }}>
+          <img
+            src={thumbnail}
+            alt="Video thumbnail"
+            style={{ width: '100%', display: 'block', cursor: 'pointer' }}
+            onClick={handlePlayClick}
+          />
+          <button
+            onClick={handlePlayClick}
+            style={{
+              position: 'absolute',
+              top: '50%',
+              left: '50%',
+              transform: 'translate(-50%, -50%)',
+              backgroundColor: 'rgba(0, 0, 0, 0.5)',
+              border: 'none',
+              borderRadius: '50%',
+              padding: '10px',
+              cursor: 'pointer',
+              color: '#fff',
+            }}
+          >
+            <FaPlay size={30} />
+          </button>
+        </div>
+      ) : (
+        <div className="video-overlay w-full h-full" style={{
+          position: 'fixed',
+          top: '0',
+          left: '0',
           width: '100%',
           height: '100%',
-          transform: 'translate(-50%, -50%) scale(1.2)', // Escala para simular "cover"
-          transformOrigin: 'center',
-        }}
-      />
-      <Script src="https://player.vimeo.com/api/player.js" strategy="lazyOnload"></Script>
+          backgroundColor: 'rgba(0, 0, 0, 0.9)',
+          zIndex: '1000',
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+        }}>
+          <button
+            onClick={handleCloseClick}
+            style={{
+              position: 'absolute',
+              top: '20px',
+              right: '20px',
+              backgroundColor: 'transparent',
+              border: 'none',
+              color: '#fff',
+              cursor: 'pointer',
+              fontSize: '24px',
+            }}
+          >
+            <FaTimes />
+          </button>
+          <div className="video-container" style={{ position: 'relative', width: '80%', height: '60%', overflow: 'hidden' }}>
+            <iframe
+              src={url}
+              frameBorder="0"
+              allow="autoplay; fullscreen; picture-in-picture; clipboard-write"
+              className="video-frame"
+              title="Vimeo Video"
+              style={{
+                position: 'absolute',
+                top: '0',
+                left: '0',
+                width: '100%',
+                height: '100%',
+              }}
+            />
+            <Script src="https://player.vimeo.com/api/player.js" strategy="lazyOnload" />
+          </div>
+        </div>
+      )}
     </div>
   );
 };
