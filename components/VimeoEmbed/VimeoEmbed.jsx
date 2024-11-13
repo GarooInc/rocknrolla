@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
-import { FaPlay, FaTimes } from 'react-icons/fa';
+import { FaTimes } from 'react-icons/fa';
+import { IoPlayCircleOutline } from "react-icons/io5";
+
 import Script from 'next/script';
 
 const VimeoEmbed = ({ id, thumbnail }) => {
@@ -31,15 +33,13 @@ const VimeoEmbed = ({ id, thumbnail }) => {
               top: '50%',
               left: '50%',
               transform: 'translate(-50%, -50%)',
-              backgroundColor: 'rgba(0, 0, 0, 0.5)',
+              backgroundColor: 'transparent',
               border: 'none',
-              borderRadius: '50%',
-              padding: '10px',
-              cursor: 'pointer',
               color: '#fff',
+              cursor: 'pointer',
             }}
           >
-            <FaPlay size={30} />
+            <IoPlayCircleOutline className='text-6xl text-white' />
           </button>
         </div>
       ) : (
