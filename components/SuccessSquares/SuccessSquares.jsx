@@ -8,7 +8,8 @@ import { useRouter } from 'next/navigation';
 
 const SuccessSquares = ({ tag }) => {
     const [successSquares, setSuccessSquares] = useState(null);
-    const pb = new PocketBase('https://dev.rocknrolla23.com');
+    const api = process.env.NEXT_PUBLIC_API_URL;
+    const pb = new PocketBase(api);
     pb.autoCancellation(false);
     const { i18n } = useTranslation();
     const currentLocale = i18n.language;
@@ -50,7 +51,7 @@ const SuccessSquares = ({ tag }) => {
             {successSquares && successSquares.map((successSquare, index) => (
                 <div key={index} className='md:w-1/2 w-full relative animation cursor-pointer' onClick={() => handleNavigate(successSquare)}>
                     <img
-                        src={`https://dev.rocknrolla23.com/api/files/${successSquare.collectionId}/${successSquare.id}/${successSquare.minicover}?token=`}
+                        src={`${api}/api/files/${successSquare.collectionId}/${successSquare.id}/${successSquare.minicover}?token=`}
                         alt={successSquare[`text_minicover_${currentLocale}`]}
                         className='w-full md:h-[300px] object-cover'
                     />

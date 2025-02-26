@@ -6,7 +6,8 @@ import { useTranslation } from 'react-i18next';
 
 const Highlights = () => {
     const [highlights, setHighlights] = useState(null);
-    const pb = new PocketBase('https://dev.rocknrolla23.com');
+    const api = process.env.NEXT_PUBLIC_API_URL;
+    const pb = new PocketBase(api);
     pb.autoCancellation(false);
     const { i18n } = useTranslation();
     const { t } = useTranslation();
@@ -33,7 +34,7 @@ const Highlights = () => {
         <div className='highlight_main'>
             {
                 highlights && highlights.map((highlight, index) => (
-                    <Highlight key={index} img={`https://dev.rocknrolla23.com/api/files/${highlight.collectionId}/${highlight.id}/${highlight.square_img}?token=`} title={highlight[`title_${currentLocale}`]} tag={highlight.tag} id={highlight.id} />
+                    <Highlight key={index} img={`${api}/api/files/${highlight.collectionId}/${highlight.id}/${highlight.square_img}?token=`} title={highlight[`title_${currentLocale}`]} tag={highlight.tag} id={highlight.id} />
                 ))
             }
             <span className='top_text'>{t('home:highlights')}</span>

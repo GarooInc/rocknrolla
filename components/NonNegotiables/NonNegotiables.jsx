@@ -7,8 +7,8 @@ import { useTranslation } from 'react-i18next';
 
 const NonNegotiables = () => {
     const [nonNegotiables, setNonNegotiables] = useState(null);
-
-    const pb = new PocketBase('https://dev.rocknrolla23.com')
+    const api = process.env.NEXT_PUBLIC_API_URL;
+    const pb = new PocketBase(api);
     pb.autoCancellation(false);
     const { i18n } = useTranslation();
     const currentLocale = i18n.language;

@@ -6,8 +6,8 @@ import { FaArrowRight } from "react-icons/fa";
 
 const PartnersItem = () => {
     const [partner, setPartners] = useState(null);
-
-    const pb = new PocketBase('https://dev.rocknrolla23.com')
+    const api = process.env.NEXT_PUBLIC_API_URL;
+    const pb = new PocketBase(api);
     pb.autoCancellation(false);
     const { i18n } = useTranslation();
     const { t } = useTranslation();
@@ -34,7 +34,7 @@ const PartnersItem = () => {
                 <div className="partners_card_container" key={index}>
                     <div className="custom_card_line"></div>
                     <div className='flex justify-start items-center gap-10'>
-                        <img src={`https://dev.rocknrolla23.com/api/files/${partner.collectionId}/${partner.id}/${partner.logo}?token=`} alt="logo" className='md:w-40 md:h-40 w-24 h-24' />
+                        <img src={`${api}/api/files/${partner.collectionId}/${partner.id}/${partner.logo}?token=`} alt="logo" className='md:w-40 md:h-40 w-24 h-24' />
                         <span className="md:text-xl text-lg font-bold font-garamond tracking-wider leading-6 text-white uppercase text-start">
                             {partner.name}
                         </span>

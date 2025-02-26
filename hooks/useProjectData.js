@@ -7,11 +7,12 @@ const useProjectData = (projectId) => {
   const [project, setProject] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const api = process.env.NEXT_PUBLIC_API_URL;
 
   useEffect(() => {
     if (!projectId) return;
 
-    const pb = new PocketBase('https://dev.rocknrolla23.com');
+    const pb = new PocketBase(api);
     pb.autoCancellation(false);
 
     const fetchData = async () => {

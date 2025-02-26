@@ -4,8 +4,9 @@ import PocketBase from 'pocketbase';
 import { useTranslation } from 'react-i18next';
 
 const CardLogos = () => {
+    const api = process.env.NEXT_PUBLIC_API_URL;
     const [logos, setLogos] = useState(null);
-    const pb = new PocketBase('https://dev.rocknrolla23.com');
+    const pb = new PocketBase(api);
     pb.autoCancellation(false);
     const { i18n } = useTranslation();
 
@@ -30,7 +31,7 @@ const CardLogos = () => {
             {
                 logos && logos.map((logo, index) => (
                     <div className='card_logos_logo' key={index}>
-                        <img src={`https://dev.rocknrolla23.com/api/files/${logo.collectionId}/${logo.id}/${logo.logo_img}?token=`} alt="logo" />
+                        <img src={`${api}/api/files/${logo.collectionId}/${logo.id}/${logo.logo_img}?token=`} alt="logo" />
                     </div>
                 ))
             }

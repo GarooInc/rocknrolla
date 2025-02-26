@@ -10,7 +10,8 @@ import Head from 'next/head';
 const ProjectItem = ({ projectId }) => {
   const [project, setProject] = useState(null);
   const [thumbnails, setThumbnails] = useState({});
-  const pb = new PocketBase('https://dev.rocknrolla23.com');
+  const api = process.env.NEXT_PUBLIC_API_URL;
+  const pb = new PocketBase(api);
   pb.autoCancellation(false);
   const { i18n } = useTranslation();
   const currentLocale = i18n.language;
@@ -43,7 +44,7 @@ const ProjectItem = ({ projectId }) => {
 
   const formattedTitle = useFormattedTitle(project ? project[`title_${currentLocale}`] : '');
 
-  const banner = project ? `https://dev.rocknrolla23.com/api/files/${project.collectionId}/${project.id}/${project.banner_img_mobile}?token=` : '';
+  const banner = project ? `${api}/api/files/${project.collectionId}/${project.id}/${project.banner_img_mobile}?token=` : '';
 
   return (
     <div className='flex flex-col relative items-center xl:px-40 md:px-20 md:bg-gray-100'>
@@ -61,8 +62,8 @@ const ProjectItem = ({ projectId }) => {
       {project ? (
         <>
           <ImgBanner
-            backgroundImageMobile={`https://dev.rocknrolla23.com/api/files/${project.collectionId}/${project.id}/${project.banner_img_mobile}?token=`}
-            backgroundImageDesktop={`https://dev.rocknrolla23.com/api/files/${project.collectionId}/${project.id}/${project.banner_img_desktop}?token=`}
+            backgroundImageMobile={`${api}/api/files/${project.collectionId}/${project.id}/${project.banner_img_mobile}?token=`}
+            backgroundImageDesktop={`${api}/api/files/${project.collectionId}/${project.id}/${project.banner_img_desktop}?token=`}
           />
           <div className='flex flex-col items-center gap-8 md:pb-20 pt-10 pb-20 bg-white w-full'>
             <div className='flex flex-col items-center gap-4 px-10 md:px-14'>
@@ -84,7 +85,7 @@ const ProjectItem = ({ projectId }) => {
                   {
                     project.videos.map((video, index) => (
                       <div className='flex flex-col items-start gap-4 md:w-[600px] md:h-[400px] w-full relative mb-4' key={index}>
-                        <VimeoEmbed id={video.id} thumbnail={`https://dev.rocknrolla23.com/api/files/${thumbnails[video.id]?.collectionId}/${thumbnails[video.id]?.id}/${thumbnails[video.id]?.image}?token=`} />
+                        <VimeoEmbed id={video.id} thumbnail={`/api/files/${thumbnails[video.id]?.collectionId}/${thumbnails[video.id]?.id}/${thumbnails[video.id]?.image}?token=`} />
                         <span className='font-certia text-sm text-black absolute md:bottom-4 -bottom-6 left-2'>{video.year} | {video.title}</span>
                       </div>
                     ))

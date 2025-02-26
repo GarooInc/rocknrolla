@@ -31,10 +31,11 @@ export default function Project({ params }) {
   }, [locale]);
 
   const { t, resources } = translations;
+  const api = process.env.NEXT_PUBLIC_API_URL;
 
   const formattedTitle = project ? project[`title_${locale}`] : 'Project';
   const bannerImage = project
-    ? `https://dev.rocknrolla23.com/api/files/${project.collectionId}/${project.id}/${project.banner_img_desktop}`
+    ? `${api}/api/files/${project.collectionId}/${project.id}/${project.banner_img_desktop}`
     : '';
 
   if (loading || !t) {
