@@ -77,15 +77,13 @@ const ProjectItem = ({ projectId }) => {
                 dangerouslySetInnerHTML={{ __html: project[`description_${currentLocale}_rich`] }}
               ></p>
             </div>
-            {console.log(thumbnails)}
-            {console.log("project", project)}
             {
               project.videos && (
                 <div className='flex flex-col items-center md:gap-4 gap-8 w-full'>
                   {
                     project.videos.map((video, index) => (
                       <div className='flex flex-col items-start gap-4 md:w-[600px] md:h-[400px] w-full relative mb-4' key={index}>
-                        <VimeoEmbed id={video.id} thumbnail={`/api/files/${thumbnails[video.id]?.collectionId}/${thumbnails[video.id]?.id}/${thumbnails[video.id]?.image}?token=`} />
+                        <VimeoEmbed id={video.id} thumbnail={`${api}/api/files/${thumbnails[video.id]?.collectionId}/${thumbnails[video.id]?.id}/${thumbnails[video.id]?.image}?token=`} />
                         <span className='font-certia text-sm text-black absolute md:bottom-4 -bottom-6 left-2'>{video.year} | {video.title}</span>
                       </div>
                     ))
