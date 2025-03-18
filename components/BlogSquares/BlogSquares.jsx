@@ -72,7 +72,7 @@ const BlogSquares = ({ tag }) => {
           </div>
         ))}
       </div>
-      <div className="md:absolute md:right-10 md:top-0 h-full md:flex items-center hidden">
+      <div className="md:absolute md:right-20 md:top-0 h-full md:flex items-center hidden">
             <div className="relative h-full w-[2px] bg-gray-300">
             <div
                 className="absolute w-[20px] h-[20px] bg-black rounded-full transition-all"
