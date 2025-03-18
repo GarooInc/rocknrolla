@@ -38,11 +38,11 @@ export default async function Home({ params: { locale } }) {
               </div>
               <div className='flex flex-col md:basis-[80%] md:gap-10'>
                 <img src='/assets/images/home/principalgif.gif' alt='Highlight' className='w-full md:h-[600px] sm:h-[400px] h-[350px] object-cover' />
-                <div className='flex md:gap-10 w-full justify-between'>
-                  <div className='w-1/2 h-full'>
+                <div className='flex md:gap-10 w-full justify-between h-full'>
+                  <div className='w-1/2 flex-1'>
                     <Banner title={t('home:work')} button={t('home:culture')} secondary link={'/culture'} />
                   </div>
-                  <div className='w-1/2 h-full'>
+                  <div className='w-1/2 flex-1'>
                     <Banner title={t('home:innegotiable')} button={t('home:innegotiables')} secondary link={'/non-negotiable'} />
                   </div>
                 </div>

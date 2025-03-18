@@ -121,7 +121,7 @@
 
 /* Banner */
 .banner_container{
-  @apply flex flex-col justify-center items-center gap-4 shadow-xl relative;
+  @apply flex flex-col justify-center items-center gap-4 shadow-xl relative h-full;
 }
 
 /* group */
