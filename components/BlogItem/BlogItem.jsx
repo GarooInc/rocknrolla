@@ -92,15 +92,15 @@ const BlogItem = ({ blogId }) => {
                       </div>
                     ))
                   }
-                  <span className='font-certia text-sm text-black md:w-[600px] text-justify'
+                  <span className='font-certia text-sm text-black md:w-[600px] text-justify md:p-0 p-10'
                     dangerouslySetInnerHTML={{ __html: blog[`credits_${currentLocale}`] }}
                   ></span>
                 </div>
               )
             }
             <div className='shadow-lg md:w-3/4 p-4 bg-white flex justify-between items-center md:px-10 w-4/5'>
-              <h2 className='md:text-sm text-xs font-bold text-black w-1/4 italic font-certia underline'>Compartir {">"}</h2>
-              <div className='flex gap-4 justify-between items-center w-3/4'>
+              <h2 className='md:text-sm text-xs font-bold text-black md:w-1/4 w-1/2 italic font-certia underline'>Compartir {">"}</h2>
+              <div className='flex gap-4 justify-between items-center md:w-3/4 w-1/2 '>
                 {mediaFinal.map((media, index) => (
                   <a
                     key={index}
