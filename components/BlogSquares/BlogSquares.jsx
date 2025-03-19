@@ -2,6 +2,8 @@
 import React, { useState, useEffect, useRef } from "react";
 import PocketBase from "pocketbase";
 import { useTranslation } from "react-i18next";
+import { useRouter } from 'next/navigation';
+
 
 const BlogSquares = ({ tag }) => {
   const [blogs, setBlogs] = useState([]);
@@ -12,6 +14,8 @@ const BlogSquares = ({ tag }) => {
   pb.autoCancellation(false);
   const { i18n, t } = useTranslation();
   const currentLocale = i18n.language;
+  const router = useRouter();
+  
 
   useEffect(() => {
     const fetchData = async () => {
@@ -37,6 +41,17 @@ const BlogSquares = ({ tag }) => {
     }
   };
 
+  const handleNavigate = (blog) => {
+    blog && blog.cover != null ? router.push(`/blogpost/${removeAccents(blog[`title_${currentLocale}`]).replace(/\s+/g, '-').toLowerCase()}_${blog.id}`) : "";
+  }
+
+  const removeAccents = (str) => {
+    return str
+      .normalize('NFD')
+      .replace(/[\u0300-\u036f]/g, '') 
+      .replace(/[^a-zA-Z0-9-_]/g, ''); 
+  }
+
   return (
     <div className="relative flex md:gap-12 gap-8 md:px-32">
       <div
@@ -59,13 +74,13 @@ const BlogSquares = ({ tag }) => {
                 ></span>
               )}
               <p
-                className="font-certia text-sm xl:text-xl leading-6 tracking-wide text-start text-black font-semibold"
+                className="font-certia text-sm xl:text-lg leading-6 tracking-wide text-start text-black font-semibold"
                 dangerouslySetInnerHTML={{ __html: blog[`desc_${currentLocale}`] }}
               ></p>
               <div className="absolute md:bottom-2 md:right-2 bottom-4 right-8">
-                <span className="text-black font-certia text-sm font-medium underline italic">
+                <button className="text-black font-certia text-sm font-medium underline italic" onClick={() => handleNavigate(blog)}>
                   {t("general:read_now")}
-                </span>
+                </button>
                 <span className="text-black font-certia text-sm font-medium italic">{">"}</span>
               </div>
             </div>
