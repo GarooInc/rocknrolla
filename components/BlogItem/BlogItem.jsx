@@ -45,10 +45,10 @@ const BlogItem = ({ blogId }) => {
   const formattedTitle = useFormattedTitle(blog ? blog[`title_${currentLocale}`] : '');
 
   const mediaFinal = blog ? [
-    { img: "/assets/images/media/4.png", link:`mailto:?subject=${encodeURIComponent(formattedTitle)}&body=${encodeURIComponent(window.location.href)}`},
-    { img: "/assets/images/media/1.png", link: `https://www.instagram.com/share?url=${encodeURIComponent(window.location.href)}` },
-    { img: "/assets/images/media/3.png", link: `https://www.linkedin.com/shareArticle?mini=true&url=${encodeURIComponent(window.location.href)}&title=${encodeURIComponent(formattedTitle)}&summary=${encodeURIComponent(blog[`desc_${currentLocale}`])}` },
-    { img: "/assets/images/media/5.png", link: "/" },
+    { img: "/assets/images/blog/media/1.webp", link:`mailto:?subject=${encodeURIComponent(formattedTitle)}&body=${encodeURIComponent(window.location.href)}`},
+    { img: "/assets/images/blog/media/3.webp", link: `https://www.instagram.com/share?url=${encodeURIComponent(window.location.href)}` },
+    { img: "/assets/images/blog/media/4.webp", link: `https://www.linkedin.com/shareArticle?mini=true&url=${encodeURIComponent(window.location.href)}&title=${encodeURIComponent(formattedTitle)}&summary=${encodeURIComponent(blog[`desc_${currentLocale}`])}` },
+    { img: "/assets/images/blog/media/2.webp", link: "/" },
   ] : [];
 
   const banner = blog ? `${api}/api/files/${blog.collectionId}/${blog.id}/${blog.cover}?token=` : '';
@@ -109,7 +109,7 @@ const BlogItem = ({ blogId }) => {
                     rel="noopener noreferrer"
                     className='flex items-center justify-center'
                   >
-                    <img src={media.img} alt="Share icon" className="md:w-10 md:h-10 w-8 h-8 invert" />
+                    <img src={media.img} alt="Share icon" className="md:w-10 md:h-8 w-12 h-8" />
                   </a>
                 ))}
               </div>
