@@ -77,7 +77,7 @@ const BlogSquares = ({ tag }) => {
                 className="font-certia text-sm xl:text-lg leading-6 tracking-wide text-start text-black font-semibold"
                 dangerouslySetInnerHTML={{ __html: blog[`desc_${currentLocale}`] }}
               ></p>
-              <div className="absolute md:bottom-2 md:right-2 -bottom-6 right-8">
+              <div className="absolute md:bottom-2 md:right-2 -bottom-6 right-8 p-4">
                 <button className="text-black font-certia text-sm font-medium underline italic" onClick={() => handleNavigate(blog)}>
                   {t("general:read_now")}
                 </button>
