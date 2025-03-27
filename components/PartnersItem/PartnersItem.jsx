@@ -41,9 +41,9 @@ const PartnersItem = () => {
                     </div>
                     <button className='absolute bottom-4 right-4 cursor-pointer'>
                         <div className='flex justify-center items-center gap-4'>
-                            <span className="text-white font-garamond italic md:text-xl text-lg">
+                            <button className="text-white font-garamond italic md:text-xl text-lg" onClick={() => window.open(partner.website, '_blank')}>
                                 {t('partners:go_to_website')}
-                            </span>
+                            </button>
                             <FaArrowRight className="text-white" />
                         </div>
                     </button>
