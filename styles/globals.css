@@ -265,3 +265,15 @@
   scrollbar-width: none;
 }
 
+.inputtype{
+  @apply flex flex-col gap-4 w-full ;
+}
+
+.inputfield{
+  @apply flex items-center bg-gray-200 rounded-2xl px-8 py-2;
+}
+
+.labelform{
+  @apply text-start font-medium text-black;
+}
+
