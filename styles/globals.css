@@ -266,7 +266,7 @@
 }
 
 .inputtype{
-  @apply flex flex-col gap-4 w-full ;
+  @apply flex flex-col gap-4 w-full text-gray-800;
 }
 
 .inputfield{
