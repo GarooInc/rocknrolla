@@ -1,7 +1,7 @@
 const SelectField = ({ label, name, options }) => (
-    <div className="field">
-      <label htmlFor={name}>{label}</label>
-      <select id={name} name={name}>
+    <div className="w-full inputtype">
+      <label className="labelform" htmlFor={name}>{label}</label>
+      <select id={name} name={name} className="inputfield w-full">
         {options.map((opt, i) => (
           <option key={i} value={opt}>{opt}</option>
         ))}
