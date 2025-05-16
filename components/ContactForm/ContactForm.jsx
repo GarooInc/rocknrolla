@@ -11,6 +11,7 @@ import nationalities_es from '@/public/data/nationalities_es'
 import municipiosDeGuatemala from '@/public/data/municipios'
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import DateNormalPicker from '../DateNormalPicker/DateNormalPicker'
 
 
 
@@ -68,36 +69,38 @@ const ContactForm = () => {
 
     return (
         <div className='flex flex-col gap-4 w-full md:w-1/2 justify-center items-center'>
-            <LineTitle text={t('jobs:application')} secondary />
-            <div className='inputtype'>
-                <span className='labelform'>{t('jobs:date_input')}</span>
-                <CustomDatePicker />                        
-            </div>
-            <InputField 
-                label={t('jobs:job_input')} 
-                name="full_name" 
-                required  
-                value={fullName}
-                onChange={(e) => setFullName(e.target.value)}
-            />
-            <div className='inputtype'>
-                <span className='labelform'>{t('jobs:typejob_input')}</span>
-                <div className='flex gap-2'>
-                    <RadioGroupButtons
-                        name="typejob"
-                        options={[
-                            { label: t('jobs:typecontract1'), value: t('jobs:typecontract1') },
-                            { label: t('jobs:typecontract2'), value: t('jobs:typecontract2') },
-                        ]}
-                        selected={contractType}
-                        onChange={(value) => setContractType(value)}
-                    />
+            <div className='w-full'>
+                <LineTitle text={t('jobs:application')} secondary form/>
+                <div className='inputtype'>
+                    <span className='labelform'>{t('jobs:date_input')}</span>
+                    <CustomDatePicker />                        
                 </div>
-                <FileUpload label={t('jobs:pic_input')} name="pic" required />
+                <InputField 
+                    label={t('jobs:job_input')} 
+                    name="full_name" 
+                    required  
+                    value={fullName}
+                    onChange={(e) => setFullName(e.target.value)}
+                />
+                <div className='inputtype'>
+                    <span className='labelform'>{t('jobs:typejob_input')}</span>
+                    <div className='flex gap-2'>
+                        <RadioGroupButtons
+                            name="typejob"
+                            options={[
+                                { label: t('jobs:typecontract1'), value: t('jobs:typecontract1') },
+                                { label: t('jobs:typecontract2'), value: t('jobs:typecontract2') },
+                            ]}
+                            selected={contractType}
+                            onChange={(value) => setContractType(value)}
+                        />
+                    </div>
+                    <FileUpload label={t('jobs:pic_input')} name="pic" required />
+                </div>
             </div>
-            <div className='pt-10 w-full'>
-                <LineTitle text={t('jobs:application')} secondary />
-                <div className='flex flex-col gap-2 w-full pt-10'>
+            <div className='pt-4 w-full'>
+                <LineTitle text={t('jobs:application')} secondary form/>
+                <div className='flex flex-col gap-2 w-full'>
                     <InputField label={t('jobs:name_input')} name="full_name" required />
                     <div className='inputtype'>
                         <span className='labelform'>{t('jobs:datebirth_input')}</span>
@@ -133,8 +136,8 @@ const ContactForm = () => {
                         />
                     </div>
                 </div>
-                <div className='pt-10 w-full'>
-                    <LineTitle text={t('jobs:education')} secondary />
+                <div className='pt-4 w-full'>
+                    <LineTitle text={t('jobs:education')} secondary form/>
                     <div className='flex flex-col gap-2 w-full'>
                         <SelectField label={t('jobs:education_input')} name="level" required
                         options={
@@ -155,8 +158,8 @@ const ContactForm = () => {
                         <div className='flex flex-col py-2 w-full'>
                             <span className='labelform'>{t('jobs:period_input')}</span>
                             <div className='flex gap-2 w-full'>
-                                <InputField type='date' name="period1" required />
-                                <InputField type='date' name="period2" required />
+                                <DateNormalPicker name="period1" required />
+                                <DateNormalPicker name="period2" required />
                             </div>
                         </div>
                         <InputField label={t('jobs:titlegrad_input')} name="degree" required />
@@ -165,8 +168,8 @@ const ContactForm = () => {
                         </button>
                     </div>
                 </div>
-                <div className='pt-10 w-full'>
-                    <LineTitle text={t('jobs:laboral_experience')} secondary />
+                <div className='pt-4 w-full'>
+                    <LineTitle text={t('jobs:laboral_experience')} secondary form/>
                     <div className='flex flex-col gap-2 w-full'>
                         <InputField label={t('jobs:nameenterprise_input')} name="enterprise" required />
                         <InputField label={t('jobs:addressenterprise_input')} name="address" required />
@@ -174,11 +177,11 @@ const ContactForm = () => {
                     </div>
                     <div className='flex flex-col gap-2 w-full pt-2'>
                         <span className='labelform'>{t('jobs:datestart_input')}</span>
-                        <InputField type='date' name="period1" required />
+                        <DateNormalPicker name="period1" required />
                     </div>
                     <div className='flex flex-col gap-2 w-full py-2'>
                         <span className='labelform'>{t('jobs:datefinish_input')}</span>
-                        <InputField type='date' name="period2" required />
+                        <DateNormalPicker name="period2" required />
                     </div>
                     <InputField label={t('jobs:boss_input')} name="position" required />
                     <InputField label={t('jobs:worktype_input')} name="position" required />
@@ -203,8 +206,8 @@ const ContactForm = () => {
                         {t('jobs:work_type')} +
                     </button>
                 </div>
-                <div className='pt-10 w-full'>
-                    <LineTitle text={t('jobs:laboral_references')} secondary />
+                <div className='pt-4 w-full'>
+                    <LineTitle text={t('jobs:laboral_references')} secondary form/>
                     <div className='flex flex-col gap-2 w-full'>
                         <InputField label={t('jobs:referencename_input')} name="enterprise" required />
                         <InputField label={t('jobs:referencejob_input')} name="enterprise" required />
@@ -215,8 +218,8 @@ const ContactForm = () => {
                         {t('jobs:morereference')} +
                     </button>
                 </div>
-                <div className='pt-10 w-full'>
-                    <LineTitle text={t('jobs:personalreference')} secondary />
+                <div className='pt-4 w-full'>
+                    <LineTitle text={t('jobs:personalreference')} secondary form/>
                     <div className='flex flex-col gap-2 py-2'>
                         <span className='labelform'>{t('jobs:personalquestion1')}</span>
                         <RadioGroupButtons
@@ -246,7 +249,7 @@ const ContactForm = () => {
                     <InputField label={t('jobs:personalquestion6')} name="disponibility" required />
                     <InputField label={t('jobs:personalquestion7')} name="disponibility" required />
                 </div>
-                <div className='pt-10 w-full'>
+                <div className='pt-4 w-full'>
                     <InputField label={t('jobs:me_text')} name="disponibility" required />
                     <div className='py-4 w-full'>
                         <span className='affirmtextform'>{t('jobs:text_accept')}</span>
@@ -265,8 +268,8 @@ const ContactForm = () => {
                         <span className="text-black">{t('jobs:accept_btn')}</span>
                     </label>
                 </div>
-                <div className='pt-10 w-full'>
-                    <LineTitle text={t('jobs:paper_btn')} secondary />
+                <div className='pt-4 w-full'>
+                    <LineTitle text={t('jobs:paper_btn')} secondary form/>
                     <FileUpload label={t('jobs:cv_input')} name="cv" required accept='application/pdf' />
                     <FileUpload label={t('jobs:worksuser_input')} name="cert" required accept='zip' />
                 </div>
