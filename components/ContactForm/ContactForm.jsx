@@ -136,6 +136,7 @@ const ContactForm = () => {
                         />
                     </div>
                 </div>
+            </div>
                 <div className='pt-4 w-full'>
                     <LineTitle text={t('jobs:education')} secondary form/>
                     <div className='flex flex-col gap-2 w-full'>
@@ -273,7 +274,6 @@ const ContactForm = () => {
                     <FileUpload label={t('jobs:cv_input')} name="cv" required accept='application/pdf' />
                     <FileUpload label={t('jobs:worksuser_input')} name="cert" required accept='zip' />
                 </div>
-            </div>
             <button className='bg-black text-white py-2 px-4 rounded-2xl w-full mt-10'>
                 {t('jobs:form_btn')}
             </button>
