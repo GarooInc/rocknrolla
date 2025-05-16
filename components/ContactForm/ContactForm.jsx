@@ -9,11 +9,62 @@ import SelectField from '../SelectField/SelectField'
 import nationalities_en from '@/public/data/nationalities_en'
 import nationalities_es from '@/public/data/nationalities_es'
 import municipiosDeGuatemala from '@/public/data/municipios'
-
+import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
+
+
 
 const ContactForm = () => {
     const { t } = useTranslation();
+
+    const [applicationDate, setApplicationDate] = useState(null); // Date
+    const [jobPosition, setJobPosition] = useState('');
+    const [contractType, setContractType] = useState('');
+
+    const [fullName, setFullName] = useState('');
+    const [birthDate, setBirthDate] = useState(null); // Date
+    const [nationality, setNationality] = useState('');
+    const [country, setCountry] = useState('');
+    const [municipality, setMunicipality] = useState('');
+    const [address, setAddress] = useState('');
+    const [phone, setPhone] = useState('');
+    const [email, setEmail] = useState('');
+    const [civilStatus, setCivilStatus] = useState('');
+
+    const [educationLevel, setEducationLevel] = useState('');
+    const [school, setSchool] = useState('');
+    const [educationPeriodStart, setEducationPeriodStart] = useState('');
+    const [educationPeriodEnd, setEducationPeriodEnd] = useState('');
+    const [degree, setDegree] = useState('');
+
+    const [enterpriseName, setEnterpriseName] = useState('');
+    const [enterpriseAddress, setEnterpriseAddress] = useState('');
+    const [enterprisePhone, setEnterprisePhone] = useState('');
+    const [workStart, setWorkStart] = useState('');
+    const [workEnd, setWorkEnd] = useState('');
+    const [bossName, setBossName] = useState('');
+    const [jobTitle, setJobTitle] = useState('');
+    const [initialSalary, setInitialSalary] = useState('');
+    const [lastSalary, setLastSalary] = useState('');
+    const [jobFunctions, setJobFunctions] = useState('');
+    const [referencesAllowed, setReferencesAllowed] = useState('');
+    const [dismissReason, setDismissReason] = useState('');
+
+    const [laborRefName, setLaborRefName] = useState('');
+    const [laborRefJob, setLaborRefJob] = useState('');
+    const [laborRefCompany, setLaborRefCompany] = useState('');
+    const [laborRefPhone, setLaborRefPhone] = useState('');
+
+    const [currentlyWorking, setCurrentlyWorking] = useState('');
+    const [workAvailability, setWorkAvailability] = useState('');
+    const [salaryExpectation, setSalaryExpectation] = useState('');
+    const [recommendation, setRecommendation] = useState('');
+    const [hasFamilyInCompany, setHasFamilyInCompany] = useState('');
+    const [familyDetails, setFamilyDetails] = useState('');
+    const [observations, setObservations] = useState('');
+
+    const [termsAccepted, setTermsAccepted] = useState(false);
+
 
     return (
         <div className='flex flex-col gap-4 w-full md:w-1/2 justify-center items-center'>
@@ -22,7 +73,13 @@ const ContactForm = () => {
                 <span className='labelform'>{t('jobs:date_input')}</span>
                 <CustomDatePicker />                        
             </div>
-            <InputField label={t('jobs:job_input')} name="full_name" required />
+            <InputField 
+                label={t('jobs:job_input')} 
+                name="full_name" 
+                required  
+                value={fullName}
+                onChange={(e) => setFullName(e.target.value)}
+            />
             <div className='inputtype'>
                 <span className='labelform'>{t('jobs:typejob_input')}</span>
                 <div className='flex gap-2'>
@@ -32,7 +89,8 @@ const ContactForm = () => {
                             { label: t('jobs:typecontract1'), value: t('jobs:typecontract1') },
                             { label: t('jobs:typecontract2'), value: t('jobs:typecontract2') },
                         ]}
-                        selected="fulltime"
+                        selected={contractType}
+                        onChange={(value) => setContractType(value)}
                     />
                 </div>
                 <FileUpload label={t('jobs:pic_input')} name="pic" required />
@@ -129,8 +187,8 @@ const ContactForm = () => {
                         <InputField label={t('jobs:lastsalary_input')} name="salary" required />
                     </div>
                     <InputField label={t('jobs:functions_input')} name="reason" required />
-                    <span className='labelform'>{t('jobs:references_input')}</span>
-                    <div className='flex gap-2'>
+                    <div className='flex flex-col gap-2 py-2'>
+                        <span className='labelform'>{t('jobs:references_input')}</span>
                         <RadioGroupButtons
                             name="typejob"
                             options={[
@@ -145,9 +203,77 @@ const ContactForm = () => {
                         {t('jobs:work_type')} +
                     </button>
                 </div>
-
-
+                <div className='pt-10 w-full'>
+                    <LineTitle text={t('jobs:laboral_references')} secondary />
+                    <div className='flex flex-col gap-2 w-full'>
+                        <InputField label={t('jobs:referencename_input')} name="enterprise" required />
+                        <InputField label={t('jobs:referencejob_input')} name="enterprise" required />
+                        <InputField label={t('jobs:enterprisejob_input')} name="enterprise" required />
+                        <InputField label={t('jobs:enterprisetel_input')} name="enterprise" required />
+                    </div>
+                    <button className='italic text-black py-2 w-full'>
+                        {t('jobs:morereference')} +
+                    </button>
+                </div>
+                <div className='pt-10 w-full'>
+                    <LineTitle text={t('jobs:personalreference')} secondary />
+                    <div className='flex flex-col gap-2 py-2'>
+                        <span className='labelform'>{t('jobs:personalquestion1')}</span>
+                        <RadioGroupButtons
+                            name="typejob"
+                            options={[
+                                { label: t('general:locale') === 'es' ? 'Si' : 'Yes', value: 'yes' },
+                                { label: t('general:locale') === 'es' ? 'No' : 'No', value: 'no' },
+                            ]}
+                            selected="fulltime"
+                        />
+                    </div>
+                    <InputField label={t('jobs:personalquestion2')} name="disponibility" required />
+                    <InputField label={t('jobs:personalquestion3')} name="disponibility" required />
+                    <InputField label={t('jobs:personalquestion4')} name="disponibility" required />
+                    <InputField label={t('jobs:personalquestion5')} name="disponibility" required />
+                    <div className='flex flex-col gap-2 py-2'>
+                        <span className='labelform'>{t('jobs:personalquestion6')}</span>
+                        <RadioGroupButtons
+                            name="typejob"
+                            options={[
+                                { label: t('general:locale') === 'es' ? 'Si' : 'Yes', value: 'yes' },
+                                { label: t('general:locale') === 'es' ? 'No' : 'No', value: 'no' },
+                            ]}
+                            selected="fulltime"
+                        />
+                    </div>
+                    <InputField label={t('jobs:personalquestion6')} name="disponibility" required />
+                    <InputField label={t('jobs:personalquestion7')} name="disponibility" required />
+                </div>
+                <div className='pt-10 w-full'>
+                    <InputField label={t('jobs:me_text')} name="disponibility" required />
+                    <div className='py-4 w-full'>
+                        <span className='affirmtextform'>{t('jobs:text_accept')}</span>
+                    </div>
+                    <label
+                        className="inputfield flex flex-1 text-start gap-2"
+                    >
+                        <input
+                        type="radio"
+                        name={"accept"}
+                        checked={false}
+                        value={false}
+                        onChange={() => {}}
+                        className="accent-black outline-none focus:outline-none"
+                        />
+                        <span className="text-black">{t('jobs:accept_btn')}</span>
+                    </label>
+                </div>
+                <div className='pt-10 w-full'>
+                    <LineTitle text={t('jobs:paper_btn')} secondary />
+                    <FileUpload label={t('jobs:cv_input')} name="cv" required accept='application/pdf' />
+                    <FileUpload label={t('jobs:worksuser_input')} name="cert" required accept='zip' />
+                </div>
             </div>
+            <button className='bg-black text-white py-2 px-4 rounded-2xl w-full mt-10'>
+                {t('jobs:form_btn')}
+            </button>
         </div>
     )
 }

@@ -270,10 +270,20 @@
 }
 
 .inputfield{
-  @apply flex items-center bg-gray-200 rounded-2xl px-4 py-2;
+  @apply flex items-center bg-gray-200 rounded-2xl px-4 py-2 w-full;
+}
+
+.file-input-ghost{
+  @apply bg-gray-200 rounded-2xl;
 }
 
 .labelform{
   @apply text-start font-medium text-black;
 }
+
+.affirmtextform{
+  @apply text-justify font-medium text-black;
+}
+
+
 
