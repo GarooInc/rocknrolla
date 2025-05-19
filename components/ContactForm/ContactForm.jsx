@@ -158,7 +158,7 @@ const ContactForm = () => {
                         <InputField label={t('jobs:institution_input')} name="school" required />
                         <div className='flex flex-col py-2 w-full'>
                             <span className='labelform'>{t('jobs:period_input')}</span>
-                            <div className='flex gap-2 w-full'>
+                            <div className='flex gap-2 w-full flex-1'>
                                 <DateNormalPicker name="period1" required />
                                 <DateNormalPicker name="period2" required />
                             </div>

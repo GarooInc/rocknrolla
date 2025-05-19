@@ -8,7 +8,7 @@ export default function CustomDatePicker({ value, onChange, label = "Date" }) {
   };
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', width: '100%' }}>
+    <div className='w-full'>
       <input
         className='bg-gray-200 rounded-2xl px-4 py-2 w-full datefield'
         type="date"
