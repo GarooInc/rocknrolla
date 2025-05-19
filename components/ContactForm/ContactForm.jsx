@@ -16,6 +16,71 @@ import { useArrayField } from '@/hooks/useArrayField';
 
 const ContactForm = () => {
     const { t } = useTranslation();
+    const api = process.env.NEXT_PUBLIC_API_ZAPIER_URL;
+    console.log(api)
+
+
+    // const fillTestData = () => {
+    //     setApplicationDate(new Date().toISOString());
+    //     setJobPosition('Desarrollador Frontend');
+    //     setContractType('Indefinido');
+    //     setFullName('Juan Pérez');
+    //     setBirthDate(new Date('1990-01-01').toISOString());
+    //     setNationality('Guatemalteca');
+    //     setCountry('Guatemala');
+    //     setMunicipality('Guatemala');
+    //     setAddress('Zona 10, Ciudad de Guatemala');
+    //     setPhone('55551212');
+    //     setEmail('juan@test.com');
+    //     setCivilStatus('Soltero');
+    //     setCurrentlyWorking(true);
+    //     setWorkAvailability('Inmediata');
+    //     setSalaryExpectation('8000');
+    //     setRecommendation('Ninguna');
+    //     setHasFamilyInCompany('yes');
+    //     setFamilyDetails('Hermano trabajando en el área de ventas');
+    //     setObservations('Sin observaciones adicionales');
+    //     setTermsAcceptedName('Juan Pérez');
+    //     setTermsAccepted(true);
+    //     setCvFile(null); // O un objeto File si quieres testearlo
+    //     setCertFile(null);
+    
+    //     // Educación recibida
+    //     updateEducationField(0, 'level', 'Universitario');
+    //     updateEducationField(0, 'school', 'Universidad de San Carlos');
+    //     updateEducationField(0, 'period1', new Date('2010-01-01').toISOString());
+    //     updateEducationField(0, 'period2', new Date('2015-01-01').toISOString());
+    //     updateEducationField(0, 'title', 'Ingeniero en Sistemas');
+    
+    //     // Experiencia laboral
+    //     updateWorkField(0, 'enterprise', 'Empresa 1');
+    //     updateWorkField(0, 'address', 'Zona 9, Ciudad de Guatemala');
+    //     updateWorkField(0, 'phone', '12345678');
+    //     updateWorkField(0, 'period1', new Date('2015-01-01').toISOString());
+    //     updateWorkField(0, 'period2', new Date('2020-01-01').toISOString());
+    //     updateWorkField(0, 'boss', 'Sr. Boss');
+    //     updateWorkField(0, 'position', 'Desarrollador');
+    //     updateWorkField(0, 'salary', '7000');
+    //     updateWorkField(0, 'lastsalary', '7500');
+    //     updateWorkField(0, 'functions', 'Desarrollo de aplicaciones web');
+    //     updateWorkField(0, 'referencesAllowed', true);
+    //     updateWorkField(0, 'dismissReason', 'Mejor oportunidad laboral');
+    
+    //     // Referencias laborales
+    //     updateReferenceField(0, 'name', 'Referente Uno');
+    //     updateReferenceField(0, 'job', 'Gerente');
+    //     updateReferenceField(0, 'company', 'Empresa X');
+    //     updateReferenceField(0, 'phone', '32132132');
+    //     updateReferenceField(1, 'name', 'Referente dos');
+    //     updateReferenceField(1, 'job', 'Gerente');
+    //     updateReferenceField(1, 'company', 'Empresa y');
+    //     updateReferenceField(1, 'phone', '32132132');
+    
+    //     // Referencias personales
+    //     updatePersonalReferenceField(0, 'name', 'Amigo Uno');
+    //     updatePersonalReferenceField(0, 'relationship', 'Amigo');
+    //     updatePersonalReferenceField(0, 'phone', '98765432');
+    // };
 
     const [applicationDate, setApplicationDate] = useState(null);
     const [jobPosition, setJobPosition] = useState('');
@@ -66,14 +131,14 @@ const ContactForm = () => {
         { name: '', relationship: '', phone: '' },
       ]);
 
-    const handleSubmit = async () => {
+      const handleSubmit = async () => {
         const formData = {
-            fecha: applicationDate,
+            fecha: applicationDate, 
             puesto_solicitud: jobPosition,
             tipo_contratacion: contractType,
-            fotografia: '',
+            fotografia: '', 
             nombre_completo: fullName,
-            fecha_nacimiento: birthDate,
+            fecha_nacimiento: birthDate, 
             nacionalidad: nationality,
             pais_residencia: country,
             municipio: municipality,
@@ -81,11 +146,47 @@ const ContactForm = () => {
             telefono: phone,
             email,
             estado_civil: civilStatus,
-            educacion: educationreceived,
-            experiencia: workexperience,
-            referencias_laborales: laboralreferences,
-            referencias_personales: personalreferences,
-            trabajando_actualmente: currentlyWorking,
+            educacion: educationreceived.map((education) => ({
+                nivel_educativo: education.level,
+                institucion: education.school,
+                periodo: {
+                    inicio: education.period1, 
+                    fin: education.period2, 
+                },
+                titulo: education.title,
+            })),
+            experiencia: workexperience.map((work) => ({
+                nombre_empresa: work.enterprise,
+                direccion: work.address,
+                telefono: work.phone,
+                fecha_ingreso: {
+                    mes: work.period1,
+                    año: work.period1
+                },
+                fecha_egreso: {
+                    mes: work.period2,
+                    año: work.period2
+                },
+                jefe_inmediato: work.boss,
+                puesto: work.position,
+                salario_inicial: work.salary,
+                salario_final: work.lastsalary,
+                desempeno: work.functions,
+                referencias: work.referencesAllowed ? 'Sí' : 'No',
+                motivo_retiro: work.dismissReason,
+            })),
+            referencias_laborales: laboralreferences.map((reference) => ({
+                nombre: reference.name,
+                puesto: reference.job,
+                empresa: reference.company,
+                telefono: reference.phone,
+            })),
+            referencias_personales: personalreferences.map((reference) => ({
+                nombre: reference.name,
+                relacion: reference.relationship,
+                telefono: reference.phone,
+            })),
+            trabajando_actualmente: currentlyWorking ? 'Sí' : 'No',
             disponibilidad_laboral: workAvailability,
             pretencion_salarial: salaryExpectation,
             recomendacion: recommendation,
@@ -94,29 +195,28 @@ const ContactForm = () => {
             observaciones: observations,
             tyc: termsAcceptedName,
             tyc_val: termsAccepted,
-            cv: cvFile,
-            file_of_work: certFile,
+            cv: '',
+            file_of_work: '', 
         };
     
-        console.log('Data a enviar:', formData);
+        console.log('formData', formData);
     
-    //     try {
-    //         const response = await fetch('/api/submit', {
-    //             method: 'POST',
-    //             headers: {
-    //                 'Content-Type': 'application/json'
-    //             },
-    //             body: JSON.stringify(formData)
-    //         });
+        try {
+            const response = await fetch(`${api}`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(formData),
+            });
     
-    //         if (!response.ok) throw new Error('Error al enviar datos');
-    //         const result = await response.json();
-    //         console.log('Éxito:', result);
-    //     } catch (err) {
-    //         console.error(err);
-    //     }
+            if (!response.ok) throw new Error('Error al enviar datos');
+            const result = await response.json();
+            console.log('Éxito:', result);
+        } catch (err) {
+            console.error(err);
+        }
     };    
-    
 
     return (
         <div className='flex flex-col gap-4 w-full md:w-1/2 justify-center items-center'>
@@ -163,7 +263,7 @@ const ContactForm = () => {
                     />
                     <div className='inputtype'>
                         <span className='labelform'>{t('jobs:datebirth_input')}</span>
-                        <CustomDatePicker onChange={(date) => setBirthDate(date)} />                      
+                        <CustomDatePicker onChange={(date) => setBirthDate(date)} />                   
                     </div>
                     <SelectField label={t('nationality_input')} name="nationality" required
                     options={
@@ -171,23 +271,30 @@ const ContactForm = () => {
                     }
                     onChange={(e) => setNationality(e.target.value)}
                     />
-                    <InputField label={t('jobs:country_input')} name="country" required onChange={(e) => setCountry(e.target.value)} />
+                    <InputField label={t('jobs:country_input')} 
+                    name="country" 
+                    required 
+                    value={country}
+                    onChange={(e) => setCountry(e.target.value)} />
                     <SelectField label={t('jobs:municipio_input')} name="municipality" required
                     options={
                         municipiosGuate
                     }
+                    value={municipality}
                     onChange={(e) => setMunicipality(e.target.value)}
                     />
                     <InputField 
                     label={t('jobs:address_input')} 
                     name="address" 
                     required 
+                    value={address}
                     onChange={(e) => setAddress(e.target.value)}
                     />
                     <InputField 
                     label={t('jobs:tel_input')} 
                     name="phone" 
                     required 
+                    value={phone}
                     onChange={(e) => setPhone(e.target.value)}
                     />
                     <InputField 
@@ -195,6 +302,7 @@ const ContactForm = () => {
                     name="email" 
                     type="email" 
                     required 
+                    value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     />
                     <span className='labelform'>{t('jobs:civil_input')}</span>
@@ -207,6 +315,7 @@ const ContactForm = () => {
                                 { label: t('jobs:civil3'), value: t('jobs:civil3') },
                             ]}
                             selected={civilStatus}
+                            value={civilStatus}
                             onChange={(value) => setCivilStatus(value)}
                         />
                     </div>
@@ -220,20 +329,16 @@ const ContactForm = () => {
                         <div key={index} className='flex flex-col gap-2 w-full'>
                             <SelectField label={t('jobs:education_input')} name="level" required
                             options={
-                                t('general:locale') === 'es' ? [
-                                    'primaria',
-                                    'secundaria',
-                                    'universidad',
-                                    'postgrado',
-                                ] : [
-                                    'primary',
-                                    'secondary',
-                                    'university',
-                                    'postgraduate',
+                                [
+                                    t('jobs:education1'),
+                                    t('jobs:education2'),
+                                    t('jobs:education3'),
+                                    t('jobs:education4'),
+                                    t('jobs:education5'),
                                 ]
                             }
                             value={education.level}
-                            onChange={(value) => updateEducationField(index, 'level', value)}
+                            onChange={(e) => updateEducationField(index, 'level', e.target.value)}
                             />
                             <InputField
                             label={t('jobs:institution_input')}
@@ -467,9 +572,22 @@ const ContactForm = () => {
                             selected={currentlyWorking}
                         />
                     </div>
-                    <InputField label={t('jobs:personalquestion2')} name="disponibility" required onChange={(e) => setWorkAvailability(e.target.value)} />
-                    <InputField label={t('jobs:personalquestion3')} name="disponibility" required onChange={(e) => setSalaryExpectation(e.target.value)} />
-                    <InputField label={t('jobs:personalquestion4')} name="disponibility" required onChange={(e) => setRecommendation(e.target.value)} />
+                    <InputField 
+                    label={t('jobs:personalquestion2')} 
+                    name="disponibility" 
+                    value={workAvailability}
+                    required onChange={(e) => setWorkAvailability(e.target.value)} />
+                    <InputField 
+                    label={t('jobs:personalquestion3')} 
+                    name="disponibility" 
+                    value={salaryExpectation}
+                    required 
+                    onChange={(e) => setSalaryExpectation(e.target.value)} />
+                    <InputField 
+                    label={t('jobs:personalquestion4')} 
+                    name="disponibility" 
+                    value={recommendation}
+                    required onChange={(e) => setRecommendation(e.target.value)} />
                     <div className='flex flex-col gap-2 py-2'>
                         <span className='labelform'>{t('jobs:personalquestion5')}</span>
                         <RadioGroupButtons
@@ -482,12 +600,25 @@ const ContactForm = () => {
                             onChange={(value) => setHasFamilyInCompany(value)}
                         />
                     </div>
-                    <InputField label={t('jobs:personalquestion6')} name="disponibility" required onChange={(e) => setFamilyDetails(e.target.value)} />
-                    <InputField label={t('jobs:personalquestion7')} name="disponibility" required onChange={(e) => setObservations(e.target.value)} />
+                    <InputField 
+                    label={t('jobs:personalquestion6')} 
+                    name="disponibility" 
+                    required 
+                    value={familyDetails}
+                    onChange={(e) => setFamilyDetails(e.target.value)} />
+                    <InputField 
+                    label={t('jobs:personalquestion7')} 
+                    name="disponibility" 
+                    value={observations}
+                    required onChange={(e) => setObservations(e.target.value)} />
                 </div>
                 {/* Observaciones */}
                 <div className='pt-4 w-full gap-4 flex flex-col'>
-                    <InputField label={t('jobs:me_text')} name="disponibility" required onChange={(e) => setTermsAcceptedName(e.target.value)} />
+                    <InputField 
+                    label={t('jobs:me_text')} 
+                    name="disponibility" 
+                    value={termsAcceptedName}
+                    required onChange={(e) => setTermsAcceptedName(e.target.value)} />
                     <div className='py-4 w-full'>
                         <span className='affirmtextform'>{t('jobs:text_accept')}</span>
                     </div>
@@ -514,6 +645,7 @@ const ContactForm = () => {
             <button className='bg-black text-white py-2 px-4 rounded-2xl w-full mt-10' onClick={handleSubmit}>
                 {t('jobs:form_btn')}
             </button>
+            {/* <button onClick={fillTestData}>Autollenar</button> */}
         </div>
     )
 }

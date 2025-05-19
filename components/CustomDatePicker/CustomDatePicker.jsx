@@ -23,7 +23,8 @@ const CustomDatePicker = ({ namePrefix, onChange }) => {
     setSelectedDate(updatedDate);
 
     if (onChange) {
-      onChange(updatedDate);
+      const dateString = `${updatedDate.dia}-${updatedDate.mes}-${updatedDate.anio}`;
+      onChange(dateString);
     }
   };
 

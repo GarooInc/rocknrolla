@@ -1,5 +1,5 @@
 "use client";
-const RadioGroupButtons = ({ name, options = [], selected, onChange }) => {
+const RadioGroupButtons = ({ name, options = [], selected, onChange, value }) => {
   return (
     <div className="flex gap-4 flex-wrap justify-between w-full">
       {options.map((option, index) => (
@@ -11,6 +11,7 @@ const RadioGroupButtons = ({ name, options = [], selected, onChange }) => {
             type="radio"
             name={name}
             value={option.value}
+            id={option.value}
             checked={selected === option.value}
             onChange={() => onChange(option.value)}
             className="accent-black outline-none focus:outline-none"
