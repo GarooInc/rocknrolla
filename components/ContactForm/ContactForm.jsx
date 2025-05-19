@@ -69,7 +69,7 @@ const ContactForm = () => {
 
     return (
         <div className='flex flex-col gap-4 w-full md:w-1/2 justify-center items-center'>
-            <div className='w-full'>
+            <div className='w-full gap-4 flex flex-col'>
                 <LineTitle text={t('jobs:application')} secondary form/>
                 <div className='inputtype'>
                     <span className='labelform'>{t('jobs:date_input')}</span>
@@ -98,7 +98,7 @@ const ContactForm = () => {
                     <FileUpload label={t('jobs:pic_input')} name="pic" required />
                 </div>
             </div>
-            <div className='pt-4 w-full'>
+            <div className='pt-4 w-full gap-4 flex flex-col'>
                 <LineTitle text={t('jobs:application')} secondary form/>
                 <div className='flex flex-col gap-2 w-full'>
                     <InputField label={t('jobs:name_input')} name="full_name" required />
@@ -137,7 +137,7 @@ const ContactForm = () => {
                     </div>
                 </div>
             </div>
-                <div className='pt-4 w-full'>
+                <div className='pt-4 w-full gap-4 flex flex-col'>
                     <LineTitle text={t('jobs:education')} secondary form/>
                     <div className='flex flex-col gap-2 w-full'>
                         <SelectField label={t('jobs:education_input')} name="level" required
@@ -169,7 +169,7 @@ const ContactForm = () => {
                         </button>
                     </div>
                 </div>
-                <div className='pt-4 w-full'>
+                <div className='pt-4 w-full gap-4 flex flex-col'>
                     <LineTitle text={t('jobs:laboral_experience')} secondary form/>
                     <div className='flex flex-col gap-2 w-full'>
                         <InputField label={t('jobs:nameenterprise_input')} name="enterprise" required />
@@ -207,7 +207,7 @@ const ContactForm = () => {
                         {t('jobs:work_type')} +
                     </button>
                 </div>
-                <div className='pt-4 w-full'>
+                <div className='pt-4 w-full gap-4 flex flex-col'>
                     <LineTitle text={t('jobs:laboral_references')} secondary form/>
                     <div className='flex flex-col gap-2 w-full'>
                         <InputField label={t('jobs:referencename_input')} name="enterprise" required />
@@ -219,7 +219,7 @@ const ContactForm = () => {
                         {t('jobs:morereference')} +
                     </button>
                 </div>
-                <div className='pt-4 w-full'>
+                <div className='pt-4 w-full gap-4 flex flex-col'>
                     <LineTitle text={t('jobs:personalreference')} secondary form/>
                     <div className='flex flex-col gap-2 py-2'>
                         <span className='labelform'>{t('jobs:personalquestion1')}</span>
@@ -250,7 +250,7 @@ const ContactForm = () => {
                     <InputField label={t('jobs:personalquestion6')} name="disponibility" required />
                     <InputField label={t('jobs:personalquestion7')} name="disponibility" required />
                 </div>
-                <div className='pt-4 w-full'>
+                <div className='pt-4 w-full gap-4 flex flex-col'>
                     <InputField label={t('jobs:me_text')} name="disponibility" required />
                     <div className='py-4 w-full'>
                         <span className='affirmtextform'>{t('jobs:text_accept')}</span>
@@ -269,7 +269,7 @@ const ContactForm = () => {
                         <span className="text-black">{t('jobs:accept_btn')}</span>
                     </label>
                 </div>
-                <div className='pt-4 w-full'>
+                <div className='pt-4 w-full gap-4 flex flex-col'>
                     <LineTitle text={t('jobs:paper_btn')} secondary form/>
                     <FileUpload label={t('jobs:cv_input')} name="cv" required accept='application/pdf' />
                     <FileUpload label={t('jobs:worksuser_input')} name="cert" required accept='zip' />

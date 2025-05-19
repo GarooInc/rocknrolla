@@ -266,11 +266,20 @@
 }
 
 .inputtype{
-  @apply flex flex-col gap-4 w-full text-gray-800;
+  @apply flex flex-col gap-2 w-full text-gray-800;
 }
 
 .inputfield{
   @apply flex items-center bg-gray-200 rounded-2xl px-4 py-2 w-full;
+}
+
+.inputfield:focus, .datefield:focus {
+  box-shadow: none;
+  border-color: var(--fallback-bc, oklch(var(--bc) / 0.2));
+  outline-style: solid;
+  outline-width: 2px;
+  outline-offset: 2px;
+  outline-color: var(--fallback-bc, oklch(var(--bc) / 0.2));
 }
 
 .file-input-ghost{
@@ -283,6 +292,17 @@
 
 .affirmtextform{
   @apply text-justify font-medium text-black;
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+  filter: invert(0%);
+  opacity: 1;
+  color: #000;
+}
+
+input[type="date"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }
 
 

@@ -1,40 +1,21 @@
-import * as React from 'react';
-import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
-import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-import { DatePicker } from '@mui/x-date-pickers/DatePicker';
-import TextField from '@mui/material/TextField';
+import React from 'react';
+import dayjs from 'dayjs';
 
-export default function DateNormalPicker({ value, onChange, label = "Date" }) {
+export default function CustomDatePicker({ value, onChange, label = "Date" }) {
+  const handleChange = (e) => {
+    const dateValue = dayjs(e.target.value);
+    onChange(dateValue);
+  };
+
   return (
-    <LocalizationProvider dateAdapter={AdapterDayjs}>
-      <DatePicker
-        label={label}
-        value={value}
-        onChange={onChange}
-        slotProps={{
-          textField: {
-            variant: 'outlined',
-            fullWidth: true,
-            InputProps: {
-                disableUnderline: true,
-              sx: {
-                backgroundColor: '#e5e7eb',
-                borderRadius: '1rem',        
-                border: 'none',
-                outline: 'none',
-                paddingBottom: '0',
-                paddingTop: '0',
-                fontSize: '12px',
-              },
-            },
-            InputLabelProps: {
-              sx: {
-                color: 'black',
-              },
-            },
-          },
-        }}
+    <div style={{ display: 'flex', flexDirection: 'column', width: '100%' }}>
+      <input
+        className='bg-gray-200 rounded-2xl px-4 py-2 w-full datefield'
+        type="date"
+        value={dayjs(value).format('DD-MM-YYYY')}
+        onChange={handleChange}
+        
       />
-    </LocalizationProvider>
+    </div>
   );
 }
