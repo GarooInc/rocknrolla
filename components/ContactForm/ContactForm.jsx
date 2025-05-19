@@ -159,8 +159,14 @@ const ContactForm = () => {
                         <div className='flex flex-col py-2 w-full'>
                             <span className='labelform'>{t('jobs:period_input')}</span>
                             <div className='flex gap-2 w-full flex-1'>
-                                <DateNormalPicker name="period1" required />
-                                <DateNormalPicker name="period2" required />
+                                <div className='flex flex-col gap-2 w-full pt-2'>
+                                    <span className='labelform w-full'>{t('jobs:period_input1')}</span>
+                                    <DateNormalPicker name="period1" required />
+                                </div>
+                                <div className='flex flex-col gap-2 w-full py-2'>
+                                    <span className='labelform w-full'>{t('jobs:period_input2')}</span>
+                                    <DateNormalPicker name="period2" required />
+                                </div>
                             </div>
                         </div>
                         <InputField label={t('jobs:titlegrad_input')} name="degree" required />
@@ -177,11 +183,11 @@ const ContactForm = () => {
                         <InputField label={t('jobs:telenterprise_input')} name="phone" required />
                     </div>
                     <div className='flex flex-col gap-2 w-full pt-2'>
-                        <span className='labelform'>{t('jobs:datestart_input')}</span>
+                        <span className='labelform w-full'>{t('jobs:datestart_input')}</span>
                         <DateNormalPicker name="period1" required />
                     </div>
                     <div className='flex flex-col gap-2 w-full py-2'>
-                        <span className='labelform'>{t('jobs:datefinish_input')}</span>
+                        <span className='labelform w-full'>{t('jobs:datefinish_input')}</span>
                         <DateNormalPicker name="period2" required />
                     </div>
                     <InputField label={t('jobs:boss_input')} name="position" required />

@@ -1,7 +1,7 @@
 import React from 'react';
 import dayjs from 'dayjs';
 
-export default function CustomDatePicker({ value, onChange, label = "Date" }) {
+export default function CustomDatePicker({ value, onChange}) {
   const handleChange = (e) => {
     const dateValue = dayjs(e.target.value);
     onChange(dateValue);
