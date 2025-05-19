@@ -1,7 +1,7 @@
-const SelectField = ({ label, name, options }) => (
+const SelectField = ({ label, name, options, onChange }) => (
     <div className="w-full inputtype">
       <label className="labelform" htmlFor={name}>{label}</label>
-      <select id={name} name={name} className="select inputfield">
+      <select id={name} name={name} className="select inputfield" onChange={onChange}>
         {options.map((opt, i) => (
           <option className="" key={i} value={opt}>{opt}</option>
         ))}

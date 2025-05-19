@@ -290,6 +290,10 @@
   @apply text-start font-medium text-black;
 }
 
+.labelformlower{
+  @apply text-start font-medium text-black text-sm;
+}
+
 .affirmtextform{
   @apply text-justify font-medium text-black;
 }
@@ -304,6 +308,7 @@ input[type="date"]::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
+
 
 
 
