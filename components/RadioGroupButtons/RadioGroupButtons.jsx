@@ -11,7 +11,7 @@ const RadioGroupButtons = ({ name, options = [], selected, onChange, value }) =>
             type="radio"
             name={name}
             value={option.value}
-            id={option.value}
+            id={`${name}-${option.value}`}
             checked={selected === option.value}
             onChange={() => onChange(option.value)}
             className="accent-black outline-none focus:outline-none"

@@ -12,75 +12,76 @@ import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import municipiosGuate from '@/public/data/municipios'
 import { useArrayField } from '@/hooks/useArrayField';
+import LineButton from '../LineButton/LineButton'
 
 
 const ContactForm = () => {
     const { t } = useTranslation();
     const api = process.env.NEXT_PUBLIC_API_ZAPIER_URL;
-    console.log(api)
+    const [showSuccess, setShowSuccess] = useState(false);
 
 
-    // const fillTestData = () => {
-    //     setApplicationDate(new Date().toISOString());
-    //     setJobPosition('Desarrollador Frontend');
-    //     setContractType('Indefinido');
-    //     setFullName('Juan Pérez');
-    //     setBirthDate(new Date('1990-01-01').toISOString());
-    //     setNationality('Guatemalteca');
-    //     setCountry('Guatemala');
-    //     setMunicipality('Guatemala');
-    //     setAddress('Zona 10, Ciudad de Guatemala');
-    //     setPhone('55551212');
-    //     setEmail('juan@test.com');
-    //     setCivilStatus('Soltero');
-    //     setCurrentlyWorking(true);
-    //     setWorkAvailability('Inmediata');
-    //     setSalaryExpectation('8000');
-    //     setRecommendation('Ninguna');
-    //     setHasFamilyInCompany('yes');
-    //     setFamilyDetails('Hermano trabajando en el área de ventas');
-    //     setObservations('Sin observaciones adicionales');
-    //     setTermsAcceptedName('Juan Pérez');
-    //     setTermsAccepted(true);
-    //     setCvFile(null); // O un objeto File si quieres testearlo
-    //     setCertFile(null);
+    const fillTestData = () => {
+        setApplicationDate(new Date().toISOString());
+        setJobPosition('Desarrollador Frontend');
+        setContractType('En nómina');
+        setFullName('Juan Pérez');
+        setBirthDate(new Date('1990-01-01').toISOString());
+        setNationality('Guatemalteca');
+        setCountry('Guatemala');
+        setMunicipality('Guatemala');
+        setAddress('Zona 10, Ciudad de Guatemala');
+        setPhone('55551212');
+        setEmail('juan@test.com');
+        setCivilStatus('Soltero');
+        setCurrentlyWorking(true);
+        setWorkAvailability('Inmediata');
+        setSalaryExpectation('8000');
+        setRecommendation('Ninguna');
+        setHasFamilyInCompany('yes');
+        setFamilyDetails('Hermano trabajando en el área de ventas');
+        setObservations('Sin observaciones adicionales');
+        setTermsAcceptedName('Juan Pérez');
+        setTermsAccepted(true);
+        setCvFile(null); // O un objeto File si quieres testearlo
+        setCertFile(null);
     
-    //     // Educación recibida
-    //     updateEducationField(0, 'level', 'Universitario');
-    //     updateEducationField(0, 'school', 'Universidad de San Carlos');
-    //     updateEducationField(0, 'period1', new Date('2010-01-01').toISOString());
-    //     updateEducationField(0, 'period2', new Date('2015-01-01').toISOString());
-    //     updateEducationField(0, 'title', 'Ingeniero en Sistemas');
+        // Educación recibida
+        updateEducationField(0, 'level', 'Universitario');
+        updateEducationField(0, 'school', 'Universidad de San Carlos');
+        updateEducationField(0, 'period1', new Date('2010-01-01').toISOString());
+        updateEducationField(0, 'period2', new Date('2015-01-01').toISOString());
+        updateEducationField(0, 'title', 'Ingeniero en Sistemas');
     
-    //     // Experiencia laboral
-    //     updateWorkField(0, 'enterprise', 'Empresa 1');
-    //     updateWorkField(0, 'address', 'Zona 9, Ciudad de Guatemala');
-    //     updateWorkField(0, 'phone', '12345678');
-    //     updateWorkField(0, 'period1', new Date('2015-01-01').toISOString());
-    //     updateWorkField(0, 'period2', new Date('2020-01-01').toISOString());
-    //     updateWorkField(0, 'boss', 'Sr. Boss');
-    //     updateWorkField(0, 'position', 'Desarrollador');
-    //     updateWorkField(0, 'salary', '7000');
-    //     updateWorkField(0, 'lastsalary', '7500');
-    //     updateWorkField(0, 'functions', 'Desarrollo de aplicaciones web');
-    //     updateWorkField(0, 'referencesAllowed', true);
-    //     updateWorkField(0, 'dismissReason', 'Mejor oportunidad laboral');
+        // Experiencia laboral
+        updateWorkField(0, 'enterprise', 'Empresa 1');
+        updateWorkField(0, 'address', 'Zona 9, Ciudad de Guatemala');
+        updateWorkField(0, 'phone', '12345678');
+        updateWorkField(0, 'period1', new Date('2015-01-01').toISOString());
+        updateWorkField(0, 'period2', new Date('2020-01-01').toISOString());
+        updateWorkField(0, 'boss', 'Sr. Boss');
+        updateWorkField(0, 'position', 'Desarrollador');
+        updateWorkField(0, 'salary', '7000');
+        updateWorkField(0, 'lastsalary', '7500');
+        updateWorkField(0, 'functions', 'Desarrollo de aplicaciones web');
+        updateWorkField(0, 'referencesAllowed', true);
+        updateWorkField(0, 'dismissReason', 'Mejor oportunidad laboral');
     
-    //     // Referencias laborales
-    //     updateReferenceField(0, 'name', 'Referente Uno');
-    //     updateReferenceField(0, 'job', 'Gerente');
-    //     updateReferenceField(0, 'company', 'Empresa X');
-    //     updateReferenceField(0, 'phone', '32132132');
-    //     updateReferenceField(1, 'name', 'Referente dos');
-    //     updateReferenceField(1, 'job', 'Gerente');
-    //     updateReferenceField(1, 'company', 'Empresa y');
-    //     updateReferenceField(1, 'phone', '32132132');
+        // Referencias laborales
+        updateReferenceField(0, 'name', 'Referente Uno');
+        updateReferenceField(0, 'job', 'Gerente');
+        updateReferenceField(0, 'company', 'Empresa X');
+        updateReferenceField(0, 'phone', '32132132');
+        updateReferenceField(1, 'name', 'Referente dos');
+        updateReferenceField(1, 'job', 'Gerente');
+        updateReferenceField(1, 'company', 'Empresa y');
+        updateReferenceField(1, 'phone', '32132132');
     
-    //     // Referencias personales
-    //     updatePersonalReferenceField(0, 'name', 'Amigo Uno');
-    //     updatePersonalReferenceField(0, 'relationship', 'Amigo');
-    //     updatePersonalReferenceField(0, 'phone', '98765432');
-    // };
+        // Referencias personales
+        updatePersonalReferenceField(0, 'name', 'Amigo Uno');
+        updatePersonalReferenceField(0, 'relationship', 'Amigo');
+        updatePersonalReferenceField(0, 'phone', '98765432');
+    };
 
     const [applicationDate, setApplicationDate] = useState(null);
     const [jobPosition, setJobPosition] = useState('');
@@ -108,8 +109,10 @@ const ContactForm = () => {
 
     const [termsAccepted, setTermsAccepted] = useState(false);
 
-    const [cvFile, setCvFile] = useState('null');
-    const [certFile, setCertFile] = useState('null');
+    const [cvFile, setCvFile] = useState(null);
+    const [certFile, setCertFile] = useState(null);
+    const [fotografia, setFotografia] = useState(null);
+
 
     const [educationreceived, updateEducationField, addEducation] = useArrayField([
         { level: '', school: '', period1: '', period2: '', title: '' },
@@ -132,94 +135,107 @@ const ContactForm = () => {
       ]);
 
       const handleSubmit = async () => {
-        const formData = {
-            fecha: applicationDate, 
-            puesto_solicitud: jobPosition,
-            tipo_contratacion: contractType,
-            fotografia: '', 
-            nombre_completo: fullName,
-            fecha_nacimiento: birthDate, 
-            nacionalidad: nationality,
-            pais_residencia: country,
-            municipio: municipality,
-            direccion: address,
-            telefono: phone,
-            email,
-            estado_civil: civilStatus,
+        const formData = new FormData();
+    
+        // Crear el objeto form_data con todos los campos
+        const formDataObject = {
+            fecha: applicationDate || '',
+            puesto_solicitud: jobPosition || '',
+            tipo_contratacion: contractType || '',
+            nombre_completo: fullName || '',
+            fecha_nacimiento: birthDate || '',
+            nacionalidad: nationality || '',
+            pais_residencia: country || '',
+            municipio: municipality || '',
+            direccion: address || '',
+            telefono: phone || '',
+            email: email || '',
+            estado_civil: civilStatus || '',
+            trabajando_actualmente: currentlyWorking ? 'Sí' : 'No',
+            disponibilidad_laboral: workAvailability || '',
+            pretencion_salarial: salaryExpectation || '',
+            recomendacion: recommendation || '',
+            familiares_empresa: hasFamilyInCompany || '',
+            detalles_familiar: familyDetails || '',
+            observaciones: observations || '',
+            tyc: termsAcceptedName || '',
+            tyc_val: termsAccepted ? '1' : '0',
             educacion: educationreceived.map((education) => ({
-                nivel_educativo: education.level,
-                institucion: education.school,
+                nivel_educativo: education.level || '',
+                institucion: education.school || '',
                 periodo: {
-                    inicio: education.period1, 
-                    fin: education.period2, 
+                    inicio: education.period1 || '',
+                    fin: education.period2 || '',
                 },
-                titulo: education.title,
+                titulo: education.title || '',
             })),
             experiencia: workexperience.map((work) => ({
-                nombre_empresa: work.enterprise,
-                direccion: work.address,
-                telefono: work.phone,
+                nombre_empresa: work.enterprise || '',
+                direccion: work.address || '',
+                telefono: work.phone || '',
                 fecha_ingreso: {
-                    mes: work.period1,
-                    año: work.period1
+                    mes: work.period1 || '',
+                    año: work.period1 || '',
                 },
                 fecha_egreso: {
-                    mes: work.period2,
-                    año: work.period2
+                    mes: work.period2 || '',
+                    año: work.period2 || '',
                 },
-                jefe_inmediato: work.boss,
-                puesto: work.position,
-                salario_inicial: work.salary,
-                salario_final: work.lastsalary,
-                desempeno: work.functions,
+                jefe_inmediato: work.boss || '',
+                puesto: work.position || '',
+                salario_inicial: work.salary || '',
+                salario_final: work.lastsalary || '',
+                desempeno: work.functions || '',
                 referencias: work.referencesAllowed ? 'Sí' : 'No',
-                motivo_retiro: work.dismissReason,
+                motivo_retiro: work.dismissReason || '',
             })),
             referencias_laborales: laboralreferences.map((reference) => ({
-                nombre: reference.name,
-                puesto: reference.job,
-                empresa: reference.company,
-                telefono: reference.phone,
+                nombre: reference.name || '',
+                puesto: reference.job || '',
+                empresa: reference.company || '',
+                telefono: reference.phone || '',
             })),
             referencias_personales: personalreferences.map((reference) => ({
-                nombre: reference.name,
-                relacion: reference.relationship,
-                telefono: reference.phone,
+                nombre: reference.name || '',
+                relacion: reference.relationship || '',
+                telefono: reference.phone || '',
             })),
-            trabajando_actualmente: currentlyWorking ? 'Sí' : 'No',
-            disponibilidad_laboral: workAvailability,
-            pretencion_salarial: salaryExpectation,
-            recomendacion: recommendation,
-            familiares_empresa: hasFamilyInCompany,
-            detalles_familiar: familyDetails,
-            observaciones: observations,
-            tyc: termsAcceptedName,
-            tyc_val: termsAccepted,
-            cv: '',
-            file_of_work: '', 
         };
     
-        console.log('formData', formData);
+        formData.append('form_data', JSON.stringify(formDataObject));
+    
+        if (cvFile) formData.append('cv', cvFile);
+        if (certFile) formData.append('file_of_work', certFile);
+        if (fotografia) formData.append('fotografia', fotografia);
+    
+        console.log('Datos enviados:', [...formData]);
     
         try {
-            const response = await fetch(`${api}`, {
+            const response = await fetch(api, {
                 method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(formData),
+                body: formData,
             });
     
             if (!response.ok) throw new Error('Error al enviar datos');
             const result = await response.json();
             console.log('Éxito:', result);
+            setShowSuccess(true);
+            setTimeout(() => setShowSuccess(false), 3000);
         } catch (err) {
-            console.error(err);
+            console.error('Error:', err);
         }
-    };    
+    };
 
     return (
         <div className='flex flex-col gap-4 w-full md:w-1/2 justify-center items-center'>
+            {showSuccess && (
+            <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50 shadow-md">
+                <div className="bg-white px-8 py-6 rounded-2xl shadow-xl text-center flex flex-col gap-4">
+                <span className="text-black">Tu solicitud fue enviada con éxito</span>
+                <LineButton text={t('jobs:close_btn')} secondary form onClick={() => setShowSuccess(false)} />
+                </div>
+            </div>
+            )}
             {/* Solicitud de trabajo  */}
             <div className='w-full gap-4 flex flex-col'>
                 <LineTitle text={t('jobs:application')} secondary form/>
@@ -247,7 +263,7 @@ const ContactForm = () => {
                             onChange={(value) => setContractType(value)}
                         />
                     </div>
-                    <FileUpload label={t('jobs:pic_input')} name="pic" required />
+                    <FileUpload label={t('jobs:pic_input')} name="pic" required accept='image/*' onChange={(e) => setFotografia(e.target.files[0])} />
                 </div>
             </div>
             <div className='pt-4 w-full gap-4 flex flex-col'>
@@ -640,7 +656,7 @@ const ContactForm = () => {
                 <div className='pt-4 w-full gap-4 flex flex-col'>  
                     <LineTitle text={t('jobs:paper_btn')} secondary form />                  
                     <FileUpload label={t('jobs:cv_input')} name="cv" required accept='application/pdf' onChange={(e) => setCvFile(e.target.files[0])} />
-                    <FileUpload label={t('jobs:worksuser_input')} name="cert" required accept='zip' onChange={(e) => setCertFile(e.target.files)} />
+                    <FileUpload label={t('jobs:worksuser_input')} name="cert" required accept='zip' onChange={(e) => setCertFile(e.target.files[0])} />
                 </div>
             <button className='bg-black text-white py-2 px-4 rounded-2xl w-full mt-10' onClick={handleSubmit}>
                 {t('jobs:form_btn')}
