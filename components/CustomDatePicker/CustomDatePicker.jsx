@@ -8,7 +8,7 @@ const months = [
 ];
 const years = Array.from({ length: 80 }, (_, i) => new Date().getFullYear() - i);
 
-const CustomDatePicker = ({ namePrefix, onChange }) => {
+const CustomDatePicker = ({ namePrefix, onChange, monthyear }) => {
   const [selectedDate, setSelectedDate] = useState({
     dia: '',
     mes: '',
@@ -23,25 +23,37 @@ const CustomDatePicker = ({ namePrefix, onChange }) => {
     setSelectedDate(updatedDate);
 
     if (onChange) {
-      const dateString = `${updatedDate.dia}-${updatedDate.mes}-${updatedDate.anio}`;
-      onChange(dateString);
+      if (monthyear) {
+          const dateString = `${updatedDate.mes}-${updatedDate.anio}`;
+          onChange(dateString);
+      }
+      else {
+        const dateString = `${updatedDate.dia}-${updatedDate.mes}-${updatedDate.anio}`;
+        onChange(dateString);
+      }
     }
   };
 
   return (
     <div className="inputfield flex items-center">
-      <select
-        name={`${namePrefix}_dia`}
-        className="bg-transparent border-none text-center outline-none appearance-none w-full"
-        value={selectedDate.dia}
-        onChange={handleChange}
-      >
-        <option value="">día</option>
-        {days.map(day => (
-          <option key={day} value={day}>{day}</option>
-        ))}
-      </select>
-      <div className="w-px h-6 bg-gray-400 mx-3" />
+      {
+        !monthyear && (
+          <>
+            <select
+              name={`${namePrefix}_dia`}
+              className="bg-transparent border-none text-center outline-none appearance-none w-full"
+              value={selectedDate.dia}
+              onChange={handleChange}
+            >
+              <option value="">día</option>
+              {days.map(day => (
+                <option key={day} value={day}>{day}</option>
+              ))}
+            </select>
+            <div className="w-px h-6 bg-gray-400 mx-3" />
+          </>
+        )
+      }
       <select
         name={`${namePrefix}_mes`}
         className="bg-transparent border-none text-center outline-none appearance-none w-full"

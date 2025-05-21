@@ -174,12 +174,12 @@ const ContactForm = () => {
                 direccion: work.address || '',
                 telefono: work.phone || '',
                 fecha_ingreso: {
-                    mes: work.period1 || '',
-                    año: work.period1 || '',
+                    mes: work.period1.split('-')[0] || '',
+                    año: work.period1.split('-')[1] || '',
                 },
                 fecha_egreso: {
-                    mes: work.period2 || '',
-                    año: work.period2 || '',
+                    mes: work.period2.split('-')[0] || '',
+                    año: work.period2.split('-')[1] || '',
                 },
                 jefe_inmediato: work.boss || '',
                 puesto: work.position || '',
@@ -267,7 +267,6 @@ const ContactForm = () => {
                 </div>
             </div>
             <div className='pt-4 w-full gap-4 flex flex-col'>
-                {/* Solicitud de trabajo 2 */}
                 <LineTitle text={t('jobs:application')} secondary form/>
                 <div className='flex flex-col gap-2 w-full'>
                     <InputField 
@@ -432,6 +431,7 @@ const ContactForm = () => {
                                 required 
                                 value={work.period1}
                                 onChange={(value) => updateWorkField(index, 'period1', value)}
+                                monthyear
                                 />
                             </div>
                             <div className='flex flex-col gap-2 w-full py-2'>
@@ -441,6 +441,7 @@ const ContactForm = () => {
                                 required 
                                 value={work.period2}
                                 onChange={(value) => updateWorkField(index, 'period2', value)}
+                                monthyear
                                 />
                             </div>
                             <InputField 
