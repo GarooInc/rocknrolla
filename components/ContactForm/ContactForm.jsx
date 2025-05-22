@@ -7,7 +7,7 @@ import LineTitle from '../LineTitle/LineTitle'
 import CustomDatePicker from '../CustomDatePicker/CustomDatePicker'
 import SelectField from '../SelectField/SelectField'
 import nationalities_en from '@/public/data/nationalities_en'
-import nationalities_es from '@/public/data/nationalities_es'
+import countries from '@/public/data/countries'
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import municipiosGuate from '@/public/data/municipios'
@@ -19,6 +19,7 @@ const ContactForm = () => {
     const { t } = useTranslation();
     const api = process.env.NEXT_PUBLIC_API_ZAPIER_URL;
     const [showSuccess, setShowSuccess] = useState(false);
+    const [touched, setTouched] = useState({});
 
 
     // const fillTestData = () => {
@@ -112,6 +113,8 @@ const ContactForm = () => {
     const [cvFile, setCvFile] = useState(null);
     const [certFile, setCertFile] = useState(null);
     const [fotografia, setFotografia] = useState(null);
+    const [errors, setErrors] = useState({});
+
 
 
     const [educationreceived, updateEducationField, addEducation] = useArrayField([
@@ -133,6 +136,45 @@ const ContactForm = () => {
       const [personalreferences, updatePersonalReferenceField, addPersonalReference] = useArrayField([
         { name: '', relationship: '', phone: '' },
       ]);
+
+      const validateField = (name, value) => {
+        switch (name) {
+            case 'phone':
+                if (!/^\d*$/.test(value)) {
+                    return 'El teléfono solo debe contener números.';
+                }
+                if (value.length > 0 && value.length < 8) {
+                    return 'El teléfono debe tener al menos 8 dígitos.';
+                }
+                return '';
+            case 'email':
+                if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) {
+                    return 'Correo no válido.';
+                }
+                return '';
+            case 'salary':
+                if (!/^\d*$/.test(value)) {
+                    return 'El salario solo debe contener números.';
+                }
+                return '';
+            case 'textField':
+                if (!value) {
+                    return 'Este campo es obligatorio.'; 
+                }
+                if (!/^[A-Za-zÁÉÍÓÚáéíóúñÑ ]+$/.test(value)) {
+                    return 'Este campo solo debe contener letras.';
+                }
+                return '';
+            case 'direccion':
+                if (!value) {
+                    return 'La dirección es obligatoria.';
+                }
+            default:
+                return '';
+        }
+    };
+    
+      
 
       const handleSubmit = async () => {
         const formData = new FormData();
@@ -275,22 +317,25 @@ const ContactForm = () => {
                     required 
                     value={fullName}
                     onChange={(e) => setFullName(e.target.value)} 
+                    onBlur={() => setTouched(prev => ({ ...prev, fullName: true }))}
+                    checkError={touched.fullName && validateField('textField', fullName)}                  
                     />
                     <div className='inputtype'>
                         <span className='labelform'>{t('jobs:datebirth_input')}</span>
                         <CustomDatePicker onChange={(date) => setBirthDate(date)} />                   
                     </div>
                     <SelectField label={t('nationality_input')} name="nationality" required
-                    options={
-                        t('general:locale') === 'es' ? nationalities_es : nationalities_en
-                    }
-                    onChange={(e) => setNationality(e.target.value)}
+                        options={
+                            nationalities_en
+                        }
+                        onChange={(e) => setNationality(e.target.value)}
                     />
-                    <InputField label={t('jobs:country_input')} 
-                    name="country" 
-                    required 
-                    value={country}
-                    onChange={(e) => setCountry(e.target.value)} />
+                    <SelectField label={t('jobs:country_input')} name="country" required
+                        options={
+                            countries
+                        }
+                        onChange={(e) => setCountry(e.target.value)}
+                    />
                     <SelectField label={t('jobs:municipio_input')} name="municipality" required
                     options={
                         municipiosGuate
@@ -304,6 +349,7 @@ const ContactForm = () => {
                     required 
                     value={address}
                     onChange={(e) => setAddress(e.target.value)}
+                    onBlur={() => setTouched(prev => ({ ...prev, address: true }))}
                     />
                     <InputField 
                     label={t('jobs:tel_input')} 
@@ -311,6 +357,7 @@ const ContactForm = () => {
                     required 
                     value={phone}
                     onChange={(e) => setPhone(e.target.value)}
+                    checkError={validateField('phone', phone)}
                     />
                     <InputField 
                     label={t('jobs:mail_input')} 
@@ -319,6 +366,8 @@ const ContactForm = () => {
                     required 
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
+                    onBlur={() => setTouched(prev => ({ ...prev, email: true }))}
+                    checkError={touched.email && validateField('email', email)}
                     />
                     <span className='labelform'>{t('jobs:civil_input')}</span>
                     <div className='flex gap-2'>
@@ -345,11 +394,11 @@ const ContactForm = () => {
                             <SelectField label={t('jobs:education_input')} name="level" required
                             options={
                                 [
-                                    t('jobs:education1'),
-                                    t('jobs:education2'),
-                                    t('jobs:education3'),
-                                    t('jobs:education4'),
                                     t('jobs:education5'),
+                                    t('jobs:education4'),
+                                    t('jobs:education3'),
+                                    t('jobs:education2'),
+                                    t('jobs:education1'),
                                 ]
                             }
                             value={education.level}
@@ -361,6 +410,8 @@ const ContactForm = () => {
                             required
                             value={education.school}
                             onChange={(e) => updateEducationField(index, 'school', e.target.value)}
+                            onBlur={() => setTouched(prev => ({ ...prev, school: true }))}
+                            checkError={touched.school && validateField('textField', education.school)}
                             />
                             <div className='flex flex-col py-2 w-full'>
                                 <span className='labelform w-full'>{t('jobs:period_input')}</span>
@@ -371,6 +422,7 @@ const ContactForm = () => {
                                         required 
                                         value={education.period1 }
                                         onChange={(value) => updateEducationField(index, 'period1', value)}
+                                        monthyear
                                         />
                                     </div>
                                     <div className='flex flex-col gap-2 w-full py-2'>
@@ -380,6 +432,7 @@ const ContactForm = () => {
                                         required 
                                         value={education.period2}
                                         onChange={(value) => updateEducationField(index, 'period2', value)}
+                                        monthyear
                                         />
                                     </div>
                             </div>
@@ -389,6 +442,8 @@ const ContactForm = () => {
                             required
                             value={education.title}
                             onChange={(e) => updateEducationField(index, 'title', e.target.value)}
+                            onBlur={() => setTouched(prev => ({ ...prev, title: true }))}
+                            checkError={touched.title && validateField('textField', education.title)}
                             />
                         </div>
                     ))}
@@ -409,6 +464,8 @@ const ContactForm = () => {
                                 value={work.enterprise}
                                 required 
                                 onChange={(e) => updateWorkField(index, 'enterprise', e.target.value)}
+                                onBlur={() => setTouched(prev => ({ ...prev, enterprise: true }))}
+                                checkError={touched.enterprise && validateField('textField', work.enterprise)}
                                 />
                                 <InputField 
                                 label={t('jobs:addressenterprise_input')} 
@@ -422,6 +479,8 @@ const ContactForm = () => {
                                 required 
                                 value={work.phone}
                                 onChange={(e) => updateWorkField(index, 'phone', e.target.value)}
+                                onBlur={() => setTouched(prev => ({ ...prev, phone: true }))}
+                                checkError={touched.phone && validateField('phone', work.phone)}
                                 />
                             </div>
                             <div className='flex flex-col gap-2 w-full pt-2'>
@@ -450,6 +509,8 @@ const ContactForm = () => {
                             required 
                             value={work.boss}
                             onChange={(e) => updateWorkField(index, 'boss', e.target.value)}
+                            onBlur={() => setTouched(prev => ({ ...prev, boss: true }))}
+                            checkError={touched.boss && validateField('textField', work.boss)}
                             />
                             <InputField 
                             label={t('jobs:worktype_input')} 
@@ -457,6 +518,8 @@ const ContactForm = () => {
                             value={work.position}
                             required 
                             onChange={(e) => updateWorkField(index, 'position', e.target.value)}
+                            onBlur={() => setTouched(prev => ({ ...prev, position: true }))}
+                            checkError={touched.position && validateField('textField', work.position)}
                             />
                             <div className='flex gap-2 w-full'>
                                 <InputField 
@@ -465,6 +528,8 @@ const ContactForm = () => {
                                 required 
                                 value={work.salary}
                                 onChange={(e) => updateWorkField(index, 'salary', e.target.value)}
+                                onBlur={() => setTouched(prev => ({ ...prev, salary: true }))}
+                                checkError={touched.salary && validateField('salary', work.salary)}
                                 />
                                 <InputField 
                                 label={t('jobs:lastsalary_input')} 
@@ -472,6 +537,8 @@ const ContactForm = () => {
                                 required 
                                 value={work.lastsalary}
                                 onChange={(e) => updateWorkField(index, 'lastsalary', e.target.value)}
+                                onBlur={() => setTouched(prev => ({ ...prev, lastsalary: true }))}
+                                checkError={touched.lastsalary && validateField('salary', work.lastsalary)}
                                 />
                             </div>
                             <InputField 
@@ -485,8 +552,8 @@ const ContactForm = () => {
                                 <RadioGroupButtons
                                     name="reference"
                                     options={[
-                                        { label: t('general:locale') === 'es' ? 'Si' : 'Yes', value: true },
-                                        { label: t('general:locale') === 'es' ? 'No' : 'No', value: false },
+                                        { label: t('jobs:yes_btn'), value: true },
+                                        { label: t('jobs:no_btn') , value: false },
                                     ]}
                                     selected={work.referencesAllowed}
                                     onChange={(value) => updateWorkField(index, 'referencesAllowed', value)}
@@ -498,6 +565,7 @@ const ContactForm = () => {
                             required 
                             value={work.dismissReason}
                             onChange={(e) => updateWorkField(index, 'dismissReason', e.target.value)}
+                        
                             />
                         </div>
                         ))}
@@ -515,7 +583,9 @@ const ContactForm = () => {
                             value={reference.name}
                             name="enterprise" 
                             required
-                             onChange={(e) => updateReferenceField(index, 'name', e.target.value)}
+                            onChange={(e) => updateReferenceField(index, 'name', e.target.value)}
+                            onBlur={() => setTouched(prev => ({ ...prev, name: true }))}
+                            checkError={touched.name && validateField('textField', reference.name)}
                             />
                             <InputField 
                             label={t('jobs:referencejob_input')} 
@@ -536,6 +606,8 @@ const ContactForm = () => {
                             name="enterprise" 
                             value={reference.phone}
                             required onChange={(e) => updateReferenceField(index, 'phone', e.target.value)}
+                            onBlur={() => setTouched(prev => ({ ...prev, phone: true }))}
+                            checkError={touched.phone && validateField('phone', reference.phone)}
                             />
                         </div>
                     ))}
@@ -554,6 +626,9 @@ const ContactForm = () => {
                             required
                             value={reference.name}
                             onChange={(e) => updatePersonalReferenceField(index, 'name', e.target.value)}
+                            onBlur={() => setTouched(prev => ({ ...prev, name: true }))}
+                            checkError={touched.name && validateField('textField', reference.name)}
+
                             />
                             <InputField
                             label={t('jobs:personalreference2')}
@@ -561,6 +636,8 @@ const ContactForm = () => {
                             required
                             value={reference.relationship}
                             onChange={(e) => updatePersonalReferenceField(index, 'relationship', e.target.value)}
+                            onBlur={() => setTouched(prev => ({ ...prev, relationship: true }))}
+                            checkError={touched.relationship && validateField('textField', reference.relationship)}
                             />
                             <InputField
                             label={t('jobs:personalreference3')}
@@ -568,6 +645,8 @@ const ContactForm = () => {
                             required
                             value={reference.phone}
                             onChange={(e) => updatePersonalReferenceField(index, 'phone', e.target.value)}
+                            onBlur={() => setTouched(prev => ({ ...prev, phone: true }))}
+                            checkError={touched.phone && validateField('phone', reference.phone)}
                             />
                         </div>
                     ))}
@@ -582,36 +661,46 @@ const ContactForm = () => {
                         <RadioGroupButtons
                             name="working"
                             options={[
-                                { label: t('general:locale') === 'es' ? 'Si' : 'Yes', value: true },
-                                { label: t('general:locale') === 'es' ? 'No' : 'No', value: false },
+                                { label: t('jobs:yes_btn'), value: true },
+                                { label: t('jobs:no_btn'), value: false },
                             ]}
                             onChange={(value) => setCurrentlyWorking(value)}
                             selected={currentlyWorking}
                         />
                     </div>
                     <InputField 
-                    label={t('jobs:personalquestion2')} 
-                    name="disponibility" 
-                    value={workAvailability}
-                    required onChange={(e) => setWorkAvailability(e.target.value)} />
+                        label={t('jobs:personalquestion2')} 
+                        name="disponibility" 
+                        value={workAvailability}
+                        required onChange={(e) => setWorkAvailability(e.target.value)} 
+                        onBlur={() => setTouched(prev => ({ ...prev, workAvailability: true }))}
+                        checkError={touched.workAvailability && validateField('textField', workAvailability)}
+                    />
                     <InputField 
-                    label={t('jobs:personalquestion3')} 
-                    name="disponibility" 
-                    value={salaryExpectation}
-                    required 
-                    onChange={(e) => setSalaryExpectation(e.target.value)} />
+                        label={t('jobs:personalquestion3')} 
+                        name="salaryexpectation" 
+                        value={salaryExpectation}
+                        required 
+                        onChange={(e) => setSalaryExpectation(e.target.value)} 
+                        onBlur={() => setTouched(prev => ({ ...prev, salaryExpectation: true }))}
+                        checkError={touched.salaryExpectation && validateField('salary', salaryExpectation)}
+                    />
+
                     <InputField 
                     label={t('jobs:personalquestion4')} 
                     name="disponibility" 
                     value={recommendation}
-                    required onChange={(e) => setRecommendation(e.target.value)} />
+                    required onChange={(e) => setRecommendation(e.target.value)} 
+                    onBlur={() => setTouched(prev => ({ ...prev, recommendation: true }))}
+                    checkError={touched.recommendation && validateField('textField', recommendation)}
+                    />
                     <div className='flex flex-col gap-2 py-2'>
                         <span className='labelform'>{t('jobs:personalquestion5')}</span>
                         <RadioGroupButtons
                             name="family"
                             options={[
-                                { label: t('general:locale') === 'es' ? 'Si' : 'Yes', value: 'yes' },
-                                { label: t('general:locale') === 'es' ? 'No' : 'No', value: 'no' },
+                                { label: t('jobs:yes_btn'), value: 'Sí' },
+                                { label: t('jobs:no_btn'), value: 'No' },
                             ]}
                             selected={hasFamilyInCompany}
                             onChange={(value) => setHasFamilyInCompany(value)}
@@ -619,10 +708,11 @@ const ContactForm = () => {
                     </div>
                     <InputField 
                     label={t('jobs:personalquestion6')} 
-                    name="disponibility" 
+                    name="familydetails" 
                     required 
                     value={familyDetails}
-                    onChange={(e) => setFamilyDetails(e.target.value)} />
+                    onChange={(e) => setFamilyDetails(e.target.value)} 
+                    />
                     <InputField 
                     label={t('jobs:personalquestion7')} 
                     name="disponibility" 
@@ -633,9 +723,11 @@ const ContactForm = () => {
                 <div className='pt-4 w-full gap-4 flex flex-col'>
                     <InputField 
                     label={t('jobs:me_text')} 
-                    name="disponibility" 
+                    name="terms" 
                     value={termsAcceptedName}
-                    required onChange={(e) => setTermsAcceptedName(e.target.value)} />
+                    required onChange={(e) => setTermsAcceptedName(e.target.value)} 
+
+                    />
                     <div className='py-4 w-full'>
                         <span className='affirmtextform'>{t('jobs:text_accept')}</span>
                     </div>

@@ -309,6 +309,10 @@ input[type="date"]::-webkit-inner-spin-button {
   margin: 0;
 }
 
+.error-message{
+  @apply text-red-500 text-sm font-certia;
+}
+
 
 
 
