@@ -21,69 +21,6 @@ const ContactForm = () => {
     const [showSuccess, setShowSuccess] = useState(false);
     const [touched, setTouched] = useState({});
 
-
-    // const fillTestData = () => {
-    //     setApplicationDate(new Date().toISOString());
-    //     setJobPosition('Desarrollador Frontend');
-    //     setContractType('En nómina');
-    //     setFullName('Juan Pérez');
-    //     setBirthDate(new Date('1990-01-01').toISOString());
-    //     setNationality('Guatemalteca');
-    //     setCountry('Guatemala');
-    //     setMunicipality('Guatemala');
-    //     setAddress('Zona 10, Ciudad de Guatemala');
-    //     setPhone('55551212');
-    //     setEmail('juan@test.com');
-    //     setCivilStatus('Soltero');
-    //     setCurrentlyWorking(true);
-    //     setWorkAvailability('Inmediata');
-    //     setSalaryExpectation('8000');
-    //     setRecommendation('Ninguna');
-    //     setHasFamilyInCompany('yes');
-    //     setFamilyDetails('Hermano trabajando en el área de ventas');
-    //     setObservations('Sin observaciones adicionales');
-    //     setTermsAcceptedName('Juan Pérez');
-    //     setTermsAccepted(true);
-    //     setCvFile(null); // O un objeto File si quieres testearlo
-    //     setCertFile(null);
-    
-    //     // Educación recibida
-    //     updateEducationField(0, 'level', 'Universitario');
-    //     updateEducationField(0, 'school', 'Universidad de San Carlos');
-    //     updateEducationField(0, 'period1', new Date('2010-01-01').toISOString());
-    //     updateEducationField(0, 'period2', new Date('2015-01-01').toISOString());
-    //     updateEducationField(0, 'title', 'Ingeniero en Sistemas');
-    
-    //     // Experiencia laboral
-    //     updateWorkField(0, 'enterprise', 'Empresa 1');
-    //     updateWorkField(0, 'address', 'Zona 9, Ciudad de Guatemala');
-    //     updateWorkField(0, 'phone', '12345678');
-    //     updateWorkField(0, 'period1', new Date('2015-01-01').toISOString());
-    //     updateWorkField(0, 'period2', new Date('2020-01-01').toISOString());
-    //     updateWorkField(0, 'boss', 'Sr. Boss');
-    //     updateWorkField(0, 'position', 'Desarrollador');
-    //     updateWorkField(0, 'salary', '7000');
-    //     updateWorkField(0, 'lastsalary', '7500');
-    //     updateWorkField(0, 'functions', 'Desarrollo de aplicaciones web');
-    //     updateWorkField(0, 'referencesAllowed', true);
-    //     updateWorkField(0, 'dismissReason', 'Mejor oportunidad laboral');
-    
-    //     // Referencias laborales
-    //     updateReferenceField(0, 'name', 'Referente Uno');
-    //     updateReferenceField(0, 'job', 'Gerente');
-    //     updateReferenceField(0, 'company', 'Empresa X');
-    //     updateReferenceField(0, 'phone', '32132132');
-    //     updateReferenceField(1, 'name', 'Referente dos');
-    //     updateReferenceField(1, 'job', 'Gerente');
-    //     updateReferenceField(1, 'company', 'Empresa y');
-    //     updateReferenceField(1, 'phone', '32132132');
-    
-    //     // Referencias personales
-    //     updatePersonalReferenceField(0, 'name', 'Amigo Uno');
-    //     updatePersonalReferenceField(0, 'relationship', 'Amigo');
-    //     updatePersonalReferenceField(0, 'phone', '98765432');
-    // };
-
     const [applicationDate, setApplicationDate] = useState(null);
     const [jobPosition, setJobPosition] = useState('');
     const [contractType, setContractType] = useState('');
@@ -269,7 +206,7 @@ const ContactForm = () => {
     };
 
     return (
-        <div className='flex flex-col gap-4 w-full md:w-1/2 justify-center items-center'>
+        <div className='flex flex-col gap-4 w-full md:w-1/2 justify-center items-center bg-white pb-20 px-10 md:p-20 relative'>
             {showSuccess && (
             <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50 shadow-md">
                 <div className="bg-white px-8 py-6 rounded-2xl shadow-xl text-center flex flex-col gap-4">
@@ -754,7 +691,10 @@ const ContactForm = () => {
             <button className='bg-black text-white py-2 px-4 rounded-2xl w-full mt-10' onClick={handleSubmit}>
                 {t('jobs:form_btn')}
             </button>
-            {/* <button onClick={fillTestData}>Autollenar</button> */}
+            <div className='absolute bottom-4 z-10 '>
+                    <LineButton text={t('general:back')} secondary />
+            </div>
+
         </div>
     )
 }

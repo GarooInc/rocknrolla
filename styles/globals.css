@@ -313,6 +313,13 @@ input[type="date"]::-webkit-inner-spin-button {
   @apply text-red-500 text-sm font-certia;
 }
 
+.backroundform{
+  background-image:url('/assets/images/formjobs/background.png');
+  background-size: contain;
+  background-position: center;
+  background-repeat: repeat;
+}
+
 
 
 

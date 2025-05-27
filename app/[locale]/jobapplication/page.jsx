@@ -14,13 +14,10 @@ export default async function JobApplication({ params: { locale } }) {
     const { t, resources } = await initTranslations(locale, namespaces)
     return (
         <TranslationsProvider locale={locale} namespaces={namespaces} resources={resources}>
-        <div className='min-h-screen bg-white'>
+        <div className='min-h-screen  backroundform'>
             <NavBar secondary/>
             <div className='container_page px-10 relative justify-center items-center'>
                 <ContactForm/>
-                <div className='absolute md:bottom-0 z-10 bottom-10'>
-                    <LineButton text={t('general:back')} secondary />
-                </div>
             </div>
             <Footer />
         </div>
