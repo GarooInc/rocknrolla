@@ -34,5 +34,10 @@ export function useArrayField(initialArray) {
     setArray((prev) => [...prev, emptyEntry]);
   };
 
-  return [array, updateField, addEntry];
+  //delete entry
+  const deleteEntry = (index) => {
+    setArray((prev) => prev.filter((_, i) => i !== index));
+  };
+
+  return [array, updateField, addEntry, deleteEntry];
 }

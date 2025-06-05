@@ -1,4 +1,5 @@
 const nationalities_es = [
+    "guatemalteco",
     "afgano",
     "albanés",
     "argelino",
@@ -70,7 +71,6 @@ const nationalities_es = [
     "ghanés",
     "griego",
     "granadino",
-    "guatemalteco",
     "guineano",
     "guineano-bisauano",
     "guyanés",

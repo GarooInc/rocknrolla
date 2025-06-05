@@ -273,6 +273,44 @@
   @apply flex items-center bg-gray-200 rounded-2xl px-4 py-2 w-full;
 }
 
+.container-phone {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 0.5rem !important; /* equivalente a gap-2 */
+  color: #1f2937 !important; /* text-gray-800 */
+  border: none !important; /* border-none */
+}
+
+.react-tel-input .form-control{
+  border:none !important; /* border-none */
+}
+
+.input-phone {
+  display: flex !important;
+  align-items: center !important;
+  background-color: #e5e7eb !important; /* bg-gray-200 */
+  border-radius: 16px !important;        /* rounded-2xl */
+  width: 100% !important;
+  height: 40px !important; /* h-10 */
+}
+
+.react-tel-input .flag-dropdown {
+  border-radius: 10px!important; /* rounded-2xl */
+  background-color: #e5e7eb !important; /* bg-gray-200 */
+}
+
+.react-tel-input .selected-flag:hover, .react-tel-input .selected-flag:focus {
+  border-color: var(--fallback-bc, oklch(var(--bc) / 0.2)) !important; 
+  background-color: #e5e7eb !important;
+  border-radius: 16px !important; 
+}
+
+.react-tel-input .country-list{
+  background-color: #e5e7eb !important; /* bg-gray-200 */
+  border-radius: 16px !important; /* rounded-2xl */
+}
+
+
 .inputfield:focus, .datefield:focus {
   box-shadow: none;
   border-color: var(--fallback-bc, oklch(var(--bc) / 0.2));

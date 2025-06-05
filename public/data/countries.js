@@ -1,4 +1,5 @@
 const countries = [
+    "Guatemala",
     "Afghanistan",
     "Albania",
     "Algeria",
@@ -66,7 +67,6 @@ const countries = [
     "Ghana",
     "Greece",
     "Grenada",
-    "Guatemala",
     "Guinea",
     "Guinea-Bissau",
     "Guyana",

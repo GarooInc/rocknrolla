@@ -1,4 +1,5 @@
 const nationalities_en = [
+  "Guatemalan",
   "Afghan",
   "Albanian",
   "Algerian",
@@ -70,7 +71,6 @@ const nationalities_en = [
   "Ghanaian",
   "Greek",
   "Grenadian",
-  "Guatemalan",
   "Guinean",
   "Guinea-Bissauan",
   "Guyanese",

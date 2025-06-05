@@ -8,7 +8,7 @@ import CustomDatePicker from '@/components/CustomDatePicker/CustomDatePicker'
 import Footer from '@/components/Footer/Footer'
 import ContactForm from '@/components/ContactForm/ContactForm'
 
-const namespaces = ['jobs', 'navBar','general']
+const namespaces = ['jobs', 'jobtypes', 'navBar','general']
 
 export default async function JobApplication({ params: { locale } }) {
     const { t, resources } = await initTranslations(locale, namespaces)
