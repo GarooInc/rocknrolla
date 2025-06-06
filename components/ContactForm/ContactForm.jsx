@@ -66,6 +66,9 @@ const ContactForm = () => {
     const [linkedin, setLinkedin] = useState('');
     const [behance, setBehance] = useState('');
 
+    const [isSubmitting, setIsSubmitting] = useState(false);
+
+
 
     const jobOptions = [
         t('jobtypes:job1'),
@@ -148,6 +151,7 @@ const ContactForm = () => {
       
 
       const handleSubmit = async () => {
+        setIsSubmitting(true);
         const formData = new FormData();
     
         const formDataObject = {
@@ -214,6 +218,8 @@ const ContactForm = () => {
                 telefono: reference.personalphone || '',
                 email: reference.personalemail || '',
             })),
+            linkedin: linkedin || '',
+            Behance: behance || '',
         };
     
         formData.append('form_data', JSON.stringify(formDataObject));
@@ -221,9 +227,6 @@ const ContactForm = () => {
         if (cvFile) formData.append('cv', cvFile);
         if (certFile) formData.append('file_of_work', certFile);
         if (fotografia) formData.append('fotografia', fotografia);
-
-        if (linkedin) formData.append('linkedin', linkedin);
-        if (behance) formData.append('behance', behance);
     
         console.log('Datos enviados:', [...formData]);
     
@@ -238,8 +241,41 @@ const ContactForm = () => {
             console.log('Éxito:', result);
             setShowSuccess(true);
             setTimeout(() => setShowSuccess(false), 3000);
+            // Reset form fields
+            setJobPosition('');
+            setContractType('');
+            setFirstName('');
+            setLastName('');
+            setBirthDate(null);
+            setNationality('Guatemalan');
+            setCountry('Guatemala');
+            setMunicipality('');
+            setAddress('');     
+            setPhone('');
+            setEmail('');
+            setCivilStatus('');
+            setCurrentlyWorking('');
+            setWorkAvailability('');
+            setSalaryExpectation('');
+            setRecommendation('');
+            setHasFamilyInCompany('');
+            setFamilyDetails('');
+            setObservations('');
+            setTermsAcceptedName('');
+            setTermsAccepted(false);
+            setCvFile(null);
+            setCertFile(null);
+            setFotografia(null);
+            updateEducationField([]);
+            updateWorkField([]);
+            updateReferenceField([]);
+            updatePersonalReferenceField([]);
+            setLinkedin('');
+            setBehance('');
         } catch (err) {
             console.error('Error:', err);
+        }finally {
+            setIsSubmitting(false);
         }
     };
 
@@ -251,6 +287,12 @@ const ContactForm = () => {
                 <span className="text-black">Tu solicitud fue enviada con éxito</span>
                 <LineButton text={t('jobs:close_btn')} secondary form onClick={() => setShowSuccess(false)} />
                 </div>
+            </div>
+            
+            )}
+            {isSubmitting && (
+            <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50 shadow-md">
+                <span className="loading loading-spinner loading-lg text-white"></span>
             </div>
             )}
             {/* Solicitud de trabajo  */}
@@ -770,7 +812,7 @@ const ContactForm = () => {
                                     <PhoneInput
                                     country={'gt'}
                                     value={reference.personalphone}
-                                    onChange={(value) => updateReferenceField(index, 'phone', value)}
+                                    onChange={(value) => updatePersonalReferenceField(index, 'personalphone', value)}
                                     inputProps={{
                                         name: 'phone',
                                         required: false,
@@ -784,7 +826,7 @@ const ContactForm = () => {
                                 label={t('jobs:referencemail_input')}
                                 name="email"
                                 value={reference.personalemail}
-                                onChange={(e) => updateReferenceField(index, 'email', e.target.value)}
+                                onChange={(e) => updatePersonalReferenceField(index, 'personalemail', e.target.value)}
                                 onBlur={() => setTouched(prev => ({ ...prev, email: true }))}
                                 checkError={touched.email && validateField('email', reference.personalemail)}
                                 />
@@ -906,9 +948,17 @@ const ContactForm = () => {
                         />
                     </div>
                 </div>
-            <button className='bg-black text-white py-2 px-4 rounded-2xl w-full mt-10' onClick={handleSubmit}>
-                {t('jobs:form_btn')}
-            </button>
+            {
+                isSubmitting ? (
+                    <button className='bg-black text-white py-2 px-4 rounded-2xl w-full mt-10 disabled:opacity-50 cursor-not-allowed' disabled>
+                        {t('jobs:form_btn')}
+                    </button>
+                ) : (
+                    <button className='bg-black text-white py-2 px-4 rounded-2xl w-full mt-10' onClick={handleSubmit}>
+                        {t('jobs:form_btn')}
+                    </button>
+                )
+            }
             <div className='absolute bottom-4 z-10 '>
                     <LineButton text={t('general:back')} secondary />
             </div>
