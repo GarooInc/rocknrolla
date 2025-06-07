@@ -88,7 +88,7 @@ const ContactForm = () => {
         t('jobtypes:job15'),
         t('jobtypes:job16'),
         t('jobtypes:job17')
-    ];
+    ].sort((a, b) => a.localeCompare(b));
 
 
     const [educationreceived, updateEducationField, addEducation] = useArrayField([
