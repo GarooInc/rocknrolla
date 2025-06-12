@@ -30,7 +30,7 @@ const Footer = () => {
         {/* Desktop layout */}
         <div className="hidden lg:flex justify-between w-full">
             <div className="flex flex-col w-1/3 p-8">
-                <img src='/assets/images/footer/logo.png' alt="Logo" className='w-20' />
+                <img src='/assets/images/footer/logo.png' alt="Logo" className='w-36' />
             </div>
             <div className='flex flex-col w-full bg-dark-gray '>
                 <div className="flex justify-between w-full p-10">
@@ -72,7 +72,7 @@ const Footer = () => {
         {/* Mobile layout */}
         <div className="lg:hidden flex items-start">
             <div className="text-center text-2xl p-4 w-1/3">
-                <img src='/assets/images/footer/logo.png' alt="Logo" className='w-14' />
+                <img src='/assets/images/footer/logo.png' alt="Logo" className='w-24' />
             </div>
             <div className='flex flex-col gap-4 w-2/3 bg-dark-gray p-8'>
                     <div className='flex relative'>
