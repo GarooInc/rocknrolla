@@ -14,9 +14,9 @@ export default async function Home({ params: { locale } }) {
   const { t, resources } = await initTranslations(locale, namespaces)
 
   const groups = [
-    { cover: '/assets/images/groups/covers/g1.png', logo: '/assets/images/groups/logos/brands.png' , link: '/brands'},
-    { cover: '/assets/images/groups/covers/g2.png', logo: '/assets/images/groups/logos/buzz.png' , link: '/buzz'},
-    { cover: '/assets/images/groups/covers/g3.png', logo: '/assets/images/groups/logos/future.png' , link: '/future'},
+    { cover: '/assets/images/groups/covers/g1.png', logo: '/assets/images/groups/logos/brands.svg' , link: '/brands'},
+    { cover: '/assets/images/groups/covers/g2.png', logo: '/assets/images/groups/logos/buzz.svg' , link: '/buzz'},
+    { cover: '/assets/images/groups/covers/g3.png', logo: '/assets/images/groups/logos/future.svg' , link: '/future'},
     { cover: '/assets/images/groups/covers/g4.png', logo: '/assets/images/groups/logos/flash.png' , secondary: true, link: '/flash'},
   ]
 
