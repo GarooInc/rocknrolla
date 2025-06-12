@@ -38,6 +38,7 @@ const NavBar = ({secondary}) => {
             ]
         },
         { name: t('navBar:nav4'), link: '/partners' },
+        { name: t('navBar:nav6'), link: '/jobapplication' },
         { name: t('navBar:nav5'), link: 'mailto:hola@rocknrolla23.com' },
     ];
 
