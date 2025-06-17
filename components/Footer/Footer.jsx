@@ -15,6 +15,8 @@ const Footer = () => {
             { name: t('navBar:nav2_s1') , link: '/vision' },
             { name: t('navBar:nav2_s2') , link: '/culture' },
             { name: t('navBar:nav2_s3') , link: '/innegotiable' },
+            { name: t('navBar:nav6') , link: '/jobapplication' },
+
         ]},
         { name: t('navBar:nav3') , link: '/work', submenu: [
             { name: t('navBar:nav3_s1') , link: '/work' },
