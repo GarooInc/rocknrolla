@@ -42,12 +42,17 @@ const Footer = () => {
                         <ul className="space-y-4">
                         {item.submenu ? (
                             item.submenu.map((subitem, subindex) => (
-                            <li className='font-certia font-light text-sm' key={subindex}>{subitem.name}</li>
+                            <li className="font-certia font-light text-sm" key={subindex}>
+                                <a href={subitem.link} className="block w-full h-full">
+                                {subitem.name}
+                                </a>
+                            </li>
                             ))
                         ) : (
                             <li></li>
                         )}
                         </ul>
+
                     </div>
                     ))}
                     <div className="flex items-start gap-4 px-4">
@@ -95,7 +100,6 @@ const Footer = () => {
                                     <li></li>
                                 )}
                                 </ul>
-
                             </div>
                             ))}
                         </div>
