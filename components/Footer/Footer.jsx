@@ -85,12 +85,17 @@ const Footer = () => {
                                 <ul className="space-y-1 text-start text-xs">
                                 {item.submenu ? (
                                     item.submenu.map((subitem, subindex) => (
-                                    <li className='font-certia font-light font-xs' key={subindex}>{subitem.name}</li>
+                                    <li className="font-certia font-light text-xs" key={subindex}>
+                                        <a className="w-full h-full block" href={subitem.link}>
+                                        {subitem.name}
+                                        </a>
+                                    </li>
                                     ))
                                 ) : (
                                     <li></li>
                                 )}
                                 </ul>
+
                             </div>
                             ))}
                         </div>
