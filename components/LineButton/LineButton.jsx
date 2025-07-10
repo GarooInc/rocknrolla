@@ -11,6 +11,9 @@ const LineButton = ({ text, secondary, nav, onClick}) => {
       }
       if (onClick) {
         onClick();
+      } 
+      if (!nav && !onClick) {
+        router.back();
       }
     }}>
       <span className={`border-l ${secondary ? 'border-black text-black' : 'border-white text-white'} h-6`}></span>

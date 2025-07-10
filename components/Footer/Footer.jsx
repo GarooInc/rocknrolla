@@ -7,20 +7,20 @@ const Footer = () => {
 
     const menu = [
         { name: t('navBar:nav1') , link: '/somos', submenu: [
-            { name: t('navBar:nav1_s1') , link: '/somos' },
-            { name: t('navBar:nav1_s2') , link: '/somos' },
-            { name: t('navBar:nav1_s3') , link: '/somos' },
+            { name: t('navBar:nav1_s1') , link: '/brands' },
+            { name: t('navBar:nav1_s2') , link: '/buzz' },
+            { name: t('navBar:nav1_s3') , link: '/future' },
         ]},
         { name: t('navBar:nav2') , link: '/cultura', submenu: [
             { name: t('navBar:nav2_s1') , link: '/vision' },
             { name: t('navBar:nav2_s2') , link: '/culture' },
-            { name: t('navBar:nav2_s3') , link: '/innegotiable' },
+            { name: t('navBar:nav2_s3') , link: '/non-negotiable' },
             { name: t('navBar:nav6') , link: '/jobapplication' },
 
         ]},
         { name: t('navBar:nav3') , link: '/work', submenu: [
-            { name: t('navBar:nav3_s1') , link: '/work' },
-            { name: t('navBar:nav3_s2') , link: '/work' },
+            { name: t('navBar:nav3_s1') , link: '/project/toledoyunainvitacionimpostergable_9lg0qrheaz2r7xd' },
+            { name: t('navBar:nav3_s2') , link: '/highlights' },
         ]},
         { name: t('navBar:nav4') , link: '/partners' },
         { name: t('navBar:nav5') , link: '/contact' },
