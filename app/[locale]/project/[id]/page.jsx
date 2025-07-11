@@ -21,6 +21,10 @@ export async function generateMetadata({ params }) {
     const project = await pb.collection('Proyects').getOne(projectId);
 
     const formattedTitle = project?.[`title_${locale}`] ?? 'Project';
+    const description = project?.[`description_${locale}_rich`].replace(/<[^>]+>/g, '') || 'No description available';
+    const bannerImage = project
+      ? `${api}/api/files/${project.collectionId}/${project.id}/${project.banner_img_desktop}`
+      : '';
 
     return {
       title: formattedTitle,
