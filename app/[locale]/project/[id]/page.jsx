@@ -1,73 +1,66 @@
-"use client";
-
 import NavBar from '@/components/NavBar/NavBar';
 import Footer from '@/components/Footer/Footer';
 import initTranslations from '@/app/i18n';
 import TranslationsProvider from '@/components/TranslationsProvider';
 import ProjectItem from '@/components/ProjectItem/ProjectItem';
 import LineButton from '@/components/LineButton/LineButton';
-import useProjectData from '@/hooks/useProjectData';
-import Head from 'next/head';
-import { useEffect, useState } from 'react';
+import PocketBase from 'pocketbase';
 
 const namespaces = ['general', 'navBar'];
 
-export default function Project({ params }) {
-  const { locale, id } = params;
 
+export async function generateMetadata({ params }) {
+  const { locale, id } = params;
   const projectId = id.split('_')[1];
 
-  const { project, loading, error } = useProjectData(projectId);
-
-  const [translations, setTranslations] = useState({ t: () => '', resources: {} });
-
-  // Carga las traducciones
-  useEffect(() => {
-    const loadTranslations = async () => {
-      const { t, resources } = await initTranslations(locale, namespaces);
-      setTranslations({ t, resources });
-    };
-    loadTranslations();
-  }, [locale]);
-
-  const { t, resources } = translations;
   const api = process.env.NEXT_PUBLIC_API_URL;
+  const pb = new PocketBase(api);
+  pb.autoCancellation(false);
 
-  const formattedTitle = project ? project[`title_${locale}`] : 'Project';
-  const bannerImage = project
-    ? `${api}/api/files/${project.collectionId}/${project.id}/${project.banner_img_desktop}`
-    : '';
+  try {
+    const project = await pb.collection('Proyects').getOne(projectId);
 
-  if (loading || !t) {
-    return (
-      <div className='min-h-screen flex justify-center items-center'>
-        <span className="loading loading-spinner text-neutral"></span>
-      </div>
-    );
+    const formattedTitle = project?.[`title_${locale}`] ?? 'Project';
+
+    return {
+      title: formattedTitle,
+      description,
+      openGraph: {
+        title: formattedTitle,
+        description,
+        images: [bannerImage],
+        url: `https://rocknrolla23.com/${locale}/project/${id}`,
+        type: 'website',
+      },
+      twitter: {
+        card: 'summary_large_image',
+        title: formattedTitle,
+        description,
+        images: [bannerImage],
+      },
+    };
+  } catch (error) {
+    return {
+      title: 'Project not found',
+      description: 'No se encontró el proyecto solicitado',
+    };
   }
+}
 
-  if (error) {
-    return (
-      <div className='min-h-screen flex justify-center items-center'>
-        <span className='text-red-500'>Error fetching project data. Please try again later.</span>
-      </div>
-    );
-  }
+
+export default async function Project({ params }) {
+
+  const { locale, id } = params;
+  const { t, resources } = await initTranslations(locale, namespaces)
+  
+  const projectId = id.split('_')[1];
+  const api = process.env.NEXT_PUBLIC_API_URL;
+  const pb = new PocketBase(api);
+  pb.autoCancellation(false);
 
   return (
+    projectId ? (
     <TranslationsProvider locale={locale} namespaces={namespaces} resources={resources}>
-      <Head>
-        <title>{formattedTitle}</title>
-        <meta property="og:title" content={formattedTitle} />
-        <meta property="og:description" content={project ? project[`description_${locale}_rich`] : 'Project details'} />
-        <meta property="og:image" content={bannerImage} />
-        <meta property="og:url" content={`https://tu-dominio.com/project/${id}`} />
-        <meta property="og:type" content="website" />
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content={formattedTitle} />
-        <meta name="twitter:description" content={project ? project[`description_${locale}_rich`] : 'Project details'} />
-        <meta name="twitter:image" content={bannerImage} />
-      </Head>
       <div className='min-h-screen flex flex-col md:bg-gray-100 bg-white'>
         <NavBar />
         <ProjectItem projectId={projectId} />
@@ -77,5 +70,10 @@ export default function Project({ params }) {
         <Footer />
       </div>
     </TranslationsProvider>
-  );
+    ) : (
+      <div className='min-h-screen flex items-center justify-center'>
+        <h1 className='text-2xl font-bold'>{t('general:projectNotFound')}</h1>
+      </div>
+    )
+  )
 }
