@@ -76,21 +76,22 @@ const NavBar = ({secondary}) => {
                 <ul className="menu menu-horizontal px-4 xl:gap-20">
                     {menu.map((item, index) => (
                         <li key={index} className="relative">
-                            <a
-                                className="nav-item-principal cursor-pointer"
-                                {
-                                    ...item.submenu && {
-                                        onClick: () => toggleSubmenu(index)
-                                    }
-                                }
-                                {
-                                    ...!item.submenu && {
-                                        href: item.link
-                                    }
-                                }
-                            >
-                                {item.name}
-                            </a>
+                            {item.submenu ? (
+                                <button
+                                    type="button"
+                                    className="nav-item-principal cursor-pointer"
+                                    onClick={() => toggleSubmenu(index)}
+                                >
+                                    {item.name}
+                                </button>
+                                ) : (
+                                <a
+                                    className="nav-item-principal cursor-pointer"
+                                    href={item.link}
+                                >
+                                    {item.name}
+                                </a>
+                                )}
                             {item.submenu && activeSubmenu === index && (
                                 <ul className="absolute submenuitem shadow menu rounded-none bg-black text-white hover:bg-none hover:text-white top-10 left-0 z-20">
                                     {item.submenu.map((subitem, subindex) => (
@@ -139,14 +140,22 @@ const NavBar = ({secondary}) => {
                     {menu.map((item, index) => (
                         <React.Fragment key={index}>
                         <li>
-                            <a
-                            className="nav-item cursor-pointer"
-                            {...(item.submenu
-                                ? { onClick: () => toggleSubmenu(index) }
-                                : { href: item.link })}
-                            >
-                            {item.name}
-                            </a>
+                            {item.submenu ? (
+                                <button
+                                    type="button"
+                                    className="nav-item cursor-pointer"
+                                    onClick={() => toggleSubmenu(index)}
+                                >
+                                    {item.name}
+                                </button>
+                                ) : (
+                                <a
+                                    className="nav-item cursor-pointer"
+                                    href={item.link}
+                                >
+                                    {item.name}
+                                </a>
+                                )}
                             {item.submenu && activeSubmenu === index && (
                             <ul className="submenuitem bg-white text-black mt-2 shadow-lg p-4">
                                 {item.submenu.map((subitem, subindex) => (
