@@ -14,18 +14,21 @@ const Highlight = ({ img, title, tag, id }) => {
 
   const router = useRouter();
 
-  const removeAccents = (str) => {
+  const generateSlug = (str) => {
     return str
-      .normalize('NFD')
-      .replace(/[\u0300-\u036f]/g, '') 
-      .replace(/[^a-zA-Z0-9-_]/g, ''); 
-  }
+        .normalize('NFD')
+        .replace(/[\u0300-\u036f]/g, '') // elimina acentos
+        .replace(/[^a-zA-Z0-9\s]/g, '') // elimina caracteres especiales
+        .trim()
+        .replace(/\s+/g, '-')           // reemplaza espacios con guiones
+        .toLowerCase();
+    };
 
   return (
     <div
       style={{ backgroundImage: `url(${img})` }}
       className='highlight_container animation shadow-2xl'
-      onClick={() => router.push(`/project/${removeAccents(title).replace(/\s+/g, '-').toLowerCase()}_${id}`)}
+      onClick={() => router.push(`/project/${generateSlug(title)}-${id}`)}
     >
       <div className='flex flex-col items-start justify-end p-4 gap-2 w-full'>
         <span className='text-white text-xs font-certia italic tracking-widest'>

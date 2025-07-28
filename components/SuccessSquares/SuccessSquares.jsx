@@ -40,9 +40,22 @@ const SuccessSquares = ({ tag }) => {
           .replace(/[^a-zA-Z0-9-_]/g, ''); 
     }
 
-    const handleNavigate = (successSquare) => {
-        successSquare && successSquare.videos != null ? router.push(`/project/${removeAccents(successSquare[`title_${currentLocale}`]).replace(/\s+/g, '-').toLowerCase()}_${successSquare.id}`) : "";
+    const generateSlug = (str) => {
+    return str
+        .normalize('NFD')
+        .replace(/[\u0300-\u036f]/g, '') // elimina acentos
+        .replace(/[^a-zA-Z0-9\s]/g, '') // elimina caracteres especiales
+        .trim()
+        .replace(/\s+/g, '-')           // reemplaza espacios con guiones
+        .toLowerCase();
+    };
 
+
+    const handleNavigate = (successSquare) => {
+        const title = successSquare[`title_${currentLocale}`];
+        successSquare && successSquare.videos != null ? 
+        router.push(`/project/${generateSlug(title)}-${successSquare.id}`) : 
+        " ";
     }
 
 

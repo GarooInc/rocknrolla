@@ -11,7 +11,9 @@ const namespaces = ['general', 'navBar'];
 
 export async function generateMetadata({ params }) {
   const { locale, id } = params;
-  const projectId = id.split('_')[1];
+  const slug = id;
+  const idParts = slug.split('-');
+  const projectId = idParts[idParts.length - 1]; // Extract the last part as the project ID
 
   const api = process.env.NEXT_PUBLIC_API_URL;
   const pb = new PocketBase(api);
@@ -57,7 +59,9 @@ export default async function Project({ params }) {
   const { locale, id } = params;
   const { t, resources } = await initTranslations(locale, namespaces)
   
-  const projectId = id.split('_')[1];
+  const slug = id;
+  const idParts = slug.split('-');
+  const projectId = idParts[idParts.length - 1]; // Extract the last part
   const api = process.env.NEXT_PUBLIC_API_URL;
   const pb = new PocketBase(api);
   pb.autoCancellation(false);
