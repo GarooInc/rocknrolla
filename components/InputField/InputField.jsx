@@ -5,7 +5,7 @@ const InputField = ({
   secondaryLabel,
   name,
   type = "text",
-  required = false,
+  required,
   value,
   onChange,
   onBlur,
@@ -16,7 +16,9 @@ const InputField = ({
   return (
     <div className="inputtype">
       <div className="flex gap-2 justify-start items-center">
-        {label && <label className="labelform" htmlFor={name}>{label}</label>}
+        {label && <label className="labelform" htmlFor={name}>{label}
+        {required && <span className="text-red-500 ml-1">*</span>}
+        </label>}
         {secondaryLabel && focused && (
           <span className="text-xs text-gray-500">{secondaryLabel}</span>
         )}

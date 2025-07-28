@@ -1,5 +1,6 @@
 "use client"
 import React from 'react'
+import { useState, useRef } from 'react'
 import InputField from '../InputField/InputField'
 import FileUpload from '../FileUpload/FileUpload'
 import RadioGroupButtons from '../RadioGroupButtons/RadioGroupButtons'
@@ -8,7 +9,6 @@ import CustomDatePicker from '../CustomDatePicker/CustomDatePicker'
 import SelectField from '../SelectField/SelectField'
 import nationalities_en from '@/public/data/nationalities_en'
 import countries from '@/public/data/countries'
-import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import municipiosGuate from '@/public/data/municipios'
 import { useArrayField } from '@/hooks/useArrayField';
@@ -35,7 +35,6 @@ const ContactForm = () => {
 
     const [jobPosition, setJobPosition] = useState('');
     const [contractType, setContractType] = useState('');
-
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
     const [birthDate, setBirthDate] = useState(null);
@@ -67,6 +66,8 @@ const ContactForm = () => {
     const [behance, setBehance] = useState('');
 
     const [isSubmitting, setIsSubmitting] = useState(false);
+    const formRef = useRef(null)
+
 
 
 
@@ -91,17 +92,33 @@ const ContactForm = () => {
     ].sort((a, b) => a.localeCompare(b));
 
 
-    const [educationreceived, updateEducationField, addEducation] = useArrayField([
-        { level: '', school: '', period1: '', period2: '', title: '' },
-      ]);
-    
-      const [workexperience, updateWorkField, addWorkExperience, removeWorkExperience] = useArrayField([
-        {
-          enterprise: '', address: '', phone: '', period1: '', period2: '',
-          boss: '', jobtype: '', position: '', salary: '', lastsalary: '',
-          functions: '', referencesAllowed: '', dismissReason: ''
-        },
-      ]);
+    const [educationreceived, updateEducationField, addEducation, removeEducation] = useArrayField(
+        Array.from({ length: 2 }, () => ({
+        level: '',
+        school: '',
+        period1: '',
+        period2: '',
+        title: '',
+        }))
+    );
+
+      const [workexperience, updateWorkField, addWorkExperience, removeWorkExperience] = useArrayField(
+        Array.from({ length: 3 }, () => ({
+        enterprise: '',
+        address: '',
+        phone: '',
+        period1: '',
+        period2: '',
+        boss: '',
+        jobtype: '',
+        position: '',
+        salary: '',
+        lastsalary: '',
+        functions: '',
+        referencesAllowed: '',
+        dismissReason: '',
+        }))
+    )
     
       const [laboralreferences, updateReferenceField, addLaboralReference, removeLaboralReference] = useArrayField([
         { name: '', job: '', company: '', phone: '' , email: '' },
@@ -122,6 +139,9 @@ const ContactForm = () => {
                 }
                 return '';
             case 'email':
+                if (!value) {
+                    return '';
+                }
                 if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) {
                     return 'Correo no válido.';
                 }
@@ -150,7 +170,14 @@ const ContactForm = () => {
     
       
 
-      const handleSubmit = async () => {
+      const handleSubmit = async (e) => {
+        e.preventDefault();
+
+        if (!formRef.current.checkValidity()) {
+            formRef.current.reportValidity()
+            return
+        }
+
         setIsSubmitting(true);
         const formData = new FormData();
     
@@ -280,7 +307,7 @@ const ContactForm = () => {
     };
 
     return (
-        <div className='flex flex-col gap-4 w-full md:w-1/2 justify-center items-center bg-white pb-20 px-10 md:p-20 relative'>
+        <form ref={formRef} className='flex flex-col gap-4 w-full md:w-1/2 justify-center items-center bg-white pb-20 px-10 md:p-20 relative'>
             {showSuccess && (
             <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50 shadow-md">
                 <div className="bg-white px-8 py-6 rounded-2xl shadow-xl text-center flex flex-col gap-4">
@@ -298,17 +325,6 @@ const ContactForm = () => {
             {/* Solicitud de trabajo  */}
             <div className='w-full gap-4 flex flex-col'>
                 <LineTitle text={t('jobs:application')} secondary form/>
-                {/* <div className='inputtype'>
-                    <span className='labelform'>{t('jobs:date_input')}</span>
-                    <CustomDatePicker onChange={(date) => setApplicationDate(date)} />                     
-                </div> */}
-                {/* <InputField 
-                    label={t('jobs:job_input')} 
-                    name="jobposition" 
-                    required  
-                    value={jobPosition}
-                    onChange={(e) => setJobPosition(e.target.value)}
-                /> */}
                 <SelectField 
                     label={t('job_input')}
                     name="jobposition"
@@ -319,7 +335,9 @@ const ContactForm = () => {
                 />
 
                 <div className='inputtype'>
-                    <span className='labelform'>{t('jobs:typejob_input')}</span>
+                    <span className='labelform'>{t('jobs:typejob_input')}
+                    <span className="text-red-500 ml-1">*</span>
+                    </span>
                     <div className='flex gap-2'>
                         <RadioGroupButtons
                             name="typejob"
@@ -328,24 +346,17 @@ const ContactForm = () => {
                                 { label: t('jobs:typecontract2'), value: t('jobs:typecontract2') },
                             ]}
                             selected={contractType}
+                            required
                             onChange={(value) => setContractType(value)}
                         />
                     </div>
-                    <FileUpload label={t('jobs:pic_input')} name="pic" required accept='image/*' onChange={(e) => setFotografia(e.target.files[0])} />
+                    <FileUpload label={t('jobs:pic_input')} required name="pic"  accept='image/*' onChange={(e) => setFotografia(e.target.files[0])} />
                 </div>
             </div>
             <div className='pt-4 w-full gap-4 flex flex-col'>
                 <LineTitle text={t('jobs:application')} secondary form/>
                 <div className='flex flex-col gap-2 w-full'>
-                    {/* <InputField 
-                    label={t('jobs:name_input')} 
-                    name="name"
-                    required 
-                    value={fullName}
-                    onChange={(e) => setFullName(e.target.value)} 
-                    onBlur={() => setTouched(prev => ({ ...prev, fullName: true }))}
-                    checkError={touched.fullName && validateField('textField', fullName)}                  
-                    /> */}
+
                     {/*separar nombre y apellido*/}
                     <div className='flex gap-2 w-full'>
                         <InputField 
@@ -368,7 +379,9 @@ const ContactForm = () => {
                         />
                     </div>
                     <div className='inputtype'>
-                        <span className='labelform'>{t('jobs:datebirth_input')}</span>
+                        <span className='labelform'>{t('jobs:datebirth_input')}
+                        <span className="text-red-500 ml-1">*</span>
+                        </span>
                         <CustomDatePicker onChange={(date) => setBirthDate(date)} />                   
                     </div>
                     <SelectField label={t('nationality_input')} name="nationality" required
@@ -402,23 +415,18 @@ const ContactForm = () => {
                     onChange={(e) => setAddress(e.target.value)}
                     onBlur={() => setTouched(prev => ({ ...prev, address: true }))}
                     />
-                    {/* <InputField 
-                    label={t('jobs:tel_input')} 
-                    name="phone" 
-                    required 
-                    value={phone}
-                    onChange={(e) => setPhone(e.target.value)}
-                    checkError={validateField('phone', phone)}
-                    /> */}
+
                     <div className='flex flex-col gap-2 w-full'>
-                    <span className='labelform'>{t('jobs:tel_input')}</span>
+                    <span className='labelform'>{t('jobs:tel_input')}
+                        <span className="text-red-500 ml-1">*</span>
+                    </span>
                         <PhoneInput
                         country={'gt'}
                         value={phone}
                         onChange={(value) => setPhone(value)}
                         inputProps={{
                             name: 'phone',
-                            required: false,
+                            required: true,
                             autoFocus: false,
                         }}
                         containerClass="container-phone"
@@ -435,10 +443,13 @@ const ContactForm = () => {
                     onBlur={() => setTouched(prev => ({ ...prev, email: true }))}
                     checkError={touched.email && validateField('email', email)}
                     />
-                    <span className='labelform'>{t('jobs:civil_input')}</span>
+                    <span className='labelform'>{t('jobs:civil_input')}
+                        <span className="text-red-500 ml-1">*</span>
+                    </span>
                     <div className='flex gap-2'>
                         <RadioGroupButtons
                             name="civil"
+                            required
                             options={[
                                 { label: t('jobs:civil1'), value: t('jobs:civil1') },
                                 { label: t('jobs:civil2'), value: t('jobs:civil2') },
@@ -456,61 +467,83 @@ const ContactForm = () => {
                     <LineTitle text={t('jobs:education')} secondary form/>
                     <div className='flex flex-col gap-2 w-full '>
                     {educationreceived.map((education, index) => (
-                        <div key={index} className='flex flex-col gap-2 w-full'>
-                            <SelectField label={t('jobs:education_input')} name="level" required
-                            options={
-                                [
-                                    t('jobs:education5'),
-                                    t('jobs:education4'),
-                                    t('jobs:education3'),
-                                    t('jobs:education2'),
-                                    t('jobs:education1'),
-                                ]
-                            }
-                            value={education.level}
-                            onChange={(e) => updateEducationField(index, 'level', e.target.value)}
-                            />
-                            <InputField
-                            label={t('jobs:institution_input')}
-                            name="school"
-                            required
-                            value={education.school}
-                            onChange={(e) => updateEducationField(index, 'school', e.target.value)}
-                            onBlur={() => setTouched(prev => ({ ...prev, school: true }))}
-                            checkError={touched.school && validateField('textField', education.school)}
-                            />
-                            <div className='flex flex-col py-2 w-full'>
-                                <span className='labelform w-full'>{t('jobs:period_input')}</span>
-                                    <div className='flex flex-col gap-2 w-full pt-2'>
-                                        <span className='labelformlower w-full'>{t('jobs:period_input1')}</span>
-                                        <CustomDatePicker 
-                                        name="period1" 
-                                        required 
-                                        value={education.period1 }
-                                        onChange={(value) => updateEducationField(index, 'period1', value)}
-                                        monthyear
-                                        />
-                                    </div>
-                                    <div className='flex flex-col gap-2 w-full py-2'>
-                                        <span className='labelformlower w-full'>{t('jobs:period_input2')}</span>
-                                        <CustomDatePicker 
-                                        name="period2" 
-                                        required 
-                                        value={education.period2}
-                                        onChange={(value) => updateEducationField(index, 'period2', value)}
-                                        monthyear
-                                        />
-                                    </div>
+                        <div key={index} 
+                        className={`relative flex flex-col gap-2 w-full ${
+                            index !== 0 ? 'border-t border-gray-300 pt-4 mt-6' : ''
+                            }`}
+                        >
+                            <div className='flex flex-col gap-2 w-full'>
+                                {
+                                    index >= 2  && (
+                                        <button
+                                    type="button"
+                                    onClick={() => removeWorkExperience(index)}
+                                    className="absolute top-0 right-0 text-gray-500 hover:text-red-600 text-xl"
+                                    title={t('jobs:delete_experience')}
+                                    >
+                                    &times;
+                                    </button>
+                                    )
+                                }
+                                <SelectField label={t('jobs:education_input')} name="level" required
+                                options={
+                                    [
+                                        t('jobs:education5'),
+                                        t('jobs:education4'),
+                                        t('jobs:education3'),
+                                        t('jobs:education2'),
+                                        t('jobs:education1'),
+                                    ]
+                                }
+                                value={education.level}
+                                onChange={(e) => updateEducationField(index, 'level', e.target.value)}
+                                />
+                                <InputField
+                                label={t('jobs:institution_input')}
+                                name="school"
+                                required
+                                value={education.school}
+                                onChange={(e) => updateEducationField(index, 'school', e.target.value)}
+                                onBlur={() => setTouched(prev => ({ ...prev, school: true }))}
+                                checkError={touched.school && validateField('textField', education.school)}
+                                />
+                                <div className='flex flex-col py-2 w-full'>
+                                    <span className='labelform w-full'>{t('jobs:period_input')}</span>
+                                        <div className='flex flex-col gap-2 w-full pt-2'>
+                                            <span className='labelformlower w-full'>{t('jobs:period_input1')}
+                                                <span className="text-red-500 ml-1">*</span>
+                                            </span>
+                                            <CustomDatePicker 
+                                            name="period1" 
+                                            required 
+                                            value={education.period1 }
+                                            onChange={(value) => updateEducationField(index, 'period1', value)}
+                                            monthyear
+                                            />
+                                        </div>
+                                        <div className='flex flex-col gap-2 w-full py-2'>
+                                            <span className='labelformlower w-full'>{t('jobs:period_input2')}
+                                                <span className="text-red-500 ml-1">*</span>
+                                            </span>
+                                            <CustomDatePicker 
+                                            name="period2" 
+                                            required 
+                                            value={education.period2}
+                                            onChange={(value) => updateEducationField(index, 'period2', value)}
+                                            monthyear
+                                            />
+                                        </div>
+                                </div>
+                                <InputField
+                                label={t('jobs:titlegrad_input')}
+                                name="degree"
+                                required
+                                value={education.title}
+                                onChange={(e) => updateEducationField(index, 'title', e.target.value)}
+                                onBlur={() => setTouched(prev => ({ ...prev, title: true }))}
+                                checkError={touched.title && validateField('textField', education.title)}
+                                />
                             </div>
-                            <InputField
-                            label={t('jobs:titlegrad_input')}
-                            name="degree"
-                            required
-                            value={education.title}
-                            onChange={(e) => updateEducationField(index, 'title', e.target.value)}
-                            onBlur={() => setTouched(prev => ({ ...prev, title: true }))}
-                            checkError={touched.title && validateField('textField', education.title)}
-                            />
                         </div>
                     ))}
                         <button className='italic text-black py-2' onClick={() => addEducation()} >
@@ -530,7 +563,7 @@ const ContactForm = () => {
                             >
                             <div className='flex flex-col gap-2 w-full'>
                                 {
-                                    index !== 0 && (
+                                    index >= 1 && (
                                         <button
                                     type="button"
                                     onClick={() => removeWorkExperience(index)}
@@ -550,23 +583,10 @@ const ContactForm = () => {
                                 onBlur={() => setTouched(prev => ({ ...prev, enterprise: true }))}
                                 checkError={touched.enterprise && validateField('textField', work.enterprise)}
                                 />
-                                {/* <InputField 
-                                label={t('jobs:addressenterprise_input')} 
-                                name="address" required 
-                                value={work.address}
-                                onChange={(e) => updateWorkField(index, 'address', e.target.value)}
-                                /> */}
-                                {/* <InputField 
-                                label={t('jobs:telenterprise_input')} 
-                                name="phone" 
-                                required 
-                                value={work.phone}
-                                onChange={(e) => updateWorkField(index, 'phone', e.target.value)}
-                                onBlur={() => setTouched(prev => ({ ...prev, phone: true }))}
-                                checkError={touched.phone && validateField('phone', work.phone)}
-                                /> */}
                                 <div className='flex flex-col gap-2 w-full'>
-                                    <span className='labelform'>{t('jobs:tel_input')}</span>
+                                    <span className='labelform'>{t('jobs:tel_input')}
+                                    <span className="text-red-500 ml-1">*</span>
+                                    </span>
                                     <PhoneInput
                                     country={'gt'}
                                     value={work.phone}
@@ -583,7 +603,9 @@ const ContactForm = () => {
                                 
                             </div>
                             <div className='flex flex-col gap-2 w-full pt-2'>
-                                <span className='labelform w-full'>{t('jobs:datestart_input')}</span>
+                                <span className='labelform w-full'>{t('jobs:datestart_input')}
+                                <span className="text-red-500 ml-1">*</span>
+                                </span>
                                 <CustomDatePicker 
                                 name="period1" 
                                 required 
@@ -593,7 +615,9 @@ const ContactForm = () => {
                                 />
                             </div>
                             <div className='flex flex-col gap-2 w-full py-2'>
-                                <span className='labelform w-full'>{t('jobs:datefinish_input')}</span>
+                                <span className='labelform w-full'>{t('jobs:datefinish_input')}
+                                <span className="text-red-500 ml-1">*</span>
+                                </span>
                                 <CustomDatePicker 
                                 name="period2" 
                                 required 
@@ -649,6 +673,7 @@ const ContactForm = () => {
                             <div className='flex flex-col gap-2 py-2'>
                                 <span className='labelform'>{t('jobs:references_input')}</span>
                                 <RadioGroupButtons
+                                    required
                                     name="reference"
                                     options={[
                                         { label: t('jobs:yes_btn'), value: true },
@@ -717,17 +742,12 @@ const ContactForm = () => {
                             required 
                             onChange={(e) => updateReferenceField(index, 'company', e.target.value)}
                             />
-                            {/* <InputField 
-                            label={t('jobs:enterprisetel_input')} 
-                            name="enterprise" 
-                            value={reference.phone}
-                            required onChange={(e) => updateReferenceField(index, 'phone', e.target.value)}
-                            onBlur={() => setTouched(prev => ({ ...prev, phone: true }))}
-                            checkError={touched.phone && validateField('phone', reference.phone)}
-                            /> */}
+
                             <div className='flex gap-2 w-full'>
                                 <div className='flex flex-col gap-2 w-full'>
-                                    <span className='labelform'>{t('jobs:tel_input')}</span>
+                                    <span className='labelform'>{t('jobs:tel_input')}
+                                    <span className="text-red-500 ml-1">*</span>
+                                    </span>
                                     <PhoneInput
                                     country={'gt'}
                                     value={reference.phone} 
@@ -745,6 +765,7 @@ const ContactForm = () => {
                                 label={t('jobs:referencemail_input')}
                                 name="email"
                                 value={reference.email}
+                                required
                                 onChange={(e) => updateReferenceField(index, 'email', e.target.value)}
                                 onBlur={() => setTouched(prev => ({ ...prev, email: true }))}
                                 checkError={touched.email && validateField('email', reference.email)}
@@ -797,18 +818,11 @@ const ContactForm = () => {
                             onBlur={() => setTouched(prev => ({ ...prev, relationship: true }))}
                             checkError={touched.relationship && validateField('textField', reference.relationship)}
                             />
-                            {/* <InputField
-                            label={t('jobs:personalreference3')}
-                            name="telefono"
-                            required
-                            value={reference.phone}
-                            onChange={(e) => updatePersonalReferenceField(index, 'phone', e.target.value)}
-                            onBlur={() => setTouched(prev => ({ ...prev, phone: true }))}
-                            checkError={touched.phone && validateField('phone', reference.phone)}
-                            /> */}
                             <div className='flex gap-2 w-full'>
                                 <div className='flex flex-col gap-2 w-full'>
-                                    <span className='labelform'>{t('jobs:tel_input')}</span>
+                                    <span className='labelform'>{t('jobs:tel_input')}
+                                    <span className="text-red-500 ml-1">*</span>
+                                    </span>
                                     <PhoneInput
                                     country={'gt'}
                                     value={reference.personalphone}
@@ -825,6 +839,7 @@ const ContactForm = () => {
                                 <InputField
                                 label={t('jobs:referencemail_input')}
                                 name="email"
+                                required
                                 value={reference.personalemail}
                                 onChange={(e) => updatePersonalReferenceField(index, 'personalemail', e.target.value)}
                                 onBlur={() => setTouched(prev => ({ ...prev, email: true }))}
@@ -840,8 +855,11 @@ const ContactForm = () => {
                 <div className='pt-4 w-full gap-4 flex flex-col'>
                     <LineTitle text={t('jobs:personalreference')} secondary form/>
                     <div className='flex flex-col gap-2 py-2'>
-                        <span className='labelform'>{t('jobs:personalquestion1')}</span>
+                        <span className='labelform'>{t('jobs:personalquestion1')}
+                        <span className="text-red-500 ml-1">*</span>
+                        </span>
                         <RadioGroupButtons
+                            required
                             name="working"
                             options={[
                                 { label: t('jobs:yes_btn'), value: true },
@@ -878,9 +896,12 @@ const ContactForm = () => {
                     checkError={touched.recommendation && validateField('textField', recommendation)}
                     />
                     <div className='flex flex-col gap-2 py-2'>
-                        <span className='labelform'>{t('jobs:personalquestion5')}</span>
+                        <span className='labelform'>{t('jobs:personalquestion5')}
+                        <span className="text-red-500 ml-1">*</span>
+                        </span>
                         <RadioGroupButtons
                             name="family"
+                            required
                             options={[
                                 { label: t('jobs:yes_btn'), value: 'Sí' },
                                 { label: t('jobs:no_btn'), value: 'No' },
@@ -963,7 +984,7 @@ const ContactForm = () => {
                     <LineButton text={t('general:back')} secondary />
             </div>
 
-        </div>
+        </form>
     )
 }
 

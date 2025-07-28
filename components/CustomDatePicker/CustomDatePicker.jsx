@@ -44,6 +44,7 @@ const CustomDatePicker = ({ namePrefix, onChange, monthyear }) => {
               className="bg-transparent border-none text-center outline-none appearance-none w-full"
               value={selectedDate.dia}
               onChange={handleChange}
+              required
             >
               <option value="">día</option>
               {days.map(day => (
@@ -58,6 +59,7 @@ const CustomDatePicker = ({ namePrefix, onChange, monthyear }) => {
         name={`${namePrefix}_mes`}
         className="bg-transparent border-none text-center outline-none appearance-none w-full"
         value={selectedDate.mes}
+        required
         onChange={handleChange}
       >
         <option value="">mes</option>
@@ -71,6 +73,7 @@ const CustomDatePicker = ({ namePrefix, onChange, monthyear }) => {
         className="bg-transparent border-none text-center outline-none appearance-none w-full"
         value={selectedDate.anio}
         onChange={handleChange}
+        required
       >
         <option value="">año</option>
         {years.map(year => (
