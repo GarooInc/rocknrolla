@@ -68,7 +68,7 @@ const NavBar = ({secondary}) => {
         <div className={`navbar bg-white md:px-10 p-4  ${secondary ? 'border-b border-black' : 'shadow-md'}`} ref={menuRef}>
             {/* Logo Desktop */}
             <div className="md:flex hidden">
-                <Image src="/assets/images/logo.png" alt="logo" className='cursor-pointer xl:flex hidden' width={100} height={100} onClick={() => router.push('/')} />
+                <Image src="/assets/images/logo.png" alt="logo" className='cursor-pointer xl:flex hidden' width={100} height={100} priority onClick={() => router.push('/')} />
             </div>
 
             {/* Menú Desktop */}
