@@ -33,7 +33,7 @@ const NavBar = ({secondary}) => {
         },
         {
             name: t('navBar:nav3'), submenu: [
-                { name: t('navBar:nav3_s1'), link: '/project/toledo-y-una-invitacion-impostergable-9lg0qrheaz2r7xd' },
+                { name: t('navBar:nav3_s1'), link: '/project/y-si-en-vez-de-hacer-un-jingle-creamos-la-cancion-del-fiambre-vaojkc81k2wc1b7' },
                 { name: t('navBar:nav3_s2'), link: '/highlights' },
             ]
         },
