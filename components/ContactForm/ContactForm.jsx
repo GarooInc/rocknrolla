@@ -88,7 +88,8 @@ const ContactForm = () => {
         t('jobtypes:job14'),
         t('jobtypes:job15'),
         t('jobtypes:job16'),
-        t('jobtypes:job17')
+        t('jobtypes:job17'),
+        t('jobtypes:job18'),
     ].sort((a, b) => a.localeCompare(b));
 
 
