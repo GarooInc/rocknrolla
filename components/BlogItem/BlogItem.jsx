@@ -109,7 +109,7 @@ const BlogItem = ({ blogId }) => {
                     rel="noopener noreferrer"
                     className='flex items-center justify-center'
                   >
-                    <img src={media.img} alt="Share icon" className="md:w-10 md:h-8 w-12 h-8" />
+                    <img src={media.img} alt="Share icon" className="md:w-10 md:h-10 w-10 h-10 object-contain" />
                   </a>
                 ))}
               </div>
