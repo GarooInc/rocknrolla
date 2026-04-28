@@ -193,7 +193,7 @@
 }
 
 .img_banner_mobile{
-  @apply absolute inset-0 bg-cover bg-center md:hidden;
+  @apply absolute inset-0 bg-contain bg-center bg-no-repeat md:hidden;
 }
 
 .img_banner_desktop{
