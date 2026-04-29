@@ -1,14 +1,17 @@
 "use client";
 import React, { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 const days = Array.from({ length: 31 }, (_, i) => i + 1);
-const months = [
-  'enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio',
-  'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre',
-];
 const years = Array.from({ length: 80 }, (_, i) => new Date().getFullYear() - i);
 
 const CustomDatePicker = ({ namePrefix, onChange, monthyear }) => {
+  const { t } = useTranslation();
+  const months = t('general:months', { returnObjects: true }) || [
+    'enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio',
+    'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre',
+  ];
+
   const [selectedDate, setSelectedDate] = useState({
     dia: '',
     mes: '',
