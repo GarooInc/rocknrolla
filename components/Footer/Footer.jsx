@@ -105,13 +105,13 @@ const Footer = () => {
                         </div>
                         {/* Social media icons */}
                         <div className="flex space-x-4 justify-end items-end absolute bottom-2 right-8">
-                            <a href="#" className="hover:opacity-75">
+                            <a href="https://www.instagram.com/rocknrolla.23/" target="_blank" rel="noreferrer" className="hover:opacity-75">
                             <img src="/assets/images/media/1.png" alt="Instagram" className='w-4' />
                             </a>
-                            <a href="#" className="hover:opacity-75">
+                            <a href="https://www.linkedin.com/company/rocknrolla23/" target="_blank" rel="noreferrer" className="hover:opacity-75">
                             <img src="/assets/images/media/3.png" alt="LinkedIn" className='w-4' />
                             </a>
-                            <a href="#" className="hover:opacity-75">
+                            <a href="https://vimeo.com/user163897483" target="_blank" rel="noreferrer" className="hover:opacity-75">
                             <img src="/assets/images/media/2.png" alt="Vimeo" className='w-4' />
                             </a>
                         </div>
