@@ -355,7 +355,7 @@ const ContactForm = () => {
                 </div>
             </div>
             <div className='pt-4 w-full gap-4 flex flex-col'>
-                <LineTitle text={t('jobs:application')} secondary form/>
+                <LineTitle text={t('jobs:personaldata')} secondary form/>
                 <div className='flex flex-col gap-2 w-full'>
 
                     {/*separar nombre y apellido*/}

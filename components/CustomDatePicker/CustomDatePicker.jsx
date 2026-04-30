@@ -51,7 +51,7 @@ const CustomDatePicker = ({ namePrefix, onChange, monthyear }) => {
               onChange={handleChange}
               required
             >
-              <option value="">día</option>
+              <option value="">{t('general:day', 'día')}</option>
               {days.map(day => (
                 <option key={day} value={day}>{day}</option>
               ))}
@@ -67,7 +67,7 @@ const CustomDatePicker = ({ namePrefix, onChange, monthyear }) => {
         required
         onChange={handleChange}
       >
-        <option value="">mes</option>
+        <option value="">{t('general:month', 'mes')}</option>
         {months.map((month, i) => (
           <option key={i} value={i + 1}>{month}</option>
         ))}
@@ -80,7 +80,7 @@ const CustomDatePicker = ({ namePrefix, onChange, monthyear }) => {
         onChange={handleChange}
         required
       >
-        <option value="">año</option>
+        <option value="">{t('general:year', 'año')}</option>
         {years.map(year => (
           <option key={year} value={year}>{year}</option>
         ))}
