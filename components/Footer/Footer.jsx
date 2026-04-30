@@ -23,7 +23,7 @@ const Footer = () => {
             { name: t('navBar:nav3_s2') , link: '/highlights' },
         ]},
         { name: t('navBar:nav4') , link: '/partners' },
-        { name: t('navBar:nav5') , link: '/contact' },
+        { name: t('navBar:nav5') , link: 'mailto:hola@rocknrolla23.com' },
     ]
 
   return (

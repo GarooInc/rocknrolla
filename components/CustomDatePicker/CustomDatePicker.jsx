@@ -7,10 +7,12 @@ const years = Array.from({ length: 80 }, (_, i) => new Date().getFullYear() - i)
 
 const CustomDatePicker = ({ namePrefix, onChange, monthyear }) => {
   const { t } = useTranslation();
-  const months = t('general:months', { returnObjects: true }) || [
+  const fallbackMonths = [
     'enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio',
     'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre',
   ];
+  const monthsData = t('general:months', { returnObjects: true });
+  const months = Array.isArray(monthsData) ? monthsData : fallbackMonths;
 
   const [selectedDate, setSelectedDate] = useState({
     dia: '',
